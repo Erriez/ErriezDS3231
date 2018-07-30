@@ -258,6 +258,10 @@ Note: Enabling interrupt will disable the ```SQW``` output signal.
 // Uno, Nano, Mini, other 328-based: pin D2 (INT0) or D3 (INT1)
 #define INT_PIN     2
 
+// Alarm interrupt flag must be volatile
+static volatile bool alarmInterrupt = false;
+
+
 static void alarmHandler()
 {
     // Set global interrupt flag

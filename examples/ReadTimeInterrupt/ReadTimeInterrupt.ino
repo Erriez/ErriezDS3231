@@ -51,7 +51,7 @@
 // Create DS3231 RTC object
 static DS3231 rtc;
 
-// Clock interrupt flag
+// Clock interrupt flag must be volatile
 static volatile bool clockInterrupt = false;
 
 // Time variables

@@ -56,7 +56,7 @@ static DS3231 rtc;
 // Create date time object (automatically cleared at startup)
 static DS3231_DateTime dt;
 
-// Alarm interrupt flag
+// Alarm interrupt flag must be volatile
 static volatile bool alarmInterrupt = false;
 
 // Function prototypes
