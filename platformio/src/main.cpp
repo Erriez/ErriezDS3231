@@ -23,10 +23,11 @@
  */
 
 /*!
- * \file SetDateTime.ino
- * \brief DS3231 high accurate RTC minimum read time example for Arduino
+ * \file GettingStarted.ino
+ * \brief DS3231 high accurate RTC getting started example for Arduino
  * \details
- *      Source: https://github.com/Erriez/ErriezDS3231
+ *    Required library: https://github.com/Erriez/ErriezDS3231
+ *    Connect the nINT/SQW pin to an Arduino interrupt pin
  */
 
 #include <Arduino.h>
@@ -37,9 +38,44 @@
 // Create DS3231 RTC object
 static DS3231 rtc;
 
+// Create date time object
+static DS3231_DateTime dt;
+
+// Define days of the week in flash
+const char day_1[] PROGMEM = "Monday";
+const char day_2[] PROGMEM = "Tuesday";
+const char day_3[] PROGMEM = "Wednesday";
+const char day_4[] PROGMEM = "Thursday";
+const char day_5[] PROGMEM = "Friday";
+const char day_6[] PROGMEM = "Saturday";
+const char day_7[] PROGMEM = "Sunday";
+
+const char* const day_week_table[] PROGMEM = {
+        day_1, day_2, day_3, day_4, day_5, day_6, day_7
+};
+
+// Define months in flash
+const char month_1[] PROGMEM = "January";
+const char month_2[] PROGMEM = "February";
+const char month_3[] PROGMEM = "March";
+const char month_4[] PROGMEM = "April";
+const char month_5[] PROGMEM = "May";
+const char month_6[] PROGMEM = "June";
+const char month_7[] PROGMEM = "July";
+const char month_8[] PROGMEM = "August";
+const char month_9[] PROGMEM = "September";
+const char month_10[] PROGMEM = "October";
+const char month_11[] PROGMEM = "November";
+const char month_12[] PROGMEM = "December";
+
+const char* const month_table[] PROGMEM = {
+        month_1, month_2, month_3, month_4, month_5, month_6,
+        month_7, month_8, month_9, month_10, month_11, month_12
+};
+
 // Function prototypes
-static void setDateTime();
 static void printDateTime();
+static void printTemperature();
 
 
 void setup()
@@ -49,6 +85,7 @@ void setup()
     while (!Serial) {
         ;
     }
+    Serial.println(F("DS3231 RTC getting started example\n"));
 
     // Initialize TWI
     Wire.begin();
@@ -56,47 +93,92 @@ void setup()
 
     // Initialize RTC
     while (rtc.begin()) {
+        Serial.println(F("Error: Could not detect DS3231 RTC"));
         delay(3000);
     }
 
     // Check oscillator status
     if (rtc.isOscillatorStopped()) {
-        Serial.println(F("Error"));
+        Serial.println(F("Error: DS3231 RTC oscillator stopped. Program new date/time."));
         while (1) {
             ;
         }
     }
+
+    // Disable 32kHz clock output pin
+    rtc.outputClockPinEnable(false);
+
+    // Disable square wave out
+    rtc.setSquareWave(SquareWaveDisable);
+
+    Serial.println(F("RTC epoch/date/time/temperature:"));
 }
 
 void loop()
 {
-    // Just an example to print the date and time every second. Recommended code is to use the 1Hz
-    // square wave out pin with an interrupt.
+    // Read RTC date and time from RTC
+    if (rtc.getDateTime(&dt)) {
+        Serial.println(F("Error: Read date time failed"));
+        return;
+    }
+
+    // Print date time on serial port
     printDateTime();
+
+    // Print temperature every minute
+    if (dt.second == 0) {
+        printTemperature();
+    }
+
+    // Just an example to print the date and time every second. Recommended code is to use the 1Hz
+    // square wave out pin with an interrupt instead of polling.
     delay(1000);
 }
 
 static void printDateTime()
 {
-    uint8_t hour;
-    uint8_t minute;
-    uint8_t second;
+    char buf[32];
 
-    // Read time from RTC
-    if (rtc.getTime(&hour, &minute, &second)) {
-        return;
-    }
+    // Print Unix Epoch time
+    snprintf(buf, sizeof(buf), "%lu", rtc.getEpochTime(&dt));
+    Serial.print(buf);
+    Serial.print(F("  "));
+
+    // Print day of the week, day month, month and year
+    strncpy_P(buf, (char *)pgm_read_dword(&(day_week_table[dt.dayWeek - 1])), sizeof(buf));
+    Serial.print(buf);
+    Serial.print(F(" "));
+    Serial.print(dt.dayMonth);
+    Serial.print(F(" "));
+    strncpy_P(buf, (char *)pgm_read_dword(&(month_table[dt.month - 1])), sizeof(buf));
+    Serial.print(buf);
+    Serial.print(F(" "));
+    Serial.print(dt.year);
+    Serial.print(F("  "));
 
     // Print time
-    Serial.print(hour);
-    Serial.print(F(":"));
-    Serial.print(minute);
-    if (minute < 10) {
-        Serial.print(F("0"));
+    snprintf(buf, sizeof(buf), "%d:%02d:%02d", dt.hour, dt.minute, dt.second);
+    Serial.println(buf);
+}
+
+static void printTemperature()
+{
+    int8_t temperature;
+    uint8_t fraction;
+
+#if 0
+    // Force temperature conversion only when reading temperature faster than 64 seconds
+    if (rtc.startTemperatureConversion() != Success) {
+        Serial.println(F("Temperature conversion busy"));
+        return;
     }
-    Serial.print(F(":"));
-    if (second < 10) {
-        Serial.print(F("0"));
-    }
-    Serial.println(second);
+#endif
+
+    // Read temperature
+    rtc.getTemperature(&temperature, &fraction);
+    Serial.print(F("Temperature: "));
+    Serial.print(temperature);
+    Serial.print(F("."));
+    Serial.print(fraction);
+    Serial.println(F("C"));
 }
