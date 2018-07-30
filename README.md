@@ -61,7 +61,7 @@ Arduino IDE | Examples | Erriez DS3231 RTC:
 * [ReadTimePolled](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ReadTimePolled/ReadTimePolled.ino) Read time polled.
 * [SetDateTime](https://github.com/Erriez/ErriezDS3231/blob/master/examples/SetDateTime/SetDateTime.ino) Set date time. (Must be started first)
 * [Temperature](https://github.com/Erriez/ErriezDS3231/blob/master/examples/Temperature/Temperature.ino) Temperature.
-* [Terminal](https://github.com/Erriez/ErriezDS3231/blob/master/examples/Terminal/Terminal.ino) Advanced terminal interface with [set date/time Python]([Terminal](https://github.com/Erriez/ErriezDS3231/blob/master/examples/Terminal/Terminal.py)) script.
+* [Terminal](https://github.com/Erriez/ErriezDS3231/blob/master/examples/Terminal/Terminal.ino) Advanced terminal interface with [set date/time Python](https://github.com/Erriez/ErriezDS3231/blob/master/examples/Terminal/Terminal.py) script.
 
 ## Documentation
 
