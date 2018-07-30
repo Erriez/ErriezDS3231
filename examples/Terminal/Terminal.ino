@@ -154,6 +154,7 @@ void setup()
     // Initialize RTC
     while (rtc.begin()) {
         Serial.println(F("Warning: Could not detect DS3231 RTC"));
+        delay(3000);
     }
 
     // Check oscillator status
