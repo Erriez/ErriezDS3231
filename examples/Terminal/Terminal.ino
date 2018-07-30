@@ -38,7 +38,14 @@
 #include <SerialTerminal.h> // ErriezSerialTerminal library
 
 // Uno, Nano, Mini, other 328-based: pin D2 (INT0) or D3 (INT1)
+// Leonardo: pin D7 (INT4)
+#if defined(__AVR_ATmega328P__)
 #define INT_PIN     2
+#elif defined(ARDUINO_AVR_LEONARDO)
+#define INT_PIN     7
+#else
+#define INT_PIN     0 // Unknown pin for this target
+#endif
 
 // Newline character '\r' or '\n'
 char newlineChar = '\n';
