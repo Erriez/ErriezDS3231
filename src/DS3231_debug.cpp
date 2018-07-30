@@ -288,7 +288,6 @@ void DS3231Debug::printRegisterBitfields(HardwareSerial *ser, uint8_t reg, uint8
  */
 void DS3231Debug::printDiagnostics(HardwareSerial *ser)
 {
-    bool oscillatorEnabled;
     bool oscillatorStopFlag;
     bool alarm1Flag;
     bool alarm2Flag;
