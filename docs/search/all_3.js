@@ -56,6 +56,6 @@ var searchData=
   ['ds3231_5fstat_5fen32khz',['DS3231_STAT_EN32KHZ',['../_d_s3231_8h.html#ab9c9d4f03dde9fbd46f9622057374290',1,'DS3231.h']]],
   ['ds3231_5fstat_5fosf',['DS3231_STAT_OSF',['../_d_s3231_8h.html#a5c397f0a0fc1b58781ae42769c0e3acb',1,'DS3231.h']]],
   ['ds3231debug',['DS3231Debug',['../class_d_s3231_debug.html',1,'']]],
-  ['dumpregisters',['dumpRegisters',['../class_d_s3231_debug.html#ac5d9a84a0bf2ea9f34662e97baecdbf5',1,'DS3231Debug']]],
-  ['ds3231_20high_20precision_20rtc_20library_20for_20arduino',['DS3231 high precision RTC library for Arduino',['../index.html',1,'']]]
+  ['dumpregisters',['dumpRegisters',['../class_d_s3231_debug.html#a26f0361e7f1462b1424bb2bb189af240',1,'DS3231Debug']]],
+  ['ds3231_20high_20precision_20i2c_20rtc_20library_20for_20arduino',['DS3231 high precision I2C RTC library for Arduino',['../index.html',1,'']]]
 ];

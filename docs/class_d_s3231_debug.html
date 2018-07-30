@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DS3231 high precision RTC library for Arduino by Erriez: DS3231Debug Class Reference</title>
+<title>DS3231 high precision I2C RTC library for Arduino: DS3231Debug Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,10 +22,10 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="DS3231.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">DS3231 high precision RTC library for Arduino by Erriez
+   <div id="projectname">DS3231 high precision I2C RTC library for Arduino
    &#160;<span id="projectnumber">1.0.0</span>
    </div>
-   <div id="projectbrief">This is a DS3231 high precision RTC library for Arduino.</div>
+   <div id="projectbrief">This is a DS3231 high precision I2C Real Time Clock library for Arduino by Erriez.</div>
   </td>
  </tr>
  </tbody>
@@ -88,18 +88,18 @@ Inheritance diagram for DS3231Debug:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac5d9a84a0bf2ea9f34662e97baecdbf5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231_debug.html#ac5d9a84a0bf2ea9f34662e97baecdbf5">dumpRegisters</a> (HardwareSerial *ser, bool printBitfields=true)</td></tr>
-<tr class="memdesc:ac5d9a84a0bf2ea9f34662e97baecdbf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump all registers to serial port.  <a href="#ac5d9a84a0bf2ea9f34662e97baecdbf5">More...</a><br /></td></tr>
-<tr class="separator:ac5d9a84a0bf2ea9f34662e97baecdbf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae23680eb60e3fe7abe5c3857b24cc30d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231_debug.html#ae23680eb60e3fe7abe5c3857b24cc30d">printRegister</a> (HardwareSerial *ser, uint8_t reg, bool printBitfields=true)</td></tr>
-<tr class="memdesc:ae23680eb60e3fe7abe5c3857b24cc30d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print register and value.  <a href="#ae23680eb60e3fe7abe5c3857b24cc30d">More...</a><br /></td></tr>
-<tr class="separator:ae23680eb60e3fe7abe5c3857b24cc30d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27add1f367ed5ffa901e88ecd3fc8202"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231_debug.html#a27add1f367ed5ffa901e88ecd3fc8202">printRegisterBitfields</a> (HardwareSerial *ser, uint8_t reg, uint8_t regVal)</td></tr>
-<tr class="memdesc:a27add1f367ed5ffa901e88ecd3fc8202"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print register bitfields.  <a href="#a27add1f367ed5ffa901e88ecd3fc8202">More...</a><br /></td></tr>
-<tr class="separator:a27add1f367ed5ffa901e88ecd3fc8202"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68d91543931bdac1a7c54a67eb927496"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231_debug.html#a68d91543931bdac1a7c54a67eb927496">printDiagnostics</a> (HardwareSerial *ser)</td></tr>
-<tr class="memdesc:a68d91543931bdac1a7c54a67eb927496"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print diagnostics.  <a href="#a68d91543931bdac1a7c54a67eb927496">More...</a><br /></td></tr>
-<tr class="separator:a68d91543931bdac1a7c54a67eb927496"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26f0361e7f1462b1424bb2bb189af240"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231_debug.html#a26f0361e7f1462b1424bb2bb189af240">dumpRegisters</a> (Stream *ser, bool printBitfields=true)</td></tr>
+<tr class="memdesc:a26f0361e7f1462b1424bb2bb189af240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump all registers to serial port.  <a href="#a26f0361e7f1462b1424bb2bb189af240">More...</a><br /></td></tr>
+<tr class="separator:a26f0361e7f1462b1424bb2bb189af240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e95a14a76374cf459d5e4ccbdb6286e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231_debug.html#a1e95a14a76374cf459d5e4ccbdb6286e">printRegister</a> (Stream *ser, uint8_t reg, bool printBitfields=true)</td></tr>
+<tr class="memdesc:a1e95a14a76374cf459d5e4ccbdb6286e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print register and value.  <a href="#a1e95a14a76374cf459d5e4ccbdb6286e">More...</a><br /></td></tr>
+<tr class="separator:a1e95a14a76374cf459d5e4ccbdb6286e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac739b6f1980b8254e57b6966ab1dcc97"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231_debug.html#ac739b6f1980b8254e57b6966ab1dcc97">printRegisterBitfields</a> (Stream *ser, uint8_t reg, uint8_t regVal)</td></tr>
+<tr class="memdesc:ac739b6f1980b8254e57b6966ab1dcc97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print register bitfields.  <a href="#ac739b6f1980b8254e57b6966ab1dcc97">More...</a><br /></td></tr>
+<tr class="separator:ac739b6f1980b8254e57b6966ab1dcc97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9b7944902fc05ea5dcb608c75564f6a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231_debug.html#ae9b7944902fc05ea5dcb608c75564f6a">printDiagnostics</a> (Stream *ser)</td></tr>
+<tr class="memdesc:ae9b7944902fc05ea5dcb608c75564f6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print diagnostics.  <a href="#ae9b7944902fc05ea5dcb608c75564f6a">More...</a><br /></td></tr>
+<tr class="separator:ae9b7944902fc05ea5dcb608c75564f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_d_s3231"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_d_s3231')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_d_s3231.html">DS3231</a></td></tr>
 <tr class="memitem:ac7274a84831c60fe1df1598c47dfb614 inherit pub_methods_class_d_s3231"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#ac7274a84831c60fe1df1598c47dfb614">begin</a> ()</td></tr>
 <tr class="memdesc:ac7274a84831c60fe1df1598c47dfb614 inherit pub_methods_class_d_s3231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize and detect <a class="el" href="class_d_s3231.html" title="DS3231 RTC base class. ">DS3231</a> RTC.  <a href="class_d_s3231.html#ac7274a84831c60fe1df1598c47dfb614">More...</a><br /></td></tr>
@@ -199,8 +199,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p class="definition">Definition at line <a class="el" href="_d_s3231__debug_8h_source.html#l00047">47</a> of file <a class="el" href="_d_s3231__debug_8h_source.html">DS3231_debug.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac5d9a84a0bf2ea9f34662e97baecdbf5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5d9a84a0bf2ea9f34662e97baecdbf5">&#9670;&nbsp;</a></span>dumpRegisters()</h2>
+<a id="a26f0361e7f1462b1424bb2bb189af240"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26f0361e7f1462b1424bb2bb189af240">&#9670;&nbsp;</a></span>dumpRegisters()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,7 +211,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">void DS3231Debug::dumpRegisters </td>
           <td>(</td>
-          <td class="paramtype">HardwareSerial *&#160;</td>
+          <td class="paramtype">Stream *&#160;</td>
           <td class="paramname"><em>ser</em>, </td>
         </tr>
         <tr>
@@ -246,8 +246,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a68d91543931bdac1a7c54a67eb927496"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68d91543931bdac1a7c54a67eb927496">&#9670;&nbsp;</a></span>printDiagnostics()</h2>
+<a id="ae9b7944902fc05ea5dcb608c75564f6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9b7944902fc05ea5dcb608c75564f6a">&#9670;&nbsp;</a></span>printDiagnostics()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -258,7 +258,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">void DS3231Debug::printDiagnostics </td>
           <td>(</td>
-          <td class="paramtype">HardwareSerial *&#160;</td>
+          <td class="paramtype">Stream *&#160;</td>
           <td class="paramname"><em>ser</em></td><td>)</td>
           <td></td>
         </tr>
@@ -282,8 +282,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="ae23680eb60e3fe7abe5c3857b24cc30d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae23680eb60e3fe7abe5c3857b24cc30d">&#9670;&nbsp;</a></span>printRegister()</h2>
+<a id="a1e95a14a76374cf459d5e4ccbdb6286e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e95a14a76374cf459d5e4ccbdb6286e">&#9670;&nbsp;</a></span>printRegister()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -294,7 +294,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">void DS3231Debug::printRegister </td>
           <td>(</td>
-          <td class="paramtype">HardwareSerial *&#160;</td>
+          <td class="paramtype">Stream *&#160;</td>
           <td class="paramname"><em>ser</em>, </td>
         </tr>
         <tr>
@@ -336,8 +336,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a27add1f367ed5ffa901e88ecd3fc8202"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27add1f367ed5ffa901e88ecd3fc8202">&#9670;&nbsp;</a></span>printRegisterBitfields()</h2>
+<a id="ac739b6f1980b8254e57b6966ab1dcc97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac739b6f1980b8254e57b6966ab1dcc97">&#9670;&nbsp;</a></span>printRegisterBitfields()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +348,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">void DS3231Debug::printRegisterBitfields </td>
           <td>(</td>
-          <td class="paramtype">HardwareSerial *&#160;</td>
+          <td class="paramtype">Stream *&#160;</td>
           <td class="paramname"><em>ser</em>, </td>
         </tr>
         <tr>
