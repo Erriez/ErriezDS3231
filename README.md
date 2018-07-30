@@ -34,7 +34,7 @@ This is an advanced DS3231 high precision RTC library for Arduino.
 
 Any Arduino hardware with a TWI interface and ```Wire.h``` support.
 
-[DS3231 - Arduino UNO](https://github.com/Erriez/ErriezDS3231/blob/master/extras/DS3231_Arduino_UNO.png)
+![DS3231 - Arduino UNO](https://raw.githubusercontent.com/Erriez/ErriezDS3231/master/extras/DS3231_Arduino_UNO.png)
 
 ## Pins
 
