@@ -352,11 +352,11 @@ void DS3231::setAlarm1(Alarm1Type alarmType,
     buffer[3] = decToBcd(dayDate);
 
     // Set alarm 1 bits
-    if (alarmType & 0x01) { buffer[0] |= _BV(DS3231_A1M1); }
-    if (alarmType & 0x02) { buffer[1] |= _BV(DS3231_A1M2); }
-    if (alarmType & 0x04) { buffer[2] |= _BV(DS3231_A1M3); }
-    if (alarmType & 0x08) { buffer[3] |= _BV(DS3231_A1M4); }
-    if (alarmType & 0x10) { buffer[3] |= _BV(DS3231_DYDT); }
+    if (alarmType & 0x01) { buffer[0] |= (1 << DS3231_A1M1); }
+    if (alarmType & 0x02) { buffer[1] |= (1 << DS3231_A1M2); }
+    if (alarmType & 0x04) { buffer[2] |= (1 << DS3231_A1M3); }
+    if (alarmType & 0x08) { buffer[3] |= (1 << DS3231_A1M4); }
+    if (alarmType & 0x10) { buffer[3] |= (1 << DS3231_DYDT); }
 
     // Write alarm 1 registers
     writeBuffer(DS3231_REG_ALARM1_SEC, buffer, sizeof(buffer));
@@ -395,10 +395,10 @@ void DS3231::setAlarm2(Alarm2Type alarmType, uint8_t dayDate, uint8_t hours, uin
     buffer[2] = decToBcd(dayDate);
 
     // Set alarm 2 bits
-    if (alarmType & 0x02) { buffer[0] |= _BV(DS3231_A1M2); }
-    if (alarmType & 0x04) { buffer[1] |= _BV(DS3231_A1M3); }
-    if (alarmType & 0x08) { buffer[2] |= _BV(DS3231_A1M4); }
-    if (alarmType & 0x10) { buffer[2] |= _BV(DS3231_DYDT); }
+    if (alarmType & 0x02) { buffer[0] |= (1 << DS3231_A1M2); }
+    if (alarmType & 0x04) { buffer[1] |= (1 << DS3231_A1M3); }
+    if (alarmType & 0x08) { buffer[2] |= (1 << DS3231_A1M4); }
+    if (alarmType & 0x10) { buffer[2] |= (1 << DS3231_DYDT); }
 
     // Write alarm 2 registers
     writeBuffer(DS3231_REG_ALARM2_MIN, buffer, sizeof(buffer));
