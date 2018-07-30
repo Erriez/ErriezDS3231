@@ -1,4 +1,4 @@
-# DS3231 high precision RTC library for Arduino
+# DS3231 high precision I2C RTC library for Arduino
 
 [![Build Status](https://travis-ci.org/Erriez/ErriezDS3231.svg?branch=master)](https://travis-ci.org/Erriez/ErriezDS3231)
 
