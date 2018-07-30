@@ -90,7 +90,7 @@ void DS3231::oscillatorEnable(bool enable)
 }
 
 /*!
- * \brief Read RTC halt status.
+ * \brief Read RTC OSF (Oscillator Stop Flag) from status register.
  * \details
  *      The application is responsible for checking the Oscillator Stop Flag (OSF) before reading
  *      date/time date. This function may be used to judge the validity of the date/time registers.
@@ -102,13 +102,8 @@ void DS3231::oscillatorEnable(bool enable)
  */
 bool DS3231::isOscillatorStopped()
 {
-    uint8_t statusReg;
-
-    // Read status register
-    statusReg = readStatusRegister();
-
     // Check OSF bit in status register
-    if (statusReg & (1 << DS3231_STAT_OSF)) {
+    if (readStatusRegister() & (1 << DS3231_STAT_OSF)) {
         // RTC oscillator was stopped
         return true;
     } else {
@@ -318,7 +313,7 @@ uint32_t DS3231::getEpochTime(DS3231_DateTime *dateTime)
 
 //--------------------------------------------------------------------------------------------------
 /*!
- * \brief Set and enable Alarm 1.
+ * \brief Set Alarm 1.
  * \details
  *      Alarm 1 contains several alarm modes which can be configured with the alarmType parameter.
  *      Unused matches can be set to zero. The alarm interrupt must be enabled after setting the
@@ -366,7 +361,7 @@ void DS3231::setAlarm1(Alarm1Type alarmType,
 }
 
 /*!
- * \brief Set and enable Alarm.
+ * \brief Set Alarm 2.
  * \details
  *      Alarm 2 contains different alarm modes which can be configured with the alarmType
  *      parameter. Unused matches can be set to zero. The alarm interrupt must be enabled after
