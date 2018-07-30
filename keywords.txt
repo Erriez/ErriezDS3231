@@ -6,19 +6,82 @@
 # Datatypes (KEYWORD1)
 #######################################
 DS3231	KEYWORD1
+DS3231Debug	KEYWORD1
+DS3231_DateTime	KEYWORD1
+AlarmId	KEYWORD1
+Alarm1Type	KEYWORD1
+Alarm2Type	KEYWORD1
+SquareWave	KEYWORD1
+second	KEYWORD1
+minute	KEYWORD1
+hour	KEYWORD1
+dayWeek	KEYWORD1
+dayMonth	KEYWORD1
+month	KEYWORD1
+year	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 begin	KEYWORD2
+oscillatorEnable	KEYWORD2
+isOscillatorStopped	KEYWORD2
+clearOscillatorStopFlag	KEYWORD2
+setDateTime	KEYWORD2
+getDateTime	KEYWORD2
+setTime	KEYWORD2
+getTime	KEYWORD2
+getEpochTime	KEYWORD2
+setAlarm1	KEYWORD2
+setAlarm2	KEYWORD2
+alarmInterruptEnable	KEYWORD2
+getAlarmFlag	KEYWORD2
+clearAlarmFlag	KEYWORD2
+setSquareWave	KEYWORD2
+outputClockPinEnable	KEYWORD2
+setAgingOffset	KEYWORD2
+getAgingOffset	KEYWORD2
+startTemperatureConversion	KEYWORD2
+getTemperature	KEYWORD2
+bcdToDec	KEYWORD2
+decToBcd	KEYWORD2
+readControlRegister	KEYWORD2
+writeControlRegister	KEYWORD2
+readStatusRegister	KEYWORD2
+writeStatusRegister	KEYWORD2
+readRegister	KEYWORD2
+writeRegister	KEYWORD2
+readBuffer	KEYWORD2
+writeBuffer	KEYWORD2
+dumpRegisters	KEYWORD2
+printRegister	KEYWORD2
+printRegisterBitfields	KEYWORD2
+printDiagnostics	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
 #######################################
 ds3231	KEYWORD1
-rtc	EYWORD1
+rtc	KEYWORD1
 dt	KEYWORD1
 
 #######################################
 # Constants (LITERAL1)
 #######################################
+SECONDS_FROM_1970_TO_2000	LITERAL1
+Alarm1EverySecond	LITERAL1
+Alarm1MatchSeconds	LITERAL1
+Alarm1MatchMinutes	LITERAL1
+Alarm1MatchHours	LITERAL1
+Alarm1MatchDay	LITERAL1
+Alarm1MatchDate	LITERAL1
+Alarm2EveryMinute	LITERAL1
+Alarm2MatchMinutes	LITERAL1
+Alarm2MatchHours	LITERAL1
+Alarm2MatchDay	LITERAL1
+Alarm2MatchDate	LITERAL1
+SquareWaveDisable	LITERAL1
+SquareWave1Hz	LITERAL1
+SquareWave1024Hz	LITERAL1
+SquareWave4096Hz	LITERAL1
+SquareWave8192Hz	LITERAL1
