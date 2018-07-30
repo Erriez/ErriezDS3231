@@ -72,7 +72,7 @@ const char* const registerNames[] PROGMEM = {
  * \param printBitfields
  *      true: Print register bitfields.
  */
-void DS3231Debug::dumpRegisters(HardwareSerial *ser, bool printBitfields)
+void DS3231Debug::dumpRegisters(Stream *ser, bool printBitfields)
 {
     ser->println(F("DS3231 registers:"));
     for (uint8_t reg = 0; reg < DS3231_NUM_REGS; reg++) {
@@ -89,7 +89,7 @@ void DS3231Debug::dumpRegisters(HardwareSerial *ser, bool printBitfields)
  * \param printBitfields
  *      true: Print register bitfields.
  */
-void DS3231Debug::printRegister(HardwareSerial *ser, uint8_t reg, bool printBitfields)
+void DS3231Debug::printRegister(Stream *ser, uint8_t reg, bool printBitfields)
 {
     uint8_t regVal;
     char buf[20];
@@ -116,7 +116,7 @@ void DS3231Debug::printRegister(HardwareSerial *ser, uint8_t reg, bool printBitf
  * \param regVal
  *      Register value.
  */
-void DS3231Debug::printRegisterBitfields(HardwareSerial *ser, uint8_t reg, uint8_t regVal)
+void DS3231Debug::printRegisterBitfields(Stream *ser, uint8_t reg, uint8_t regVal)
 {
     switch (reg) {
         case DS3231_REG_SECONDS:
@@ -286,7 +286,7 @@ void DS3231Debug::printRegisterBitfields(HardwareSerial *ser, uint8_t reg, uint8
  * \param ser
  *      Serial port.
  */
-void DS3231Debug::printDiagnostics(HardwareSerial *ser)
+void DS3231Debug::printDiagnostics(Stream *ser)
 {
     bool oscillatorStopFlag;
     bool alarm1Flag;

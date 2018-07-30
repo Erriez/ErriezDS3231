@@ -48,10 +48,10 @@ class DS3231Debug : public DS3231
 {
 public:
     // Debug functionality
-    virtual void dumpRegisters(HardwareSerial *ser, bool printBitfields=true);
-    virtual void printRegister(HardwareSerial *ser, uint8_t reg, bool printBitfields=true);
-    virtual void printRegisterBitfields(HardwareSerial *ser, uint8_t reg, uint8_t regVal);
-    virtual void printDiagnostics(HardwareSerial *ser);
+    virtual void dumpRegisters(Stream *ser, bool printBitfields=true);
+    virtual void printRegister(Stream *ser, uint8_t reg, bool printBitfields=true);
+    virtual void printRegisterBitfields(Stream *ser, uint8_t reg, uint8_t regVal);
+    virtual void printDiagnostics(Stream *ser);
 };
 
 #endif // DS3231_DEBUG_H_
