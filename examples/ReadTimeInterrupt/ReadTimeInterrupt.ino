@@ -39,12 +39,13 @@
 
 // Uno, Nano, Mini, other 328-based: pin D2 (INT0) or D3 (INT1)
 // Leonardo: pin D7 (INT4)
+// ESP8266 / NodeMCU / WeMos D1&R2: pin D3 (GPIO0)
 #if defined(__AVR_ATmega328P__)
 #define INT_PIN     2
 #elif defined(ARDUINO_AVR_LEONARDO)
 #define INT_PIN     7
 #else
-#define INT_PIN     0 // Unknown pin for this target
+#define INT_PIN     0 // GPIO0 pin for ESP8266 targets
 #endif
 
 // Create DS3231 RTC object
@@ -66,8 +67,6 @@ static void printTime();
 
 void setup()
 {
-    DS3231_DateTime dt;
-
     // Initialize serial port
     Serial.begin(115200);
     while (!Serial) {

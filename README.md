@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/Erriez/ErriezDS3231.svg?branch=master)](https://travis-ci.org/Erriez/ErriezDS3231)
 
-This is an advanced DS3231 high precision RTC library for Arduino.
+This is an advanced DS3231 high precision I2C RTC library for Arduino.
 
 ![DS3231](https://raw.githubusercontent.com/Erriez/ErriezDS3231/master/extras/DS3231.png)
 
-## Features
+## Library features
 
 * Read time
 * Set time
@@ -44,7 +44,7 @@ Any Arduino hardware with a TWI interface and ```Wire.h``` support.
 | GND    | GND                                    | GND       | GND       | GND                      |
 | SDA    | A4                                     | D20       | D2        | D2 (GPIO4)               |
 | CLK    | A5                                     | D21       | D3        | D1 (GPIO5)               |
-| SQW    | D2 (INT0)                              | D2 (INT4) | D7 (INT6) | Any except GPIO16        |
+| SQW    | D2 (INT0)                              | D2 (INT4) | D7 (INT6) | D3 (GPIO0)               |
 
 
 ## Examples
