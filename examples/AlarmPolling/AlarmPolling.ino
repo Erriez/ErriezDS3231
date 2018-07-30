@@ -52,8 +52,6 @@ static void printDateTimeShort();
 
 void setup()
 {
-    DS3231_DateTime dt;
-
     // Initialize serial port
     Serial.begin(115200);
     while (!Serial) {
