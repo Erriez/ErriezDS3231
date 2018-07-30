@@ -38,13 +38,13 @@ Any Arduino hardware with a TWI interface and ```Wire.h``` support.
 
 ## Pins
 
-| DS3231 | Arduino UNO / Nano / Micro / Pro Micro | Mega2560  | Leonardo  | WeMos D1 & R2 / Node MCU |
-| ------ | -------------------------------------- | --------- | --------- | ------------------------ |
-| VCC    | 5V                                     | 5V        | 5V        | 3V3                      |
-| GND    | GND                                    | GND       | GND       | GND                      |
-| SDA    | A4                                     | D20       | D2        | D2 (GPIO4)               |
-| CLK    | A5                                     | D21       | D3        | D1 (GPIO5)               |
-| SQW    | D2 (INT0)                              | D2 (INT4) | D7 (INT6) | D3 (GPIO0)               |
+| DS3231 | Arduino UNO / Nano / Micro / Pro Micro | Mega2560  | Leonardo  | ESP8266 / WeMos D1 & R2 / Node MCU |
+| ------ | -------------------------------------- | --------- | --------- | ---------------------------------- |
+| VCC    | 5V                                     | 5V        | 5V        | 3V3                                |
+| GND    | GND                                    | GND       | GND       | GND                                |
+| SDA    | A4                                     | D20       | D2        | D2 (GPIO4)                         |
+| CLK    | A5                                     | D21       | D3        | D1 (GPIO5)                         |
+| SQW    | D2 (INT0)                              | D2 (INT4) | D7 (INT6) | D3 (GPIO0)                         |
 
 
 ## Examples
