@@ -138,23 +138,23 @@ static void incrementTime()
             Serial.println(F("Error: Read date time failed"));
             return;
         }
-    }
-
-    // Increment time every second
-    if (second >= 59) {
-        second = 0;
-        if (minute >= 59) {
-            minute = 0;
-            if (hour >= 23) {
-                hour = 0;
+    } else {
+        // Increment time every second
+        if (second >= 59) {
+            second = 0;
+            if (minute >= 59) {
+                minute = 0;
+                if (hour >= 23) {
+                    hour = 0;
+                } else {
+                    hour++;
+                }
             } else {
-                hour++;
+                minute++;
             }
         } else {
-            minute++;
+            second++;
         }
-    } else {
-        second++;
     }
 }
 
