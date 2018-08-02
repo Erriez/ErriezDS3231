@@ -63,10 +63,11 @@ Arduino IDE | Examples | Erriez DS3231 RTC:
 * [Temperature](https://github.com/Erriez/ErriezDS3231/blob/master/examples/Temperature/Temperature.ino) Temperature.
 * [Terminal](https://github.com/Erriez/ErriezDS3231/blob/master/examples/Terminal/Terminal.ino) Advanced terminal interface with [set date/time Python](https://github.com/Erriez/ErriezDS3231/blob/master/examples/Terminal/Terminal.py) script.
 
+
 ## Documentation
 
 - [Doxygen online HTML](https://erriez.github.io/ErriezDS3231) 
-- [Doxygen PDF](https://github.com/Erriez/ErriezDS3231/blob/master/docs/latex/refman.pdf) 
+- [Doxygen PDF](https://github.com/Erriez/ErriezDS3231/raw/gh-pages/latex/ErriezDS3231.pdf)
 - [DS3231 datasheet](https://github.com/Erriez/ErriezDS3231/blob/master/extras/DS3231.pdf)
 
 

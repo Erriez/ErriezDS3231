@@ -26,7 +26,9 @@
  * \file GettingStarted.ino
  * \brief DS3231 high accurate RTC getting started example for Arduino
  * \details
- *    Required library: https://github.com/Erriez/ErriezDS3231
+ *    Source:         https://github.com/Erriez/ErriezDS3231
+ *    Documentation:  https://erriez.github.io/ErriezDS3231
+ *
  *    Connect the nINT/SQW pin to an Arduino interrupt pin
  */
 

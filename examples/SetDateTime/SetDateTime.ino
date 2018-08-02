@@ -26,7 +26,8 @@
  * \file SetDateTime.ino
  * \brief DS3231 high accurate RTC set date time example for Arduino
  * \details
- *      Source: https://github.com/Erriez/ErriezDS3231
+ *      Source:         https://github.com/Erriez/ErriezDS3231
+ *      Documentation:  https://erriez.github.io/ErriezDS3231
  */
 
 #include <Arduino.h>

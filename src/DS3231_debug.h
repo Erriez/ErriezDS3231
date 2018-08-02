@@ -26,7 +26,8 @@
  * \file DS3231_debug.h
  * \brief DS3231 high precision RTC debug library for Arduino
  * \details
- *      Source: https://github.com/Erriez/ErriezDS3231
+ *      Source:         https://github.com/Erriez/ErriezDS3231
+ *      Documentation:  https://erriez.github.io/ErriezDS3231
  */
 
 #ifndef DS3231_DEBUG_H_

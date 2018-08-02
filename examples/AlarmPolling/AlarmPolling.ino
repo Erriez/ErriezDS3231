@@ -26,6 +26,9 @@
  * \file AlarmPolling.ino
  * \brief DS3231 high accurate RTC alarm polling example for Arduino
  * \details
+  *   Source:         https://github.com/Erriez/ErriezDS3231
+ *    Documentation:  https://erriez.github.io/ErriezDS3231
+ *
  *    Required library: https://github.com/Erriez/ErriezDS3231
  *
  *    The example generates the following alarms without an external nINT/SQW interrupt pin:

@@ -26,6 +26,9 @@
  * \file ReadTimeInterrupt.ino
  * \brief DS3231 high accurate RTC 1Hz square wave interrupt example for Arduino
  * \details
+ *    Source:         https://github.com/Erriez/ErriezDS3231
+ *    Documentation:  https://erriez.github.io/ErriezDS3231
+ *
  *    Required library: https://github.com/Erriez/ErriezDS3231
  *    Connect the nINT/SQW pin to an Arduino interrupt pin
  *

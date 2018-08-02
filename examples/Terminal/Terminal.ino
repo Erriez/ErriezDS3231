@@ -29,6 +29,9 @@
  *      Sources:
  *          https://github.com/Erriez/ErriezDS3231
  *          https://github.com/Erriez/ErriezSerialTerminal
+ *      Documentation:
+ *          https://erriez.github.io/ErriezDS3231
+ *          https://erriez.github.io/ErriezSerialTerminal
  */
 
 #include <Arduino.h>

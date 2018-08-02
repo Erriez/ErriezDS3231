@@ -26,7 +26,8 @@
  * \file GettingStarted.ino
  * \brief DS3231 high accurate RTC aging offset example for Arduino
  * \details
- *    Required library: https://github.com/Erriez/ErriezDS3231
+ *      Source:         https://github.com/Erriez/ErriezDS3231
+ *      Documentation:  https://erriez.github.io/ErriezDS3231
  */
 
 #include <Arduino.h>
