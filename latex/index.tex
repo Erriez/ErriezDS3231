@@ -1,0 +1,402 @@
+\href{https://travis-ci.org/Erriez/ErriezDS3231}{\tt }
+
+This is an advanced \hyperlink{class_d_s3231}{D\+S3231} high precision I2C R\+TC library for Arduino.
+
+
+
+\subsection*{Library features}
+
+
+\begin{DoxyItemize}
+\item Read time
+\item Set time
+\item Read date and time
+\item Set date and time
+\item Read Unix Epoch U\+TC 32-\/bit timestamp
+\item Read temperature (0.\+25 degree resolution)
+\item Alarm 1 (second/minute/hour/day/date match)
+\item Alarm 2 (minute/hour/day/date match)
+\item Polling and Alarm {\ttfamily I\+N\+T/\+S\+QW} interrupt pin
+\item Control {\ttfamily 32k\+Hz} out signal (enable/disable)
+\item Control {\ttfamily S\+QW} signal (disable/1/1024/4096/8192\+Hz)
+\item Configure aging offset
+\item Serial terminal interface
+\item Full R\+TC register access
+\item Easy debug functionality
+\item Basic and advanced examples
+\item Set date/time over serial with Python script
+\item Low R\+AM footprint\+:
+\begin{DoxyItemize}
+\item {\ttfamily sizeof(\+D\+S3231)}\+: 1 Byte R\+TC object.
+\item {\ttfamily sizeof(\+D\+S3231\+\_\+\+Date\+Time)}\+: 8 Bytes date/time object.
+\end{DoxyItemize}
+\item Full Doxygen documentation
+\end{DoxyItemize}
+
+\subsection*{Hardware}
+
+Any Arduino hardware with a T\+WI interface and {\ttfamily Wire.\+h} support.
+
+
+
+\subsection*{Pins}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*5{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf \hyperlink{class_d_s3231}{D\+S3231} }&{\bf Arduino U\+NO / Nano / Micro / Pro Micro }&{\bf Mega2560 }&{\bf Leonardo }&{\bf E\+S\+P8266 / We\+Mos D1 \& R2 / Node M\+CU  }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf \hyperlink{class_d_s3231}{D\+S3231} }&{\bf Arduino U\+NO / Nano / Micro / Pro Micro }&{\bf Mega2560 }&{\bf Leonardo }&{\bf E\+S\+P8266 / We\+Mos D1 \& R2 / Node M\+CU  }\\\cline{1-5}
+\endhead
+V\+CC &5V &5V &5V &3\+V3 \\\cline{1-5}
+G\+ND &G\+ND &G\+ND &G\+ND &G\+ND \\\cline{1-5}
+S\+DA &A4 &D20 &D2 &D2 (G\+P\+I\+O4) \\\cline{1-5}
+C\+LK &A5 &D21 &D3 &D1 (G\+P\+I\+O5) \\\cline{1-5}
+S\+QW &D2 (I\+N\+T0) &D2 (I\+N\+T4) &D7 (I\+N\+T6) &D3 (G\+P\+I\+O0) \\\cline{1-5}
+\end{longtabu}
+
+
+\subsection*{Examples}
+
+Arduino I\+DE $\vert$ Examples $\vert$ Erriez \hyperlink{class_d_s3231}{D\+S3231} R\+TC\+:
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/Erriez/ErriezDS3231/blob/master/examples/AgingOffset/AgingOffset.ino}{\tt Aging\+Offset} Aging offset programming.
+\item \href{https://github.com/Erriez/ErriezDS3231/blob/master/examples/AlarmInterrupt/AlarmInterrupt.ino}{\tt Alarm\+Interrupt} Alarm with interrupts.
+\item \href{https://github.com/Erriez/ErriezDS3231/blob/master/examples/AlarmPolling/AlarmPolling.ino}{\tt Alarm\+Polling} Alarm polled.
+\item \href{https://github.com/Erriez/ErriezDS3231/blob/master/examples/GettingStarted/GettingStarted.ino}{\tt Getting\+Started} Getting started example which contains most date/time/temperature features.
+\item \href{https://github.com/Erriez/ErriezDS3231/blob/master/examples/Minimum/Minimum.ino}{\tt Minimum} Minimum example to read time.
+\item \href{https://github.com/Erriez/ErriezDS3231/blob/master/examples/PrintDiagnostics/PrintDiagnostics.ino}{\tt Print\+Diagnostics} Print diagnostics and registers.
+\item \href{https://github.com/Erriez/ErriezDS3231/blob/master/examples/ReadTimeInterrupt/ReadTimeInterrupt.ino}{\tt Read\+Time\+Interrupt} Read time with 1\+Hz S\+QW interrupt. (Highly recommended)
+\item \href{https://github.com/Erriez/ErriezDS3231/blob/master/examples/ReadTimePolled/ReadTimePolled.ino}{\tt Read\+Time\+Polled} Read time polled.
+\item \href{https://github.com/Erriez/ErriezDS3231/blob/master/examples/SetDateTime/SetDateTime.ino}{\tt Set\+Date\+Time} Set date time. (Must be started first)
+\item \href{https://github.com/Erriez/ErriezDS3231/blob/master/examples/Temperature/Temperature.ino}{\tt Temperature} Temperature.
+\item \href{https://github.com/Erriez/ErriezDS3231/blob/master/examples/Terminal/Terminal.ino}{\tt Terminal} Advanced terminal interface with \href{https://github.com/Erriez/ErriezDS3231/blob/master/examples/Terminal/Terminal.py}{\tt set date/time Python} script.
+\end{DoxyItemize}
+
+\subsection*{Documentation}
+
+
+\begin{DoxyItemize}
+\item \href{https://erriez.github.io/ErriezDS3231}{\tt Doxygen online H\+T\+ML}
+\item \href{https://github.com/Erriez/ErriezDS3231/raw/gh-pages/latex/ErriezDS3231.pdf}{\tt Doxygen P\+DF}
+\item \href{https://github.com/Erriez/ErriezDS3231/blob/master/extras/DS3231.pdf}{\tt D\+S3231 datasheet}
+\end{DoxyItemize}
+
+\subsection*{Usage}
+
+{\bfseries Initialization}
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 #include <Wire.h>
+3 #include <DS3231.h>
+4 
+5 // Create DS3231 RTC object
+6 static DS3231 rtc;
+7 
+8 
+9 void setup()
+10 \{
+11     // Initialize TWI with a 100kHz (default) or 400kHz clock
+12     Wire.begin();
+13     Wire.setClock(400000);
+14 
+15     // Initialize RTC
+16     while (rtc.begin()) \{
+17         // Error: Could not detect DS3231 RTC, retry after some time
+18         delay(3000);
+19     \}
+20 \}
+\end{DoxyCode}
+
+
+{\bfseries Check oscillator status at startup}
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 // Check oscillator status
+3 if (rtc.isOscillatorStopped()) \{
+4     // Error: DS3231 RTC oscillator stopped. Date/time cannot be trusted. 
+5     // Set new date/time before reading date/time.
+6     while (1) \{
+7         ;
+8     \}
+9 \}
+\end{DoxyCode}
+
+
+{\bfseries Set time}
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 // Write time to RTC
+3 if (rtc.setTime(12, 0, 0)) \{
+4     // Error: Write time failed
+5 \}
+\end{DoxyCode}
+
+
+{\bfseries Get time}
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 uint8\_t hour;
+3 uint8\_t minute;
+4 uint8\_t second;
+5 
+6 // Read time from RTC
+7 if (rtc.getTime(&hour, &minute, &second)) \{
+8     // Error: Read time failed
+9 \}
+\end{DoxyCode}
+
+
+{\bfseries Set date time}
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 // Create and initialize date time object
+3 static DS3231\_DateTime dt = \{
+4     .second = 0,
+5     .minute = 36,
+6     .hour = 21,
+7     .dayWeek = 7, // 1 = Monday
+8     .dayMonth = 29,
+9     .month = 7,
+10     .year = 2018
+11 \};
+12 
+13 // Set new RTC date/time
+14 rtc.setDateTime(&dt);
+\end{DoxyCode}
+
+
+{\bfseries Get date time}
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 DS3231\_DateTime dt;
+3 
+4 // Read RTC date and time from RTC
+5 if (rtc.getDateTime(&dt)) \{
+6     // Error: Read date time failed
+7 \}
+\end{DoxyCode}
+
+
+{\bfseries Get Epoch Unix U\+TC time}
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 uint32\_t epoch;
+3 
+4 // Read date/time from RTC
+5 if (rtc.getDateTime(&dt)) \{
+6     // Error: Read date/time failed
+7     return;
+8 \}
+9 
+10 // Convert date/time to 32-bit epoch time
+11 epoch = rtc.getEpochTime(&dt));
+\end{DoxyCode}
+
+
+{\bfseries Get temperature}
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 int8\_t temperature;
+3 uint8\_t fraction;
+4 
+5 // Force temperature conversion
+6 // Without this call, it takes 64 seconds before the temperature is updated.
+7 rtc.startTemperatureConversion();
+8 
+9 // Read temperature
+10 rtc.getTemperature(&temperature, &fraction);
+11 
+12 // Print temperature. The output below is for example: 28.25C
+13 Serial.print(temperature);
+14 Serial.print(F("."));
+15 Serial.print(fraction);
+16 Serial.println(F("C"));
+\end{DoxyCode}
+
+
+{\bfseries Program Alarm 1}
+
+Note\+: Alarm 1 and Alarm 2 have different behavior. Please refer to the documentation which {\ttfamily Alarm1\+Type} and {\ttfamily Alarm2\+Type} are supported. Some examples\+:
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 // Generate alarm 1 every second
+3 rtc.setAlarm1(Alarm1EverySecond, 0, 0, 0, 0);
+4 
+5 // Generate alarm 1 every minute and second match
+6 rtc.setAlarm1(Alarm1EverySecond, 0, 0, 45, 30);
+7 
+8 // Generate alarm 1 every day, hour, minute and second match
+9 rtc.setAlarm1(Alarm1MatchDay, 
+10               1,  // Alarm day match (1 = Monday)
+11               12, // Alarm hour match
+12               45, // Alarm minute match
+13               30  // Alarm second match
+14 );
+\end{DoxyCode}
+
+
+{\bfseries Program Alarm 2}
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 // Generate alarm 2 every minute
+3 rtc.setAlarm2(Alarm2EveryMinute, 0, 0, 0);
+4 
+5 // Generate alarm 2 every hour, minute match
+6 rtc.setAlarm2(Alarm2MatchHours, 0, 23, 59);
+7 
+8 // Generate alarm 2 every date, hour, minute match
+9 rtc.setAlarm2(Alarm2MatchDate, 28, 7, 0);
+\end{DoxyCode}
+
+
+{\bfseries Alarm polling}
+
+Note\+: The {\ttfamily I\+NT} pin changes to low when an Alarm 1 or Alarm 2 match occurs and and the interrupt is enabled. The pin remains low until both alarm flags are cleared by the application.
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 // Poll alarm 1 flag
+3 if (rtc.getAlarmFlag(Alarm1)) \{
+4     // Handle Alarm 1
+5 
+6     // Clear alarm 1 flag
+7     rtc.clearAlarmFlag(Alarm1);
+8 \}
+9 
+10 // Poll alarm 2 flag
+11 if (rtc.getAlarmFlag(Alarm2)) \{
+12     // Handle Alarm 2
+13 
+14     // Clear alarm 2 flag
+15     rtc.clearAlarmFlag(Alarm2);
+16 \}
+\end{DoxyCode}
+
+
+{\bfseries Alarm interrupt}
+
+Note\+: Enabling interrupt will disable the {\ttfamily S\+QW} output signal.
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 // Uno, Nano, Mini, other 328-based: pin D2 (INT0) or D3 (INT1)
+3 #define INT\_PIN     2
+4 
+5 // Alarm interrupt flag must be volatile
+6 static volatile bool alarmInterrupt = false;
+7 
+8 
+9 static void alarmHandler()
+10 \{
+11     // Set global interrupt flag
+12     alarmInterrupt = true;
+13 \}
+14 
+15 void setup()
+16 \{
+17     ...
+18 
+19     // Attach to INT0 interrupt falling edge
+20     pinMode(INT\_PIN, INPUT\_PULLUP);
+21     attachInterrupt(digitalPinToInterrupt(INT\_PIN), alarmHandler, FALLING);
+22 
+23     // Enable Alarm 1 and 2 interrupts
+24     rtc.alarmInterruptEnable(Alarm1, true);
+25     rtc.alarmInterruptEnable(Alarm2, true);
+26 \}
+27 
+28 void loop()
+29 \{
+30     // Check global alarm interrupt flag
+31     if (alarmInterrupt) \{
+32         if (rtc.getAlarmFlag(Alarm1)) \{
+33             // Handle alarm 1
+34 
+35             // Clear alarm 1 interrupt
+36             rtc.clearAlarmFlag(Alarm1);
+37         \}
+38 
+39         if (rtc.getAlarmFlag(Alarm2)) \{
+40             // Handle alarm 2
+41 
+42             // Clear alarm 2 interrupt
+43             rtc.clearAlarmFlag(Alarm2);
+44         \}
+45     \}
+46 \}
+\end{DoxyCode}
+
+
+{\bfseries 32k\+Hz clock out}
+
+Enable or disable {\ttfamily 32k\+Hz} output pin.
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 rtc.outputClockPinEnable(true);     // Enable 
+3 rtc.outputClockPinEnable(false);    // Disable
+\end{DoxyCode}
+
+
+{\bfseries Square Wave Out (S\+QW)}
+
+Note\+: Enabling {\ttfamily S\+QW} pin will disable the alarm {\ttfamily I\+NT} signal.
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 rtc.setSquareWave(SquareWaveDisable);   // Disable
+3 rtc.setSquareWave(SquareWave1Hz);       // 1Hz
+4 rtc.setSquareWave(SquareWave1024Hz);    // 1024Hz
+5 rtc.setSquareWave(SquareWave4096Hz);    // 4096Hz
+6 rtc.setSquareWave(SquareWave8192Hz);    // 8192Hz
+\end{DoxyCode}
+
+
+\subsection*{Library dependencies}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily Wire.\+h}
+\item {\ttfamily Terminal.\+ino} requires {\ttfamily Erriez\+Serial\+Terminal} library.
+\end{DoxyItemize}
+
+\subsection*{Library installation}
+
+Please refer to the \href{https://github.com/Erriez/ErriezArduinoLibrariesAndSketches/wiki}{\tt Wiki} page.
+
+\subsection*{Other Arduino Libraries and Sketches from Erriez}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/Erriez/ErriezArduinoLibrariesAndSketches}{\tt Erriez Libraries and Sketches} 
+\end{DoxyItemize}

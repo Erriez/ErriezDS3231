@@ -1,0 +1,794 @@
+\hypertarget{class_d_s3231}{}\section{D\+S3231 Class Reference}
+\label{class_d_s3231}\index{D\+S3231@{D\+S3231}}
+
+
+\hyperlink{class_d_s3231}{D\+S3231} R\+TC base class.  
+
+
+
+
+{\ttfamily \#include $<$D\+S3231.\+h$>$}
+
+Inheritance diagram for D\+S3231\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_d_s3231}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_d_s3231_ac7274a84831c60fe1df1598c47dfb614}{begin} ()
+\begin{DoxyCompactList}\small\item\em Initialize and detect \hyperlink{class_d_s3231}{D\+S3231} R\+TC. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_adb2265225b415564a593d8dc5452ba96}{oscillator\+Enable} (bool enable)
+\begin{DoxyCompactList}\small\item\em Enable or disable oscillator when running on V-\/\+B\+AT. \end{DoxyCompactList}\item 
+bool \hyperlink{class_d_s3231_a1bc59796227778857b5f9978d096b6fd}{is\+Oscillator\+Stopped} ()
+\begin{DoxyCompactList}\small\item\em Read R\+TC O\+SF (Oscillator Stop Flag) from status register. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a380b72e98c720380145039995f22fa0e}{clear\+Oscillator\+Stop\+Flag} ()\hypertarget{class_d_s3231_a380b72e98c720380145039995f22fa0e}{}\label{class_d_s3231_a380b72e98c720380145039995f22fa0e}
+
+\begin{DoxyCompactList}\small\item\em Clear Oscillator Stop Flag (O\+SF) in status register. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_aef50339f978d9fbe4cdd42e38c26fc0c}{set\+Date\+Time} (\hyperlink{_d_s3231_8h_a79a5c1f4b249b6f512ca108013374536}{D\+S3231\+\_\+\+Date\+Time} $\ast$date\+Time)
+\begin{DoxyCompactList}\small\item\em Write date and time to R\+TC. \end{DoxyCompactList}\item 
+bool \hyperlink{class_d_s3231_a5c627e2a9a7b7c9c99723b6c0916889f}{get\+Date\+Time} (\hyperlink{_d_s3231_8h_a79a5c1f4b249b6f512ca108013374536}{D\+S3231\+\_\+\+Date\+Time} $\ast$date\+Time)
+\begin{DoxyCompactList}\small\item\em Read date and time from R\+TC. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a03ff0537cadf522c98801d42fe55bb08}{set\+Time} (uint8\+\_\+t hour, uint8\+\_\+t minute, uint8\+\_\+t second)
+\begin{DoxyCompactList}\small\item\em Write time to R\+TC. \end{DoxyCompactList}\item 
+bool \hyperlink{class_d_s3231_ac4b80a2bcda996f2629b2197688d79bc}{get\+Time} (uint8\+\_\+t $\ast$hour, uint8\+\_\+t $\ast$minute, uint8\+\_\+t $\ast$second)
+\begin{DoxyCompactList}\small\item\em Read time from R\+TC. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{class_d_s3231_af0e5a643bf64755c12e40f8cf293035b}{get\+Epoch\+Time} (\hyperlink{_d_s3231_8h_a79a5c1f4b249b6f512ca108013374536}{D\+S3231\+\_\+\+Date\+Time} $\ast$date\+Time)
+\begin{DoxyCompactList}\small\item\em Get Unix Epoch 32-\/bit timestamp in current timezone. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a3386f9c527b7e94ef20338af45b9ba24}{set\+Alarm1} (\hyperlink{_d_s3231_8h_aa29471da8f6d22930cc9159a55a49273}{Alarm1\+Type} alarm\+Type, uint8\+\_\+t day\+Date, uint8\+\_\+t hours, uint8\+\_\+t minutes, uint8\+\_\+t seconds)
+\begin{DoxyCompactList}\small\item\em Set Alarm 1. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a377799172e4f431288e18ff95cf5b7ec}{set\+Alarm2} (\hyperlink{_d_s3231_8h_a2561c628950a85b8f502b7055c3acd8b}{Alarm2\+Type} alarm\+Type, uint8\+\_\+t day\+Date, uint8\+\_\+t hours, uint8\+\_\+t minutes)
+\begin{DoxyCompactList}\small\item\em Set Alarm 2. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a0bcf130e164ba5436a71dbb81621fb35}{alarm\+Interrupt\+Enable} (\hyperlink{_d_s3231_8h_abdac868b647b120d540abd60d35e0feb}{Alarm\+Id} alarm\+Id, bool enable)
+\begin{DoxyCompactList}\small\item\em Enable or disable Alarm 1 or 2 interrupt. \end{DoxyCompactList}\item 
+bool \hyperlink{class_d_s3231_a77104765708a5f7ab9fbec7c17e145ea}{get\+Alarm\+Flag} (\hyperlink{_d_s3231_8h_abdac868b647b120d540abd60d35e0feb}{Alarm\+Id} alarm\+Id)
+\begin{DoxyCompactList}\small\item\em Get Alarm 1 or 2 flag. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_ae70cc93049001d830b926491698fdfb6}{clear\+Alarm\+Flag} (\hyperlink{_d_s3231_8h_abdac868b647b120d540abd60d35e0feb}{Alarm\+Id} alarm\+Id)
+\begin{DoxyCompactList}\small\item\em Clear alarm flag. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a9d5ef58a83a5bde590bf414be67fb4a5}{set\+Square\+Wave} (\hyperlink{_d_s3231_8h_aa45f48b2c6f58f91a278a1601b211140}{Square\+Wave} square\+Wave)
+\begin{DoxyCompactList}\small\item\em Configure S\+QW (Square Wave) output pin. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a345592e12ccf5fc6c887c1414f8a3abb}{output\+Clock\+Pin\+Enable} (bool enable)
+\begin{DoxyCompactList}\small\item\em Enable or disable 32k\+Hz output clock pin. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a18f8f98c3d1e8c6fdb611cbb97bbdee0}{set\+Aging\+Offset} (int8\+\_\+t val)
+\begin{DoxyCompactList}\small\item\em Set aging offset register. \end{DoxyCompactList}\item 
+int8\+\_\+t \hyperlink{class_d_s3231_a4ef9862e078068b915285cd264584449}{get\+Aging\+Offset} ()
+\begin{DoxyCompactList}\small\item\em Get aging offset register. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_ad2b2d423930fca422dbc6adfd2a8e571}{start\+Temperature\+Conversion} ()
+\begin{DoxyCompactList}\small\item\em Start temperature conversion. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a334f37eca94eb3cd7d2c780e8268864c}{get\+Temperature} (int8\+\_\+t $\ast$temperature, uint8\+\_\+t $\ast$fraction)
+\begin{DoxyCompactList}\small\item\em Read temperature. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{class_d_s3231_aa49b293f3fdcc222e0f86cc2bbdf1476}{bcd\+To\+Dec} (uint8\+\_\+t bcd)
+\begin{DoxyCompactList}\small\item\em B\+CD to decimal conversion. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{class_d_s3231_a8883c7df954dc7682a40825790631230}{dec\+To\+Bcd} (uint8\+\_\+t dec)
+\begin{DoxyCompactList}\small\item\em Decimal to B\+CD conversion. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{class_d_s3231_a53ae4553629d91e3ab06c22d03fe09e2}{read\+Control\+Register} ()
+\begin{DoxyCompactList}\small\item\em Read control register. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a563f7fd8e44c26f6bd0b035ad9852caa}{write\+Control\+Register} (uint8\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Write control register. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{class_d_s3231_a29fb8f2fe94a93b80336b183d5e9fc0c}{read\+Status\+Register} ()
+\begin{DoxyCompactList}\small\item\em Read status register. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a5a937c59828e7aef61af8ae8f02bb0f8}{write\+Status\+Register} (uint8\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Write status register. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{class_d_s3231_a37cac2a6bbf52b801dcaf6471d4418ac}{read\+Register} (uint8\+\_\+t reg)
+\begin{DoxyCompactList}\small\item\em Read register. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a292109841c55ecebb7a920c6f87f5ac5}{write\+Register} (uint8\+\_\+t reg, uint8\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Write to R\+TC register. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_ae72bc3b3e8164477762d14e7961daff0}{read\+Buffer} (uint8\+\_\+t reg, void $\ast$buffer, uint8\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read buffer from R\+TC. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_s3231_a6ba3dae2a1de95f8aaaed331ca47b239}{write\+Buffer} (uint8\+\_\+t reg, void $\ast$buffer, uint8\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write buffer to R\+TC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_d_s3231}{D\+S3231} R\+TC base class. 
+
+Definition at line 161 of file D\+S3231.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{D\+S3231@{D\+S3231}!alarm\+Interrupt\+Enable@{alarm\+Interrupt\+Enable}}
+\index{alarm\+Interrupt\+Enable@{alarm\+Interrupt\+Enable}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{alarm\+Interrupt\+Enable(\+Alarm\+Id alarm\+Id, bool enable)}{alarmInterruptEnable(AlarmId alarmId, bool enable)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::alarm\+Interrupt\+Enable (
+\begin{DoxyParamCaption}
+\item[{{\bf Alarm\+Id}}]{alarm\+Id, }
+\item[{bool}]{enable}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a0bcf130e164ba5436a71dbb81621fb35}{}\label{class_d_s3231_a0bcf130e164ba5436a71dbb81621fb35}
+
+
+Enable or disable Alarm 1 or 2 interrupt. 
+
+Enabling the alarm interrupt will disable the Square Wave output on the I\+N\+T/\+S\+QW pin. The I\+NT pin remains high until an alarm match occurs. 
+\begin{DoxyParams}{Parameters}
+{\em alarm\+Id} & Alarm1 or Alarm2 enum. \\
+\hline
+{\em enable} & true\+: Enable alarm interrupt.~\newline
+ false\+: Disable alarm interrupt. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 417 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!bcd\+To\+Dec@{bcd\+To\+Dec}}
+\index{bcd\+To\+Dec@{bcd\+To\+Dec}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{bcd\+To\+Dec(uint8\+\_\+t bcd)}{bcdToDec(uint8_t bcd)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t D\+S3231\+::bcd\+To\+Dec (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{bcd}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_aa49b293f3fdcc222e0f86cc2bbdf1476}{}\label{class_d_s3231_aa49b293f3fdcc222e0f86cc2bbdf1476}
+
+
+B\+CD to decimal conversion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bcd} & B\+CD encoded value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Decimal value. 
+\end{DoxyReturn}
+
+
+Definition at line 658 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!begin@{begin}}
+\index{begin@{begin}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{begin()}{begin()}}]{\setlength{\rightskip}{0pt plus 5cm}bool D\+S3231\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_ac7274a84831c60fe1df1598c47dfb614}{}\label{class_d_s3231_ac7274a84831c60fe1df1598c47dfb614}
+
+
+Initialize and detect \hyperlink{class_d_s3231}{D\+S3231} R\+TC. 
+
+Call this function from setup(). 
+\begin{DoxyRetVals}{Return values}
+{\em Success} & R\+TC detected. \\
+\hline
+{\em false} & R\+TC not detected. \\
+\hline
+{\em true} & Invalid status register or R\+TC not detected. \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 55 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!clear\+Alarm\+Flag@{clear\+Alarm\+Flag}}
+\index{clear\+Alarm\+Flag@{clear\+Alarm\+Flag}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{clear\+Alarm\+Flag(\+Alarm\+Id alarm\+Id)}{clearAlarmFlag(AlarmId alarmId)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::clear\+Alarm\+Flag (
+\begin{DoxyParamCaption}
+\item[{{\bf Alarm\+Id}}]{alarm\+Id}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_ae70cc93049001d830b926491698fdfb6}{}\label{class_d_s3231_ae70cc93049001d830b926491698fdfb6}
+
+
+Clear alarm flag. 
+
+This function should be called when the alarm flag has been handled in polling and interrupt mode. The I\+NT pin changes to high when both alarm flags are cleared and alarm interrupts are enabled. 
+\begin{DoxyParams}{Parameters}
+{\em alarm\+Id} & Alarm1 or Alarm2 enum. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Success} & \\
+\hline
+{\em Failure} & Incorrect alarm ID. \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 478 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!dec\+To\+Bcd@{dec\+To\+Bcd}}
+\index{dec\+To\+Bcd@{dec\+To\+Bcd}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{dec\+To\+Bcd(uint8\+\_\+t dec)}{decToBcd(uint8_t dec)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t D\+S3231\+::dec\+To\+Bcd (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{dec}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a8883c7df954dc7682a40825790631230}{}\label{class_d_s3231_a8883c7df954dc7682a40825790631230}
+
+
+Decimal to B\+CD conversion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dec} & Decimal value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+B\+CD encoded value. 
+\end{DoxyReturn}
+
+
+Definition at line 670 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!get\+Aging\+Offset@{get\+Aging\+Offset}}
+\index{get\+Aging\+Offset@{get\+Aging\+Offset}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{get\+Aging\+Offset()}{getAgingOffset()}}]{\setlength{\rightskip}{0pt plus 5cm}int8\+\_\+t D\+S3231\+::get\+Aging\+Offset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a4ef9862e078068b915285cd264584449}{}\label{class_d_s3231_a4ef9862e078068b915285cd264584449}
+
+
+Get aging offset register. 
+
+The aging offset register capacitance value is added or subtracted from the capacitance value that the device calculates for each temperature compensation. \begin{DoxyReturn}{Returns}
+val Aging offset value. 
+\end{DoxyReturn}
+
+
+Definition at line 583 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!get\+Alarm\+Flag@{get\+Alarm\+Flag}}
+\index{get\+Alarm\+Flag@{get\+Alarm\+Flag}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{get\+Alarm\+Flag(\+Alarm\+Id alarm\+Id)}{getAlarmFlag(AlarmId alarmId)}}]{\setlength{\rightskip}{0pt plus 5cm}bool D\+S3231\+::get\+Alarm\+Flag (
+\begin{DoxyParamCaption}
+\item[{{\bf Alarm\+Id}}]{alarm\+Id}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a77104765708a5f7ab9fbec7c17e145ea}{}\label{class_d_s3231_a77104765708a5f7ab9fbec7c17e145ea}
+
+
+Get Alarm 1 or 2 flag. 
+
+Call this function to retrieve the alarm status flag. This function can be used in polling as well as with interrupts enabled.
+
+The I\+NT pin changes to low when an Alarm 1 or Alarm 2 match occurs and the interrupt is enabled. The pin remains low until both alarm flags are cleared by the application. 
+\begin{DoxyParams}{Parameters}
+{\em alarm\+Id} & Alarm1 or Alarm2 enum. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & Alarm interrupt flag set. \\
+\hline
+{\em false} & Alarm interrupt flag cleared. \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 456 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!get\+Date\+Time@{get\+Date\+Time}}
+\index{get\+Date\+Time@{get\+Date\+Time}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{get\+Date\+Time(\+D\+S3231\+\_\+\+Date\+Time $\ast$date\+Time)}{getDateTime(DS3231_DateTime *dateTime)}}]{\setlength{\rightskip}{0pt plus 5cm}bool D\+S3231\+::get\+Date\+Time (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+S3231\+\_\+\+Date\+Time} $\ast$}]{date\+Time}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a5c627e2a9a7b7c9c99723b6c0916889f}{}\label{class_d_s3231_a5c627e2a9a7b7c9c99723b6c0916889f}
+
+
+Read date and time from R\+TC. 
+
+Read all R\+TC registers at once to prevent a time/date register change in the middle of the register read operation. 
+\begin{DoxyParams}{Parameters}
+{\em date\+Time} & Date and time structure. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em false} & Success \\
+\hline
+{\em true} & An invalid date/time format was read from the R\+TC. \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 176 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!get\+Epoch\+Time@{get\+Epoch\+Time}}
+\index{get\+Epoch\+Time@{get\+Epoch\+Time}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{get\+Epoch\+Time(\+D\+S3231\+\_\+\+Date\+Time $\ast$date\+Time)}{getEpochTime(DS3231_DateTime *dateTime)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t D\+S3231\+::get\+Epoch\+Time (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+S3231\+\_\+\+Date\+Time} $\ast$}]{date\+Time}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_af0e5a643bf64755c12e40f8cf293035b}{}\label{class_d_s3231_af0e5a643bf64755c12e40f8cf293035b}
+
+
+Get Unix Epoch 32-\/bit timestamp in current timezone. 
+
+The \hyperlink{class_d_s3231}{D\+S3231} R\+TC year range is valid between years 2000...2100. The time is in U\+TC. 
+\begin{DoxyRetVals}{Return values}
+{\em epoch} & 32-\/bit unsigned Unix Epoch time \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 284 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!get\+Temperature@{get\+Temperature}}
+\index{get\+Temperature@{get\+Temperature}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{get\+Temperature(int8\+\_\+t $\ast$temperature, uint8\+\_\+t $\ast$fraction)}{getTemperature(int8_t *temperature, uint8_t *fraction)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::get\+Temperature (
+\begin{DoxyParamCaption}
+\item[{int8\+\_\+t $\ast$}]{temperature, }
+\item[{uint8\+\_\+t $\ast$}]{fraction}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a334f37eca94eb3cd7d2c780e8268864c}{}\label{class_d_s3231_a334f37eca94eb3cd7d2c780e8268864c}
+
+
+Read temperature. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temperature} & 8-\/bit signed temperature in degree Celsius. \\
+\hline
+{\em fraction} & Temperature fraction in steps of 0.\+25 degree Celsius. The returned value is a decimal value to prevent floating point usage. The application should divided the fraction by 100. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 630 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!get\+Time@{get\+Time}}
+\index{get\+Time@{get\+Time}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{get\+Time(uint8\+\_\+t $\ast$hour, uint8\+\_\+t $\ast$minute, uint8\+\_\+t $\ast$second)}{getTime(uint8_t *hour, uint8_t *minute, uint8_t *second)}}]{\setlength{\rightskip}{0pt plus 5cm}bool D\+S3231\+::get\+Time (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{hour, }
+\item[{uint8\+\_\+t $\ast$}]{minute, }
+\item[{uint8\+\_\+t $\ast$}]{second}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_ac4b80a2bcda996f2629b2197688d79bc}{}\label{class_d_s3231_ac4b80a2bcda996f2629b2197688d79bc}
+
+
+Read time from R\+TC. 
+
+Read hour, minute and second registers from R\+TC. 
+\begin{DoxyParams}{Parameters}
+{\em hour} & Hours 0..23. \\
+\hline
+{\em minute} & Minutes 0..59. \\
+\hline
+{\em second} & Seconds 0..59. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em false} & Success \\
+\hline
+{\em true} & Invalid second, minute or hour read from R\+TC. The time is set to zero. \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 246 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!is\+Oscillator\+Stopped@{is\+Oscillator\+Stopped}}
+\index{is\+Oscillator\+Stopped@{is\+Oscillator\+Stopped}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{is\+Oscillator\+Stopped()}{isOscillatorStopped()}}]{\setlength{\rightskip}{0pt plus 5cm}bool D\+S3231\+::is\+Oscillator\+Stopped (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a1bc59796227778857b5f9978d096b6fd}{}\label{class_d_s3231_a1bc59796227778857b5f9978d096b6fd}
+
+
+Read R\+TC O\+SF (Oscillator Stop Flag) from status register. 
+
+The application is responsible for checking the Oscillator Stop Flag (O\+SF) before reading date/time date. This function may be used to judge the validity of the date/time registers. 
+\begin{DoxyRetVals}{Return values}
+{\em true} & R\+TC oscillator was stopped\+: The date/time data is invalid. The application should synchronize and program a new date/time. \\
+\hline
+{\em false} & R\+TC oscillator is running. \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 104 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!oscillator\+Enable@{oscillator\+Enable}}
+\index{oscillator\+Enable@{oscillator\+Enable}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{oscillator\+Enable(bool enable)}{oscillatorEnable(bool enable)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::oscillator\+Enable (
+\begin{DoxyParamCaption}
+\item[{bool}]{enable}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_adb2265225b415564a593d8dc5452ba96}{}\label{class_d_s3231_adb2265225b415564a593d8dc5452ba96}
+
+
+Enable or disable oscillator when running on V-\/\+B\+AT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & true\+: Enable R\+TC clock when running on V-\/\+B\+AT.~\newline
+ false\+: Stop R\+TC clock when running on V-\/\+B\+AT. Oscillator Stop Flag (O\+SF) bit will be set in status register which can be read on next power-\/on. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 73 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!output\+Clock\+Pin\+Enable@{output\+Clock\+Pin\+Enable}}
+\index{output\+Clock\+Pin\+Enable@{output\+Clock\+Pin\+Enable}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{output\+Clock\+Pin\+Enable(bool enable)}{outputClockPinEnable(bool enable)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::output\+Clock\+Pin\+Enable (
+\begin{DoxyParamCaption}
+\item[{bool}]{enable}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a345592e12ccf5fc6c887c1414f8a3abb}{}\label{class_d_s3231_a345592e12ccf5fc6c887c1414f8a3abb}
+
+
+Enable or disable 32k\+Hz output clock pin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & true\+: Enable 32k\+Hz output clock pin.~\newline
+ false\+: Disable 32k\+Hz output clock pin. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 528 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!read\+Buffer@{read\+Buffer}}
+\index{read\+Buffer@{read\+Buffer}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{read\+Buffer(uint8\+\_\+t reg, void $\ast$buffer, uint8\+\_\+t len)}{readBuffer(uint8_t reg, void *buffer, uint8_t len)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::read\+Buffer (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{reg, }
+\item[{void $\ast$}]{buffer, }
+\item[{uint8\+\_\+t}]{len}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_ae72bc3b3e8164477762d14e7961daff0}{}\label{class_d_s3231_ae72bc3b3e8164477762d14e7961daff0}
+
+
+Read buffer from R\+TC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & R\+TC register number 0x00..0x12. \\
+\hline
+{\em buffer} & Buffer. \\
+\hline
+{\em len} & Buffer length. Reading is only allowed within valid R\+TC registers. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 777 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!read\+Control\+Register@{read\+Control\+Register}}
+\index{read\+Control\+Register@{read\+Control\+Register}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{read\+Control\+Register()}{readControlRegister()}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t D\+S3231\+::read\+Control\+Register (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a53ae4553629d91e3ab06c22d03fe09e2}{}\label{class_d_s3231_a53ae4553629d91e3ab06c22d03fe09e2}
+
+
+Read control register. 
+
+\begin{DoxyReturn}{Returns}
+8-\/bit unsigned register value 
+\end{DoxyReturn}
+
+
+Definition at line 680 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!read\+Register@{read\+Register}}
+\index{read\+Register@{read\+Register}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{read\+Register(uint8\+\_\+t reg)}{readRegister(uint8_t reg)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t D\+S3231\+::read\+Register (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{reg}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a37cac2a6bbf52b801dcaf6471d4418ac}{}\label{class_d_s3231_a37cac2a6bbf52b801dcaf6471d4418ac}
+
+
+Read register. 
+
+Please refer to the R\+TC datasheet. 
+\begin{DoxyParams}{Parameters}
+{\em reg} & R\+TC register number 0x00..0x12. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value 8-\/bit unsigned register value. 
+\end{DoxyReturn}
+
+
+Definition at line 721 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!read\+Status\+Register@{read\+Status\+Register}}
+\index{read\+Status\+Register@{read\+Status\+Register}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{read\+Status\+Register()}{readStatusRegister()}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t D\+S3231\+::read\+Status\+Register (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a29fb8f2fe94a93b80336b183d5e9fc0c}{}\label{class_d_s3231_a29fb8f2fe94a93b80336b183d5e9fc0c}
+
+
+Read status register. 
+
+\begin{DoxyReturn}{Returns}
+8-\/bit unsigned register value 
+\end{DoxyReturn}
+
+
+Definition at line 698 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!set\+Aging\+Offset@{set\+Aging\+Offset}}
+\index{set\+Aging\+Offset@{set\+Aging\+Offset}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{set\+Aging\+Offset(int8\+\_\+t val)}{setAgingOffset(int8_t val)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::set\+Aging\+Offset (
+\begin{DoxyParamCaption}
+\item[{int8\+\_\+t}]{val}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a18f8f98c3d1e8c6fdb611cbb97bbdee0}{}\label{class_d_s3231_a18f8f98c3d1e8c6fdb611cbb97bbdee0}
+
+
+Set aging offset register. 
+
+The aging offset register capacitance value is added or subtracted from the capacitance value that the device calculates for each temperature compensation. 
+\begin{DoxyParams}{Parameters}
+{\em val} & Aging offset value -\/127..127, 0.\+1ppm per L\+SB (Factory default value\+: 0).~\newline
+ Negative values increases the R\+TC oscillator frequency. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 555 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!set\+Alarm1@{set\+Alarm1}}
+\index{set\+Alarm1@{set\+Alarm1}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{set\+Alarm1(\+Alarm1\+Type alarm\+Type, uint8\+\_\+t day\+Date, uint8\+\_\+t hours, uint8\+\_\+t minutes, uint8\+\_\+t seconds)}{setAlarm1(Alarm1Type alarmType, uint8_t dayDate, uint8_t hours, uint8_t minutes, uint8_t seconds)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::set\+Alarm1 (
+\begin{DoxyParamCaption}
+\item[{{\bf Alarm1\+Type}}]{alarm\+Type, }
+\item[{uint8\+\_\+t}]{day\+Date, }
+\item[{uint8\+\_\+t}]{hours, }
+\item[{uint8\+\_\+t}]{minutes, }
+\item[{uint8\+\_\+t}]{seconds}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a3386f9c527b7e94ef20338af45b9ba24}{}\label{class_d_s3231_a3386f9c527b7e94ef20338af45b9ba24}
+
+
+Set Alarm 1. 
+
+Alarm 1 contains several alarm modes which can be configured with the alarm\+Type parameter. Unused matches can be set to zero. The alarm interrupt must be enabled after setting the alarm, followed by clearing the alarm interrupt flag. 
+\begin{DoxyParams}{Parameters}
+{\em alarm\+Type} & Alarm 1 types\+:~\newline
+ Alarm1\+Every\+Second~\newline
+ Alarm1\+Match\+Seconds~\newline
+ Alarm1\+Match\+Minutes~\newline
+ Alarm1\+Match\+Hours~\newline
+ Alarm1\+Match\+Day~\newline
+ Alarm1\+Match\+Date~\newline
+\\
+\hline
+{\em day\+Date} & Alarm match day of the week or day of the month. This depends on alarm\+Type. \\
+\hline
+{\em hours} & Alarm match hours. \\
+\hline
+{\em minutes} & Alarm match minutes. \\
+\hline
+{\em seconds} & Alarm match seconds. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 339 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!set\+Alarm2@{set\+Alarm2}}
+\index{set\+Alarm2@{set\+Alarm2}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{set\+Alarm2(\+Alarm2\+Type alarm\+Type, uint8\+\_\+t day\+Date, uint8\+\_\+t hours, uint8\+\_\+t minutes)}{setAlarm2(Alarm2Type alarmType, uint8_t dayDate, uint8_t hours, uint8_t minutes)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::set\+Alarm2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Alarm2\+Type}}]{alarm\+Type, }
+\item[{uint8\+\_\+t}]{day\+Date, }
+\item[{uint8\+\_\+t}]{hours, }
+\item[{uint8\+\_\+t}]{minutes}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a377799172e4f431288e18ff95cf5b7ec}{}\label{class_d_s3231_a377799172e4f431288e18ff95cf5b7ec}
+
+
+Set Alarm 2. 
+
+Alarm 2 contains different alarm modes which can be configured with the alarm\+Type parameter. Unused matches can be set to zero. The alarm interrupt must be enabled after setting the alarm, followed by clearing the alarm interrupt flag. 
+\begin{DoxyParams}{Parameters}
+{\em alarm\+Type} & Alarm 2 types\+:~\newline
+ Alarm2\+Every\+Minute~\newline
+ Alarm2\+Match\+Minutes~\newline
+ Alarm2\+Match\+Hours~\newline
+ Alarm2\+Match\+Day~\newline
+ Alarm2\+Match\+Date~\newline
+\\
+\hline
+{\em day\+Date} & Alarm match day of the week or day of the month. This depends on alarm\+Type. \\
+\hline
+{\em hours} & Alarm match hours. \\
+\hline
+{\em minutes} & Alarm match minutes. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 384 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!set\+Date\+Time@{set\+Date\+Time}}
+\index{set\+Date\+Time@{set\+Date\+Time}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{set\+Date\+Time(\+D\+S3231\+\_\+\+Date\+Time $\ast$date\+Time)}{setDateTime(DS3231_DateTime *dateTime)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::set\+Date\+Time (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+S3231\+\_\+\+Date\+Time} $\ast$}]{date\+Time}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_aef50339f978d9fbe4cdd42e38c26fc0c}{}\label{class_d_s3231_aef50339f978d9fbe4cdd42e38c26fc0c}
+
+
+Write date and time to R\+TC. 
+
+Write all R\+TC registers at once to prevent a time/date register change in the middle of the register write operation. This function enables the oscillator and clear the Oscillator Stop Flag (O\+SF) in the status register. 
+\begin{DoxyParams}{Parameters}
+{\em date\+Time} & Date time structure. Providing invalid date/time data may result in unpredictable behavior. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 141 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!set\+Square\+Wave@{set\+Square\+Wave}}
+\index{set\+Square\+Wave@{set\+Square\+Wave}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{set\+Square\+Wave(\+Square\+Wave square\+Wave)}{setSquareWave(SquareWave squareWave)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::set\+Square\+Wave (
+\begin{DoxyParamCaption}
+\item[{{\bf Square\+Wave}}]{square\+Wave}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a9d5ef58a83a5bde590bf414be67fb4a5}{}\label{class_d_s3231_a9d5ef58a83a5bde590bf414be67fb4a5}
+
+
+Configure S\+QW (Square Wave) output pin. 
+
+This will disable or initialize the S\+QW clock pin. The alarm interrupt I\+NT pin will be disabled. 
+\begin{DoxyParams}{Parameters}
+{\em square\+Wave} & Square\+Wave configuration\+:~\newline
+ Disable\+: Square\+Wave\+Disable~\newline
+ 1\+Hz\+: Square\+Wave1\+Hz~\newline
+ 1024\+Hz\+: Square\+Wave1024\+Hz~\newline
+ 4096\+Hz\+: Square\+Wave4096\+Hz~\newline
+ 8192\+Hz\+: Square\+Wave8192\+Hz \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Success} & \\
+\hline
+{\em Failure} & Incorrect square\+Wave. \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 509 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!set\+Time@{set\+Time}}
+\index{set\+Time@{set\+Time}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{set\+Time(uint8\+\_\+t hour, uint8\+\_\+t minute, uint8\+\_\+t second)}{setTime(uint8_t hour, uint8_t minute, uint8_t second)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::set\+Time (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{hour, }
+\item[{uint8\+\_\+t}]{minute, }
+\item[{uint8\+\_\+t}]{second}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a03ff0537cadf522c98801d42fe55bb08}{}\label{class_d_s3231_a03ff0537cadf522c98801d42fe55bb08}
+
+
+Write time to R\+TC. 
+
+Read all date/time register from R\+TC, update time registers and write all date/time registers to the R\+TC with one write operation. 
+\begin{DoxyParams}{Parameters}
+{\em hour} & Hours 0..23. \\
+\hline
+{\em minute} & Minutes 0..59. \\
+\hline
+{\em second} & Seconds 0..59. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 218 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!start\+Temperature\+Conversion@{start\+Temperature\+Conversion}}
+\index{start\+Temperature\+Conversion@{start\+Temperature\+Conversion}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{start\+Temperature\+Conversion()}{startTemperatureConversion()}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::start\+Temperature\+Conversion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_ad2b2d423930fca422dbc6adfd2a8e571}{}\label{class_d_s3231_ad2b2d423930fca422dbc6adfd2a8e571}
+
+
+Start temperature conversion. 
+
+Starting a conversion is only needed when the application requires temperature reads within 64 seconds, or changing the aging offset register. 
+
+Definition at line 606 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!write\+Buffer@{write\+Buffer}}
+\index{write\+Buffer@{write\+Buffer}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{write\+Buffer(uint8\+\_\+t reg, void $\ast$buffer, uint8\+\_\+t len)}{writeBuffer(uint8_t reg, void *buffer, uint8_t len)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::write\+Buffer (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{reg, }
+\item[{void $\ast$}]{buffer, }
+\item[{uint8\+\_\+t}]{len}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a6ba3dae2a1de95f8aaaed331ca47b239}{}\label{class_d_s3231_a6ba3dae2a1de95f8aaaed331ca47b239}
+
+
+Write buffer to R\+TC. 
+
+Please refer to the R\+TC datasheet. 
+\begin{DoxyParams}{Parameters}
+{\em reg} & R\+TC register number 0x00..0x12. \\
+\hline
+{\em buffer} & Buffer. \\
+\hline
+{\em len} & Buffer length. Writing is only allowed within valid R\+TC registers. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 757 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!write\+Control\+Register@{write\+Control\+Register}}
+\index{write\+Control\+Register@{write\+Control\+Register}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{write\+Control\+Register(uint8\+\_\+t value)}{writeControlRegister(uint8_t value)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::write\+Control\+Register (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a563f7fd8e44c26f6bd0b035ad9852caa}{}\label{class_d_s3231_a563f7fd8e44c26f6bd0b035ad9852caa}
+
+
+Write control register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 8-\/bit unsigned register value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 689 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!write\+Register@{write\+Register}}
+\index{write\+Register@{write\+Register}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{write\+Register(uint8\+\_\+t reg, uint8\+\_\+t value)}{writeRegister(uint8_t reg, uint8_t value)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::write\+Register (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{reg, }
+\item[{uint8\+\_\+t}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a292109841c55ecebb7a920c6f87f5ac5}{}\label{class_d_s3231_a292109841c55ecebb7a920c6f87f5ac5}
+
+
+Write to R\+TC register. 
+
+Please refer to the R\+TC datasheet. 
+\begin{DoxyParams}{Parameters}
+{\em reg} & R\+TC register number 0x00..0x12. \\
+\hline
+{\em value} & 8-\/bit unsigned register value. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 740 of file D\+S3231.\+cpp.
+
+\index{D\+S3231@{D\+S3231}!write\+Status\+Register@{write\+Status\+Register}}
+\index{write\+Status\+Register@{write\+Status\+Register}!D\+S3231@{D\+S3231}}
+\subsubsection[{\texorpdfstring{write\+Status\+Register(uint8\+\_\+t value)}{writeStatusRegister(uint8_t value)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+::write\+Status\+Register (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{class_d_s3231_a5a937c59828e7aef61af8ae8f02bb0f8}{}\label{class_d_s3231_a5a937c59828e7aef61af8ae8f02bb0f8}
+
+
+Write status register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 8-\/bit unsigned register value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 707 of file D\+S3231.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_d_s3231_8h}{D\+S3231.\+h}\item 
+\hyperlink{_d_s3231_8cpp}{D\+S3231.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,141 @@
+\hypertarget{class_d_s3231_debug}{}\section{D\+S3231\+Debug Class Reference}
+\label{class_d_s3231_debug}\index{D\+S3231\+Debug@{D\+S3231\+Debug}}
+
+
+\hyperlink{class_d_s3231}{D\+S3231} R\+TC debug class.  
+
+
+
+
+{\ttfamily \#include $<$D\+S3231\+\_\+debug.\+h$>$}
+
+Inheritance diagram for D\+S3231\+Debug\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_d_s3231_debug}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_d_s3231_debug_a26f0361e7f1462b1424bb2bb189af240}{dump\+Registers} (Stream $\ast$ser, bool print\+Bitfields=true)
+\begin{DoxyCompactList}\small\item\em Dump all registers to serial port. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_d_s3231_debug_a1e95a14a76374cf459d5e4ccbdb6286e}{print\+Register} (Stream $\ast$ser, uint8\+\_\+t reg, bool print\+Bitfields=true)
+\begin{DoxyCompactList}\small\item\em Print register and value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_d_s3231_debug_ac739b6f1980b8254e57b6966ab1dcc97}{print\+Register\+Bitfields} (Stream $\ast$ser, uint8\+\_\+t reg, uint8\+\_\+t reg\+Val)
+\begin{DoxyCompactList}\small\item\em Print register bitfields. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_d_s3231_debug_ae9b7944902fc05ea5dcb608c75564f6a}{print\+Diagnostics} (Stream $\ast$ser)
+\begin{DoxyCompactList}\small\item\em Print diagnostics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_d_s3231}{D\+S3231} R\+TC debug class. 
+
+The output will be redirected to a user defined serial port. This class can be used by advanced developers to print internal R\+TC registers and diagnostics. Keep in mind that all strings used in this class are flash consuming. 
+
+Definition at line 48 of file D\+S3231\+\_\+debug.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{D\+S3231\+Debug@{D\+S3231\+Debug}!dump\+Registers@{dump\+Registers}}
+\index{dump\+Registers@{dump\+Registers}!D\+S3231\+Debug@{D\+S3231\+Debug}}
+\subsubsection[{\texorpdfstring{dump\+Registers(\+Stream $\ast$ser, bool print\+Bitfields=true)}{dumpRegisters(Stream *ser, bool printBitfields=true)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+Debug\+::dump\+Registers (
+\begin{DoxyParamCaption}
+\item[{Stream $\ast$}]{ser, }
+\item[{bool}]{print\+Bitfields = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{class_d_s3231_debug_a26f0361e7f1462b1424bb2bb189af240}{}\label{class_d_s3231_debug_a26f0361e7f1462b1424bb2bb189af240}
+
+
+Dump all registers to serial port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ser} & Serial port. \\
+\hline
+{\em print\+Bitfields} & true\+: Print register bitfields. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 76 of file D\+S3231\+\_\+debug.\+cpp.
+
+\index{D\+S3231\+Debug@{D\+S3231\+Debug}!print\+Diagnostics@{print\+Diagnostics}}
+\index{print\+Diagnostics@{print\+Diagnostics}!D\+S3231\+Debug@{D\+S3231\+Debug}}
+\subsubsection[{\texorpdfstring{print\+Diagnostics(\+Stream $\ast$ser)}{printDiagnostics(Stream *ser)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+Debug\+::print\+Diagnostics (
+\begin{DoxyParamCaption}
+\item[{Stream $\ast$}]{ser}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{class_d_s3231_debug_ae9b7944902fc05ea5dcb608c75564f6a}{}\label{class_d_s3231_debug_ae9b7944902fc05ea5dcb608c75564f6a}
+
+
+Print diagnostics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ser} & Serial port. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 290 of file D\+S3231\+\_\+debug.\+cpp.
+
+\index{D\+S3231\+Debug@{D\+S3231\+Debug}!print\+Register@{print\+Register}}
+\index{print\+Register@{print\+Register}!D\+S3231\+Debug@{D\+S3231\+Debug}}
+\subsubsection[{\texorpdfstring{print\+Register(\+Stream $\ast$ser, uint8\+\_\+t reg, bool print\+Bitfields=true)}{printRegister(Stream *ser, uint8_t reg, bool printBitfields=true)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+Debug\+::print\+Register (
+\begin{DoxyParamCaption}
+\item[{Stream $\ast$}]{ser, }
+\item[{uint8\+\_\+t}]{reg, }
+\item[{bool}]{print\+Bitfields = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{class_d_s3231_debug_a1e95a14a76374cf459d5e4ccbdb6286e}{}\label{class_d_s3231_debug_a1e95a14a76374cf459d5e4ccbdb6286e}
+
+
+Print register and value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ser} & Serial port. \\
+\hline
+{\em reg} & Register number. \\
+\hline
+{\em print\+Bitfields} & true\+: Print register bitfields. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 93 of file D\+S3231\+\_\+debug.\+cpp.
+
+\index{D\+S3231\+Debug@{D\+S3231\+Debug}!print\+Register\+Bitfields@{print\+Register\+Bitfields}}
+\index{print\+Register\+Bitfields@{print\+Register\+Bitfields}!D\+S3231\+Debug@{D\+S3231\+Debug}}
+\subsubsection[{\texorpdfstring{print\+Register\+Bitfields(\+Stream $\ast$ser, uint8\+\_\+t reg, uint8\+\_\+t reg\+Val)}{printRegisterBitfields(Stream *ser, uint8_t reg, uint8_t regVal)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+S3231\+Debug\+::print\+Register\+Bitfields (
+\begin{DoxyParamCaption}
+\item[{Stream $\ast$}]{ser, }
+\item[{uint8\+\_\+t}]{reg, }
+\item[{uint8\+\_\+t}]{reg\+Val}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{class_d_s3231_debug_ac739b6f1980b8254e57b6966ab1dcc97}{}\label{class_d_s3231_debug_ac739b6f1980b8254e57b6966ab1dcc97}
+
+
+Print register bitfields. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ser} & Serial port. \\
+\hline
+{\em reg} & Register number. \\
+\hline
+{\em reg\+Val} & Register value. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 120 of file D\+S3231\+\_\+debug.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_d_s3231__debug_8h}{D\+S3231\+\_\+debug.\+h}\item 
+\hyperlink{_d_s3231__debug_8cpp}{D\+S3231\+\_\+debug.\+cpp}\end{DoxyCompactItemize}
