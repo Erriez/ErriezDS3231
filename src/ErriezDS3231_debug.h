@@ -23,19 +23,19 @@
  */
 
 /*!
- * \file DS3231_debug.h
+ * \file ErriezDS3231_debug.h
  * \brief DS3231 high precision RTC debug library for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDS3231
  *      Documentation:  https://erriez.github.io/ErriezDS3231
  */
 
-#ifndef DS3231_DEBUG_H_
-#define DS3231_DEBUG_H_
+#ifndef ERRIEZ_DS3231_DEBUG_H_
+#define ERRIEZ_DS3231_DEBUG_H_
 
 #include <Arduino.h>
 
-#include "DS3231.h"
+#include "ErriezDS3231.h"
 
 /*!
  * \brief DS3231 RTC debug class.
@@ -55,4 +55,4 @@ public:
     virtual void printDiagnostics(Stream *ser);
 };
 
-#endif // DS3231_DEBUG_H_
+#endif // ERRIEZ_DS3231_DEBUG_H_

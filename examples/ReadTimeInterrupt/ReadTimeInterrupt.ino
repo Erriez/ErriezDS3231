@@ -38,7 +38,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-#include <DS3231.h> // ErriezDS3231 library
+#include <ErriezDS3231.h>
 
 // Uno, Nano, Mini, other 328-based: pin D2 (INT0) or D3 (INT1)
 // Leonardo: pin D7 (INT4)

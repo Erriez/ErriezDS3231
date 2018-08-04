@@ -64,11 +64,11 @@ include_directories(
 generate_arduino_library(
         ${PROJECT_NAME}Lib
         SRCS
-            ${LIB_SRC_DIR}/DS3231.cpp
-            ${LIB_SRC_DIR}/DS3231_debug.cpp
+            ${LIB_SRC_DIR}/ErriezDS3231.cpp
+            ${LIB_SRC_DIR}/ErriezDS3231_debug.cpp
         HDRS
-            ${LIB_SRC_DIR}/DS3231.h
-            ${LIB_SRC_DIR}/DS3231_debug.h
+            ${LIB_SRC_DIR}/ErriezDS3231.h
+            ${LIB_SRC_DIR}/ErriezDS3231_debug.h
 )
 
 generate_arduino_library(

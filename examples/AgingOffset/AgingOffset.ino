@@ -33,7 +33,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-#include <DS3231.h> // ErriezDS3231 library
+#include <ErriezDS3231.h>
 
 // Set 8-bit signed aging offset value -127...127 for clock speed compensation 0.1ppm per LSB
 #define AGING_OFFSET_VALUE      10

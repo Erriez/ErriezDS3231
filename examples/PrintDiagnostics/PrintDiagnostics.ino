@@ -33,7 +33,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-#include <DS3231_debug.h> // ErriezDS3231 debug library
+#include <ErriezDS3231_debug.h>
 
 // Create debug DS3231 RTC object
 DS3231Debug rtc;

@@ -37,8 +37,8 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-#include <DS3231_debug.h>   // ErriezDS3231 debug library
-#include <SerialTerminal.h> // ErriezSerialTerminal library
+#include <ErriezDS3231_debug.h>
+#include <ErriezSerialTerminal.h>
 
 // Newline character '\r' or '\n'
 char newlineChar = '\n';

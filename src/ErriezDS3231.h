@@ -23,15 +23,15 @@
  */
 
 /*!
- * \file DS3231.h
+ * \file ErriezDS3231.h
  * \brief DS3231 high precision RTC library for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDS3231
  *      Documentation:  https://erriez.github.io/ErriezDS3231
  */
 
-#ifndef DS3231_H_
-#define DS3231_H_
+#ifndef ERRIEZ_DS3231_H_
+#define ERRIEZ_DS3231_H_
 
 #include <stdint.h>
 
@@ -215,4 +215,4 @@ public:
     void writeBuffer(uint8_t reg, void *buffer, uint8_t len);
 };
 
-#endif // DS3231_H_
+#endif // ERRIEZ_DS3231_H_

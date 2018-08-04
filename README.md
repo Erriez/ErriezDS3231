@@ -77,7 +77,7 @@ Arduino IDE | Examples | Erriez DS3231 RTC:
 
 ```c++
 #include <Wire.h>
-#include <DS3231.h>
+#include <ErriezDS3231.h>
 
 // Create DS3231 RTC object
 static DS3231 rtc;

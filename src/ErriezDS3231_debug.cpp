@@ -23,14 +23,14 @@
  */
 
 /*!
- * \file DS3231_debug.cpp
+ * \file ErriezDS3231_debug.cpp
  * \brief DS3231 high precision RTC debug library for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDS3231
  *      Documentation:  https://erriez.github.io/ErriezDS3231
  */
 
-#include "DS3231_debug.h"
+#include "ErriezDS3231_debug.h"
 
 /*!
  * \brief Register names as string in flash.

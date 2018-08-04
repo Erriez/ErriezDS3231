@@ -39,7 +39,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-#include <DS3231.h> // ErriezDS3231 library
+#include <ErriezDS3231.h>
 
 // Create DS3231 RTC object
 static DS3231 rtc;

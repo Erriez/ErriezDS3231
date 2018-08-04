@@ -23,7 +23,7 @@
  */
 
 /*!
- * \file DS3231.cpp
+ * \file ErriezDS3231.cpp
  * \brief DS3231 high precision RTC library for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDS3231
@@ -38,7 +38,7 @@
 
 #include <Wire.h>
 
-#include "DS3231.h"
+#include "ErriezDS3231.h"
 
 // -------------------------------------------------------------------------------------------------
 /*!
