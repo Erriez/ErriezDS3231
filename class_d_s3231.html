@@ -96,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><a class="el" href="class_d_s3231.html" title="DS3231 RTC base class. ">DS3231</a> RTC base class.  
  <a href="class_d_s3231.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_d_s3231_8h_source.html">DS3231.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_erriez_d_s3231_8h_source.html">ErriezDS3231.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for DS3231:</div>
 <div class="dyncontent">
@@ -122,10 +122,10 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a380b72e98c720380145039995f22fa0e">clearOscillatorStopFlag</a> ()</td></tr>
 <tr class="memdesc:a380b72e98c720380145039995f22fa0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear Oscillator Stop Flag (OSF) in status register. <br /></td></tr>
 <tr class="separator:a380b72e98c720380145039995f22fa0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef50339f978d9fbe4cdd42e38c26fc0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#aef50339f978d9fbe4cdd42e38c26fc0c">setDateTime</a> (<a class="el" href="_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536">DS3231_DateTime</a> *dateTime)</td></tr>
+<tr class="memitem:aef50339f978d9fbe4cdd42e38c26fc0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#aef50339f978d9fbe4cdd42e38c26fc0c">setDateTime</a> (<a class="el" href="_erriez_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536">DS3231_DateTime</a> *dateTime)</td></tr>
 <tr class="memdesc:aef50339f978d9fbe4cdd42e38c26fc0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write date and time to RTC.  <a href="#aef50339f978d9fbe4cdd42e38c26fc0c">More...</a><br /></td></tr>
 <tr class="separator:aef50339f978d9fbe4cdd42e38c26fc0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c627e2a9a7b7c9c99723b6c0916889f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a5c627e2a9a7b7c9c99723b6c0916889f">getDateTime</a> (<a class="el" href="_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536">DS3231_DateTime</a> *dateTime)</td></tr>
+<tr class="memitem:a5c627e2a9a7b7c9c99723b6c0916889f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a5c627e2a9a7b7c9c99723b6c0916889f">getDateTime</a> (<a class="el" href="_erriez_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536">DS3231_DateTime</a> *dateTime)</td></tr>
 <tr class="memdesc:a5c627e2a9a7b7c9c99723b6c0916889f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read date and time from RTC.  <a href="#a5c627e2a9a7b7c9c99723b6c0916889f">More...</a><br /></td></tr>
 <tr class="separator:a5c627e2a9a7b7c9c99723b6c0916889f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03ff0537cadf522c98801d42fe55bb08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a03ff0537cadf522c98801d42fe55bb08">setTime</a> (uint8_t hour, uint8_t minute, uint8_t second)</td></tr>
@@ -134,25 +134,25 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ac4b80a2bcda996f2629b2197688d79bc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#ac4b80a2bcda996f2629b2197688d79bc">getTime</a> (uint8_t *hour, uint8_t *minute, uint8_t *second)</td></tr>
 <tr class="memdesc:ac4b80a2bcda996f2629b2197688d79bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read time from RTC.  <a href="#ac4b80a2bcda996f2629b2197688d79bc">More...</a><br /></td></tr>
 <tr class="separator:ac4b80a2bcda996f2629b2197688d79bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0e5a643bf64755c12e40f8cf293035b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#af0e5a643bf64755c12e40f8cf293035b">getEpochTime</a> (<a class="el" href="_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536">DS3231_DateTime</a> *dateTime)</td></tr>
+<tr class="memitem:af0e5a643bf64755c12e40f8cf293035b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#af0e5a643bf64755c12e40f8cf293035b">getEpochTime</a> (<a class="el" href="_erriez_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536">DS3231_DateTime</a> *dateTime)</td></tr>
 <tr class="memdesc:af0e5a643bf64755c12e40f8cf293035b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Unix Epoch 32-bit timestamp in current timezone.  <a href="#af0e5a643bf64755c12e40f8cf293035b">More...</a><br /></td></tr>
 <tr class="separator:af0e5a643bf64755c12e40f8cf293035b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3386f9c527b7e94ef20338af45b9ba24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a3386f9c527b7e94ef20338af45b9ba24">setAlarm1</a> (<a class="el" href="_d_s3231_8h.html#aa29471da8f6d22930cc9159a55a49273">Alarm1Type</a> alarmType, uint8_t dayDate, uint8_t hours, uint8_t minutes, uint8_t seconds)</td></tr>
+<tr class="memitem:a3386f9c527b7e94ef20338af45b9ba24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a3386f9c527b7e94ef20338af45b9ba24">setAlarm1</a> (<a class="el" href="_erriez_d_s3231_8h.html#aa29471da8f6d22930cc9159a55a49273">Alarm1Type</a> alarmType, uint8_t dayDate, uint8_t hours, uint8_t minutes, uint8_t seconds)</td></tr>
 <tr class="memdesc:a3386f9c527b7e94ef20338af45b9ba24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set Alarm 1.  <a href="#a3386f9c527b7e94ef20338af45b9ba24">More...</a><br /></td></tr>
 <tr class="separator:a3386f9c527b7e94ef20338af45b9ba24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a377799172e4f431288e18ff95cf5b7ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a377799172e4f431288e18ff95cf5b7ec">setAlarm2</a> (<a class="el" href="_d_s3231_8h.html#a2561c628950a85b8f502b7055c3acd8b">Alarm2Type</a> alarmType, uint8_t dayDate, uint8_t hours, uint8_t minutes)</td></tr>
+<tr class="memitem:a377799172e4f431288e18ff95cf5b7ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a377799172e4f431288e18ff95cf5b7ec">setAlarm2</a> (<a class="el" href="_erriez_d_s3231_8h.html#a2561c628950a85b8f502b7055c3acd8b">Alarm2Type</a> alarmType, uint8_t dayDate, uint8_t hours, uint8_t minutes)</td></tr>
 <tr class="memdesc:a377799172e4f431288e18ff95cf5b7ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set Alarm 2.  <a href="#a377799172e4f431288e18ff95cf5b7ec">More...</a><br /></td></tr>
 <tr class="separator:a377799172e4f431288e18ff95cf5b7ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bcf130e164ba5436a71dbb81621fb35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a0bcf130e164ba5436a71dbb81621fb35">alarmInterruptEnable</a> (<a class="el" href="_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb">AlarmId</a> alarmId, bool enable)</td></tr>
+<tr class="memitem:a0bcf130e164ba5436a71dbb81621fb35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a0bcf130e164ba5436a71dbb81621fb35">alarmInterruptEnable</a> (<a class="el" href="_erriez_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb">AlarmId</a> alarmId, bool enable)</td></tr>
 <tr class="memdesc:a0bcf130e164ba5436a71dbb81621fb35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable Alarm 1 or 2 interrupt.  <a href="#a0bcf130e164ba5436a71dbb81621fb35">More...</a><br /></td></tr>
 <tr class="separator:a0bcf130e164ba5436a71dbb81621fb35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77104765708a5f7ab9fbec7c17e145ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a77104765708a5f7ab9fbec7c17e145ea">getAlarmFlag</a> (<a class="el" href="_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb">AlarmId</a> alarmId)</td></tr>
+<tr class="memitem:a77104765708a5f7ab9fbec7c17e145ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a77104765708a5f7ab9fbec7c17e145ea">getAlarmFlag</a> (<a class="el" href="_erriez_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb">AlarmId</a> alarmId)</td></tr>
 <tr class="memdesc:a77104765708a5f7ab9fbec7c17e145ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Alarm 1 or 2 flag.  <a href="#a77104765708a5f7ab9fbec7c17e145ea">More...</a><br /></td></tr>
 <tr class="separator:a77104765708a5f7ab9fbec7c17e145ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae70cc93049001d830b926491698fdfb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#ae70cc93049001d830b926491698fdfb6">clearAlarmFlag</a> (<a class="el" href="_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb">AlarmId</a> alarmId)</td></tr>
+<tr class="memitem:ae70cc93049001d830b926491698fdfb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#ae70cc93049001d830b926491698fdfb6">clearAlarmFlag</a> (<a class="el" href="_erriez_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb">AlarmId</a> alarmId)</td></tr>
 <tr class="memdesc:ae70cc93049001d830b926491698fdfb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear alarm flag.  <a href="#ae70cc93049001d830b926491698fdfb6">More...</a><br /></td></tr>
 <tr class="separator:ae70cc93049001d830b926491698fdfb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d5ef58a83a5bde590bf414be67fb4a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a9d5ef58a83a5bde590bf414be67fb4a5">setSquareWave</a> (<a class="el" href="_d_s3231_8h.html#aa45f48b2c6f58f91a278a1601b211140">SquareWave</a> squareWave)</td></tr>
+<tr class="memitem:a9d5ef58a83a5bde590bf414be67fb4a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a9d5ef58a83a5bde590bf414be67fb4a5">setSquareWave</a> (<a class="el" href="_erriez_d_s3231_8h.html#aa45f48b2c6f58f91a278a1601b211140">SquareWave</a> squareWave)</td></tr>
 <tr class="memdesc:a9d5ef58a83a5bde590bf414be67fb4a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure SQW (Square Wave) output pin.  <a href="#a9d5ef58a83a5bde590bf414be67fb4a5">More...</a><br /></td></tr>
 <tr class="separator:a9d5ef58a83a5bde590bf414be67fb4a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a345592e12ccf5fc6c887c1414f8a3abb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_s3231.html#a345592e12ccf5fc6c887c1414f8a3abb">outputClockPinEnable</a> (bool enable)</td></tr>
@@ -204,7 +204,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_d_s3231.html" title="DS3231 RTC base class. ">DS3231</a> RTC base class. </p>
 
-<p>Definition at line <a class="el" href="_d_s3231_8h_source.html#l00161">161</a> of file <a class="el" href="_d_s3231_8h_source.html">DS3231.h</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8h_source.html#l00161">161</a> of file <a class="el" href="_erriez_d_s3231_8h_source.html">ErriezDS3231.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a0bcf130e164ba5436a71dbb81621fb35"></a>
 <div class="memitem">
@@ -213,7 +213,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">void DS3231::alarmInterruptEnable </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb">AlarmId</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_erriez_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb">AlarmId</a>&#160;</td>
           <td class="paramname"><em>alarmId</em>, </td>
         </tr>
         <tr>
@@ -240,7 +240,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00417">417</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00417">417</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -267,7 +267,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Decimal value. </dd></dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00658">658</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00658">658</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -294,7 +294,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00055">55</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00055">55</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -305,7 +305,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">void DS3231::clearAlarmFlag </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb">AlarmId</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_erriez_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb">AlarmId</a>&#160;</td>
           <td class="paramname"><em>alarmId</em></td><td>)</td>
           <td></td>
         </tr>
@@ -327,7 +327,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00478">478</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00478">478</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -354,7 +354,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>BCD encoded value. </dd></dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00670">670</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00670">670</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -374,7 +374,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Get aging offset register. </p>
 <p>The aging offset register capacitance value is added or subtracted from the capacitance value that the device calculates for each temperature compensation. </p><dl class="section return"><dt>Returns</dt><dd>val Aging offset value. </dd></dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00583">583</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00583">583</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -385,7 +385,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">bool DS3231::getAlarmFlag </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb">AlarmId</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_erriez_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb">AlarmId</a>&#160;</td>
           <td class="paramname"><em>alarmId</em></td><td>)</td>
           <td></td>
         </tr>
@@ -408,7 +408,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00456">456</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00456">456</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -419,7 +419,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">bool DS3231::getDateTime </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536">DS3231_DateTime</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="_erriez_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536">DS3231_DateTime</a> *&#160;</td>
           <td class="paramname"><em>dateTime</em></td><td>)</td>
           <td></td>
         </tr>
@@ -441,7 +441,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00176">176</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00176">176</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -452,7 +452,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">uint32_t DS3231::getEpochTime </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536">DS3231_DateTime</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="_erriez_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536">DS3231_DateTime</a> *&#160;</td>
           <td class="paramname"><em>dateTime</em></td><td>)</td>
           <td></td>
         </tr>
@@ -467,7 +467,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00284">284</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00284">284</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -504,7 +504,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00630">630</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00630">630</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -555,7 +555,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00246">246</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00246">246</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -581,7 +581,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00104">104</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00104">104</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -608,7 +608,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00073">73</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00073">73</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -635,7 +635,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00528">528</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00528">528</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -679,7 +679,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00777">777</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00777">777</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -699,7 +699,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Read control register. </p>
 <dl class="section return"><dt>Returns</dt><dd>8-bit unsigned register value </dd></dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00680">680</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00680">680</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -726,7 +726,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value 8-bit unsigned register value. </dd></dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00721">721</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00721">721</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -746,7 +746,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Read status register. </p>
 <dl class="section return"><dt>Returns</dt><dd>8-bit unsigned register value </dd></dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00698">698</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00698">698</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -773,7 +773,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00555">555</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00555">555</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -784,7 +784,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">void DS3231::setAlarm1 </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_d_s3231_8h.html#aa29471da8f6d22930cc9159a55a49273">Alarm1Type</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_erriez_d_s3231_8h.html#aa29471da8f6d22930cc9159a55a49273">Alarm1Type</a>&#160;</td>
           <td class="paramname"><em>alarmType</em>, </td>
         </tr>
         <tr>
@@ -838,7 +838,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00339">339</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00339">339</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -849,7 +849,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">void DS3231::setAlarm2 </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_d_s3231_8h.html#a2561c628950a85b8f502b7055c3acd8b">Alarm2Type</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_erriez_d_s3231_8h.html#a2561c628950a85b8f502b7055c3acd8b">Alarm2Type</a>&#160;</td>
           <td class="paramname"><em>alarmType</em>, </td>
         </tr>
         <tr>
@@ -895,7 +895,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00384">384</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00384">384</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -906,7 +906,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">void DS3231::setDateTime </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536">DS3231_DateTime</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="_erriez_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536">DS3231_DateTime</a> *&#160;</td>
           <td class="paramname"><em>dateTime</em></td><td>)</td>
           <td></td>
         </tr>
@@ -921,7 +921,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00141">141</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00141">141</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -932,7 +932,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">void DS3231::setSquareWave </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_d_s3231_8h.html#aa45f48b2c6f58f91a278a1601b211140">SquareWave</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_erriez_d_s3231_8h.html#aa45f48b2c6f58f91a278a1601b211140">SquareWave</a>&#160;</td>
           <td class="paramname"><em>squareWave</em></td><td>)</td>
           <td></td>
         </tr>
@@ -959,7 +959,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00509">509</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00509">509</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1003,7 +1003,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00218">218</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00218">218</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1023,7 +1023,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Start temperature conversion. </p>
 <p>Starting a conversion is only needed when the application requires temperature reads within 64 seconds, or changing the aging offset register. </p>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00606">606</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00606">606</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1067,7 +1067,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00757">757</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00757">757</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1093,7 +1093,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00689">689</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00689">689</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1130,7 +1130,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00740">740</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00740">740</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1156,13 +1156,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_d_s3231_8cpp_source.html#l00707">707</a> of file <a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00707">707</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_d_s3231_8h_source.html">DS3231.h</a></li>
-<li><a class="el" href="_d_s3231_8cpp_source.html">DS3231.cpp</a></li>
+<li><a class="el" href="_erriez_d_s3231_8h_source.html">ErriezDS3231.h</a></li>
+<li><a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

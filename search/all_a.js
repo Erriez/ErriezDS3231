@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['readbuffer',['readBuffer',['../class_d_s3231.html#ae72bc3b3e8164477762d14e7961daff0',1,'DS3231']]],
-  ['readcontrolregister',['readControlRegister',['../class_d_s3231.html#a53ae4553629d91e3ab06c22d03fe09e2',1,'DS3231']]],
-  ['readregister',['readRegister',['../class_d_s3231.html#a37cac2a6bbf52b801dcaf6471d4418ac',1,'DS3231']]],
-  ['readstatusregister',['readStatusRegister',['../class_d_s3231.html#a29fb8f2fe94a93b80336b183d5e9fc0c',1,'DS3231']]]
+  ['printdiagnostics',['printDiagnostics',['../class_d_s3231_debug.html#ae9b7944902fc05ea5dcb608c75564f6a',1,'DS3231Debug']]],
+  ['printregister',['printRegister',['../class_d_s3231_debug.html#a1e95a14a76374cf459d5e4ccbdb6286e',1,'DS3231Debug']]],
+  ['printregisterbitfields',['printRegisterBitfields',['../class_d_s3231_debug.html#ac739b6f1980b8254e57b6966ab1dcc97',1,'DS3231Debug']]],
+  ['progmem',['PROGMEM',['../_erriez_d_s3231_8cpp.html#ac1d72923583dac3a4d130d5504fd199e',1,'PROGMEM():&#160;ErriezDS3231.cpp'],['../_erriez_d_s3231__debug_8cpp.html#aea6ccb7bc5424dd185eeb7c9ebbf0d0e',1,'PROGMEM():&#160;ErriezDS3231_debug.cpp']]]
 ];
