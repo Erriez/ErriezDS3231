@@ -31,7 +31,6 @@
  *    Connect the nINT/SQW pin to an Arduino interrupt pin
  */
 
-#include <Arduino.h>
 #include <Wire.h>
 
 #include <ErriezDS3231.h>

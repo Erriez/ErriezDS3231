@@ -33,7 +33,6 @@
  *          https://erriez.github.io/ErriezSerialTerminal
  */
 
-#include <Arduino.h>
 #include <Wire.h>
 
 #include <ErriezDS3231_debug.h>

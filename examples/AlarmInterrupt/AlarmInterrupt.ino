@@ -35,7 +35,6 @@
  *      Alarm 2 interrupt every 2 minutes (by reprogramming alarm 2 on every alarm 2 interrupt)
  */
 
-#include <Arduino.h>
 #include <Wire.h>
 
 #include <ErriezDS3231.h>

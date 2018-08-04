@@ -34,7 +34,6 @@
  *    The example generates a 1Hz interrupt at every square wave falling edge.
  */
 
-#include <Arduino.h>
 #include <Wire.h>
 
 #include <ErriezDS3231.h>

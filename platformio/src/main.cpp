@@ -29,7 +29,6 @@
  *    Source: https://github.com/Erriez/ErriezDS3231
  */
 
-#include <Arduino.h>
 #include <Wire.h>
 
 #include <ErriezDS3231.h>
