@@ -23,7 +23,6 @@
  */
 
 /*!
- * \file AlarmPolling.ino
  * \brief DS3231 high accurate RTC alarm polling example for Arduino
  * \details
   *   Source:         https://github.com/Erriez/ErriezDS3231

@@ -23,7 +23,6 @@
  */
 
 /*!
- * \file GettingStarted.ino
  * \brief DS3231 high accurate RTC aging offset example for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDS3231

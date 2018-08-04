@@ -23,7 +23,6 @@
  */
 
 /*!
- * \file Temperature.ino
  * \brief DS3231 high accurate RTC temperature example for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDS3231

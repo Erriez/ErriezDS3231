@@ -23,7 +23,6 @@
  */
 
 /*!
- * \file SetDateTime.ino
  * \brief DS3231 high accurate RTC minimum read time example for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDS3231

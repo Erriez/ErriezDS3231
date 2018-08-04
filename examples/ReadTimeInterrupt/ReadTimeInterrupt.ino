@@ -23,7 +23,6 @@
  */
 
 /*!
- * \file ReadTimeInterrupt.ino
  * \brief DS3231 high accurate RTC 1Hz square wave interrupt example for Arduino
  * \details
  *    Source:         https://github.com/Erriez/ErriezDS3231

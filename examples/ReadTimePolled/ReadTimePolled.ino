@@ -23,7 +23,6 @@
  */
 
 /*!
- * \file ReadTimePolled.ino
  * \brief DS3231 high accurate RTC read time polled example for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDS3231

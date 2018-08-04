@@ -23,7 +23,6 @@
  */
 
 /*!
- * \file GettingStarted.ino
  * \brief DS3231 high accurate RTC getting started example for Arduino
  * \details
  *    Source:         https://github.com/Erriez/ErriezDS3231

@@ -23,7 +23,6 @@
  */
 
 /*!
- * \file Terminal.ino
  * \brief DS3231 high precision RTC serial terminal example for Arduino
  * \details
  *      Sources:

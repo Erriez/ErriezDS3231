@@ -23,7 +23,6 @@
  */
 
 /*!
- * \file PrintDiagnostics.ino
  * \brief DS3231 high precision RTC print diagnostics example for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDS3231
