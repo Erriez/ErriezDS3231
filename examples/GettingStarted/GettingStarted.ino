@@ -109,6 +109,7 @@ void setup()
     rtc.outputClockPinEnable(false);
 
     // Disable square wave out
+    // SquareWaveDisable, SquareWave1Hz, SquareWave1024Hz, SquareWave4096Hz, SquareWave8192Hz
     rtc.setSquareWave(SquareWaveDisable);
 
     Serial.println(F("RTC epoch/date/time/temperature:"));

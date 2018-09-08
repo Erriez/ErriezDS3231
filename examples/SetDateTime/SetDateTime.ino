@@ -90,7 +90,7 @@ static void setDateTime()
         .second = 0,
         .minute = 36,
         .hour = 21,
-        .dayWeek = 7,
+        .dayWeek = 7,  // 1 = Monday
         .dayMonth = 29,
         .month = 7,
         .year = 2018

@@ -145,6 +145,8 @@ static void setAlarm1()
     Serial.println(F("Set Alarm 1 at every 30 seconds"));
 
     // Program alarm 1
+    // Alarm1EverySecond, Alarm1MatchSeconds, Alarm1MatchMinutes, Alarm1MatchHours, Alarm1MatchDay,
+    // Alarm1MatchDate
     rtc.setAlarm1(Alarm1MatchSeconds, 0, 0, 0, 30);
 
     // Enable alarm 1 interrupt
@@ -167,6 +169,7 @@ static void setAlarm2()
     Serial.println(F("Set Alarm 2 at every hour at 2 minutes"));
 
     // Program alarm 2
+    // Alarm2EveryMinute, Alarm2MatchMinutes, Alarm2MatchHours, Alarm2MatchDay or Alarm2MatchDate
     rtc.setAlarm2(Alarm2MatchMinutes, 0, 0, minute);
 
     // Enable alarm 2 interrupt
