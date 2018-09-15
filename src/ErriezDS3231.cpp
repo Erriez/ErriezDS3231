@@ -762,7 +762,7 @@ void DS3231::writeBuffer(uint8_t reg, void *buffer, uint8_t len)
     for (uint8_t i = 0; i < len; i++) {
         Wire.write(((uint8_t *)buffer)[i]);
     }
-    Wire.endTransmission(1);
+    Wire.endTransmission(true);
 }
 
 /*!
@@ -780,7 +780,7 @@ void DS3231::readBuffer(uint8_t reg, void *buffer, uint8_t len)
     Wire.beginTransmission(DS3231_ADDR);
     Wire.write(reg);
     // Generate a repeated start, followed by a read buffer
-    Wire.endTransmission(0);
+    Wire.endTransmission(false);
     Wire.requestFrom((uint8_t)DS3231_ADDR, len);
     for (uint8_t i = 0; i < len; i++) {
         ((uint8_t *)buffer)[i] = (uint8_t)Wire.read();
