@@ -74,9 +74,9 @@ generate_arduino_library(
 generate_arduino_library(
         SerialTerminalLib
         SRCS
-            ${LIB_SERIAL_TERMINAL_SRC_DIR}/SerialTerminal.cpp
+            ${LIB_SERIAL_TERMINAL_SRC_DIR}/ErriezSerialTerminal.cpp
         HDRS
-            ${LIB_SERIAL_TERMINAL_SRC_DIR}/SerialTerminal.h
+            ${LIB_SERIAL_TERMINAL_SRC_DIR}/ErriezSerialTerminal.h
 )
 
 # Configure project
