@@ -60,14 +60,6 @@ void setup()
         delay(3000);
     }
 
-    // Check oscillator status
-    if (rtc.isOscillatorStopped()) {
-        Serial.println(F("Error: DS3231 RTC oscillator stopped. Program new date/time."));
-        while (1) {
-            ;
-        }
-    }
-
     Serial.println(F("Current RTC date and time:"));
     printDateTime();
     Serial.println(F("Set new RTC date and time..."));
