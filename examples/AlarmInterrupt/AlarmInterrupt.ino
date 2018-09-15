@@ -47,7 +47,7 @@
 #elif defined(ARDUINO_AVR_LEONARDO)
 #define INT_PIN     7
 #else
-#define INT_PIN     0 // GPIO0 pin for ESP8266 targets
+#define INT_PIN     0 // GPIO0 pin for ESP8266 / ESP32 targets
 #endif
 
 // Create DS3231 RTC object

@@ -25,10 +25,13 @@
 /*!
  * \brief DS3231 high accurate RTC getting started example for Arduino
  * \details
- *    Connect the nINT/SQW pin to an Arduino interrupt pin.
- *    Source: https://github.com/Erriez/ErriezDS3231
+ *    Source:         https://github.com/Erriez/ErriezDS3231
+ *    Documentation:  https://erriez.github.io/ErriezDS3231
+ *
+ *    Connect the nINT/SQW pin to an Arduino interrupt pin
  */
 
+#include <Arduino.h>
 #include <Wire.h>
 
 #include <ErriezDS3231.h>
@@ -107,6 +110,7 @@ void setup()
     rtc.outputClockPinEnable(false);
 
     // Disable square wave out
+    // SquareWaveDisable, SquareWave1Hz, SquareWave1024Hz, SquareWave4096Hz, SquareWave8192Hz
     rtc.setSquareWave(SquareWaveDisable);
 
     Serial.println(F("RTC epoch/date/time/temperature:"));
@@ -136,9 +140,15 @@ void loop()
 static void printDateTime()
 {
     char buf[32];
+#if defined(ESP32)
+    long unsigned int epoch;
+#else
+    uint32_t epoch;
+#endif
 
     // Print Unix Epoch time
-    snprintf(buf, sizeof(buf), "%lu", rtc.getEpochTime(&dt));
+    epoch = rtc.getEpochTime(&dt);
+    snprintf(buf, sizeof(buf), "%lu", epoch);
     Serial.print(buf);
     Serial.print(F("  "));
 

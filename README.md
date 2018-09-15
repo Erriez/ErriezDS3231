@@ -38,14 +38,19 @@ Any Arduino hardware with a TWI interface and ```Wire.h``` support.
 
 ## Pins
 
-| DS3231 | Arduino UNO / Nano / Micro / Pro Micro | Mega2560  | Leonardo  | ESP8266 / WeMos D1 & R2 / Node MCU |
-| ------ | -------------------------------------- | --------- | --------- | ---------------------------------- |
-| VCC    | 5V                                     | 5V        | 5V        | 3V3                                |
-| GND    | GND                                    | GND       | GND       | GND                                |
-| SDA    | A4                                     | D20       | D2        | D2 (GPIO4)                         |
-| CLK    | A5                                     | D21       | D3        | D1 (GPIO5)                         |
-| SQW    | D2 (INT0)                              | D2 (INT4) | D7 (INT6) | D3 (GPIO0)                         |
+| Pins board - DS3231            | VCC  | GND  |    SDA     |    SCL     |    SQW     |
+| ------------------------------ | :--: | :--: | :--------: | :--------: | :--------: |
+| Arduino UNO (ATMega328 boards) |  5V  | GND  |     A4     |     A5     | D2 (INT0)  |
+| Arduino Mega2560               |  5V  | GND  |    D20     |    D21     | D2 (INT4)  |
+| Arduino Leonardo               |  5V  | GND  |     D2     |     D3     | D7 (INT6)  |
+| Arduino DUE (ATSAM3X8E)        | 3V3  | GND  |     20     |     21     |     2      |
+| ESP8266                        | 3V3  | GND  | GPIO4 (D2) | GPIO5 (D1) | GPIO0 (D3) |
+| ESP32                          | 3V3  | GND  |   GPIO21   |   GPIO22   |   GPIO0    |
 
+Tested boards:
+
+* **ESP8266 boards**: ESP12E / WeMos D1 & R2 / Node MCU v2 / v3
+* **ESP32 boards:** WeMos LOLIN32 / LOLIN D32
 
 ## Examples
 

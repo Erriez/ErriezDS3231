@@ -327,6 +327,11 @@ static void cmdPrintEpoch()
 {
     DS3231_DateTime dt;
     char buf[11];
+#if defined(ESP32)
+    long unsigned int epoch;
+#else
+    uint32_t epoch;
+#endif
 
     Serial.print(F("Epoch: "));
 
@@ -337,7 +342,8 @@ static void cmdPrintEpoch()
     }
 
     // Print 32-bit epoch time
-    snprintf(buf, sizeof(buf), "%lu", rtc.getEpochTime(&dt));
+    epoch = rtc.getEpochTime(&dt);
+    snprintf(buf, sizeof(buf), "%lu", epoch);
     Serial.println(buf);
 }
 

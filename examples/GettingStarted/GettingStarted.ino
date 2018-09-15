@@ -139,9 +139,15 @@ void loop()
 static void printDateTime()
 {
     char buf[32];
+#if defined(ESP32)
+    long unsigned int epoch;
+#else
+    uint32_t epoch;
+#endif
 
     // Print Unix Epoch time
-    snprintf(buf, sizeof(buf), "%lu", rtc.getEpochTime(&dt));
+    epoch = rtc.getEpochTime(&dt);
+    snprintf(buf, sizeof(buf), "%lu", epoch);
     Serial.print(buf);
     Serial.print(F("  "));
 
