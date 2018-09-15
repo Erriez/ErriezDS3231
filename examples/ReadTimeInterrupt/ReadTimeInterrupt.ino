@@ -131,8 +131,6 @@ static void clockHandler()
 
 static void incrementTime()
 {
-    DS3231_DateTime dt;
-
     if ((hour == 0) && (minute == 0) && (second == 0)) {
         // Get date time from RTC
         if (rtc.getTime(&hour, &minute, &second)) {
