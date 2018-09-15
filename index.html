@@ -120,18 +120,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h2>Pins</h2>
 <table class="doxtable">
 <tr>
-<th><a class="el" href="class_d_s3231.html" title="DS3231 RTC base class. ">DS3231</a> </th><th>Arduino UNO / Nano / Micro / Pro Micro </th><th>Mega2560 </th><th>Leonardo </th><th>ESP8266 / WeMos D1 &amp; R2 / Node MCU  </th></tr>
+<th>Pins board - <a class="el" href="class_d_s3231.html" title="DS3231 RTC base class. ">DS3231</a> </th><th align="center">VCC </th><th align="center">GND </th><th align="center">SDA </th><th align="center">SCL </th><th align="center">SQW  </th></tr>
 <tr>
-<td>VCC </td><td>5V </td><td>5V </td><td>5V </td><td>3V3 </td></tr>
+<td>Arduino UNO (ATMega328 boards) </td><td align="center">5V </td><td align="center">GND </td><td align="center">A4 </td><td align="center">A5 </td><td align="center">D2 (INT0) </td></tr>
 <tr>
-<td>GND </td><td>GND </td><td>GND </td><td>GND </td><td>GND </td></tr>
+<td>Arduino Mega2560 </td><td align="center">5V </td><td align="center">GND </td><td align="center">D20 </td><td align="center">D21 </td><td align="center">D2 (INT4) </td></tr>
 <tr>
-<td>SDA </td><td>A4 </td><td>D20 </td><td>D2 </td><td>D2 (GPIO4) </td></tr>
+<td>Arduino Leonardo </td><td align="center">5V </td><td align="center">GND </td><td align="center">D2 </td><td align="center">D3 </td><td align="center">D7 (INT6) </td></tr>
 <tr>
-<td>CLK </td><td>A5 </td><td>D21 </td><td>D3 </td><td>D1 (GPIO5) </td></tr>
+<td>Arduino DUE (ATSAM3X8E) </td><td align="center">3V3 </td><td align="center">GND </td><td align="center">20 </td><td align="center">21 </td><td align="center">2 </td></tr>
 <tr>
-<td>SQW </td><td>D2 (INT0) </td><td>D2 (INT4) </td><td>D7 (INT6) </td><td>D3 (GPIO0) </td></tr>
+<td>ESP8266 </td><td align="center">3V3 </td><td align="center">GND </td><td align="center">GPIO4 (D2) </td><td align="center">GPIO5 (D1) </td><td align="center">GPIO0 (D3) </td></tr>
+<tr>
+<td>ESP32 </td><td align="center">3V3 </td><td align="center">GND </td><td align="center">GPIO21 </td><td align="center">GPIO22 </td><td align="center">GPIO0 </td></tr>
 </table>
+<p>Tested boards:</p>
+<ul>
+<li><b>ESP8266 boards</b>: ESP12E / WeMos D1 &amp; R2 / Node MCU v2 / v3</li>
+<li><b>ESP32 boards:</b> WeMos LOLIN32 / LOLIN D32</li>
+</ul>
 <h2>Examples</h2>
 <p>Arduino IDE | Examples | Erriez <a class="el" href="class_d_s3231.html" title="DS3231 RTC base class. ">DS3231</a> RTC:</p>
 <ul>
