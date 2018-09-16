@@ -15,6 +15,11 @@
         "url": "https://github.com/Erriez/ErriezDS3231.git",
         "branch": "master"
     },
+    "dependencies":
+    {
+        "name": "ErriezSerialTerminal",
+        "frameworks": "arduino"
+    },
     "frameworks": "arduino",
     "platforms": [
         "atmelavr",
