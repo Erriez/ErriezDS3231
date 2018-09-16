@@ -39,6 +39,12 @@ Any Arduino hardware with a T\+WI interface and {\ttfamily Wire.\+h} support.
 
 
 
+\subsubsection*{E\+S\+P32 notes}
+
+{\bfseries E\+S\+P32 problem\+:} The Arduino I\+DE $\vert$ Board manager installs an old version {\ttfamily 1.\+0.\+0} from {\ttfamily \href{https://dl.espressif.com/dl/package_esp32_index.json}{\tt https\+://dl.\+espressif.\+com/dl/package\+\_\+esp32\+\_\+index.\+json}} which contains a broken I2C repeated start. Generating a repeated start with {\ttfamily Wire.\+end\+Transmission(false);} results in reading zero\textquotesingle{}s from any I2C device and is not a problem of this library.
+
+{\bfseries Solution\+:} Use the Git master branch (or a newer release when available) to solve this problem as described on\+: \href{https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/windows.md}{\tt https\+://github.\+com/espressif/arduino-\/esp32/blob/master/docs/arduino-\/ide/windows.\+md}.
+
 \subsection*{Pins}
 
 \tabulinesep=1mm
@@ -58,13 +64,15 @@ Arduino D\+UE (A\+T\+S\+A\+M3\+X8E) &\PBS\centering 3\+V3 &\PBS\centering G\+ND 
 E\+S\+P8266 &\PBS\centering 3\+V3 &\PBS\centering G\+ND &\PBS\centering G\+P\+I\+O4 (D2) &\PBS\centering G\+P\+I\+O5 (D1) &\PBS\centering G\+P\+I\+O0 (D3) \\\cline{1-6}
 E\+S\+P32 &\PBS\centering 3\+V3 &\PBS\centering G\+ND &\PBS\centering G\+P\+I\+O21 &\PBS\centering G\+P\+I\+O22 &\PBS\centering G\+P\+I\+O0 \\\cline{1-6}
 \end{longtabu}
-Tested boards\+:
+Note\+: Tested E\+S\+P8266 / E\+S\+P32 boards\+:
 
 
 \begin{DoxyItemize}
 \item {\bfseries E\+S\+P8266 boards}\+: E\+S\+P12E / We\+Mos D1 \& R2 / Node M\+CU v2 / v3
 \item {\bfseries E\+S\+P32 boards\+:} We\+Mos L\+O\+L\+I\+N32 / L\+O\+L\+IN D32
 \end{DoxyItemize}
+
+Other unlisted M\+CU\textquotesingle{}s may work, but are not tested.
 
 \subsection*{Examples}
 

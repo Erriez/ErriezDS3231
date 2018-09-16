@@ -117,6 +117,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="image">
 <img src="https://raw.githubusercontent.com/Erriez/ErriezDS3231/master/extras/DS3231_Arduino_UNO.png"  alt="DS3231 - Arduino UNO"/>
 </div>
+<h3>ESP32 notes</h3>
+<p><b>ESP32 problem:</b> The Arduino IDE | Board manager installs an old version <code>1.0.0</code> from <code><a href="https://dl.espressif.com/dl/package_esp32_index.json">https://dl.espressif.com/dl/package_esp32_index.json</a></code> which contains a broken I2C repeated start. Generating a repeated start with <code>Wire.endTransmission(false);</code> results in reading zero's from any I2C device and is not a problem of this library.</p>
+<p><b>Solution:</b> Use the Git master branch (or a newer release when available) to solve this problem as described on: <a href="https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/windows.md">https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/windows.md</a>.</p>
 <h2>Pins</h2>
 <table class="doxtable">
 <tr>
@@ -134,11 +137,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr>
 <td>ESP32 </td><td align="center">3V3 </td><td align="center">GND </td><td align="center">GPIO21 </td><td align="center">GPIO22 </td><td align="center">GPIO0 </td></tr>
 </table>
-<p>Tested boards:</p>
+<p>Note: Tested ESP8266 / ESP32 boards:</p>
 <ul>
 <li><b>ESP8266 boards</b>: ESP12E / WeMos D1 &amp; R2 / Node MCU v2 / v3</li>
 <li><b>ESP32 boards:</b> WeMos LOLIN32 / LOLIN D32</li>
 </ul>
+<p>Other unlisted MCU's may work, but are not tested.</p>
 <h2>Examples</h2>
 <p>Arduino IDE | Examples | Erriez <a class="el" href="class_d_s3231.html" title="DS3231 RTC base class. ">DS3231</a> RTC:</p>
 <ul>
