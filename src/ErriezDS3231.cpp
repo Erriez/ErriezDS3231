@@ -512,7 +512,10 @@ void DS3231::setSquareWave(SquareWave squareWave)
 
     // Read control register
     controlReg = readRegister(DS3231_REG_CONTROL);
-    controlReg &= ~(DS3231_CTRL_BBSQW | DS3231_CTRL_INTCN | DS3231_CTRL_RS2 | DS3231_CTRL_RS1);
+    controlReg &= ~((1 << DS3231_CTRL_BBSQW) |
+                    (1 << DS3231_CTRL_INTCN) |
+                    (1 << DS3231_CTRL_RS2) |
+                    (1 << DS3231_CTRL_RS1));
     controlReg |= squareWave;
 
     // Write control register
