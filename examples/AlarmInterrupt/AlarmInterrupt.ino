@@ -40,9 +40,10 @@
 #include <ErriezDS3231.h>
 
 // Uno, Nano, Mini, other 328-based: pin D2 (INT0) or D3 (INT1)
+// DUE: Any digital pin
 // Leonardo: pin D7 (INT4)
 // ESP8266 / NodeMCU / WeMos D1&R2: pin D3 (GPIO0)
-#if defined(__AVR_ATmega328P__)
+#if defined(__AVR_ATmega328P__) || defined(ARDUINO_SAM_DUE)
 #define INT_PIN     2
 #elif defined(ARDUINO_AVR_LEONARDO)
 #define INT_PIN     7
