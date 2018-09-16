@@ -36,6 +36,13 @@ Any Arduino hardware with a TWI interface and ```Wire.h``` support.
 
 ![DS3231 - Arduino UNO](https://raw.githubusercontent.com/Erriez/ErriezDS3231/master/extras/DS3231_Arduino_UNO.png)
 
+### ESP32 notes
+
+**ESP32 problem:** The Arduino IDE | Board manager installs an old version ```1.0.0``` from `https://dl.espressif.com/dl/package_esp32_index.json` which contains a broken I2C repeated start. Generating a repeated start with ```Wire.endTransmission(false);``` results in reading zero's from any I2C device and is not a problem of this library.
+
+**Solution:** Use the Git master branch (or a newer release when available) to solve this problem as described on:
+https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/windows.md.
+
 ## Pins
 
 | Pins board - DS3231            | VCC  | GND  |    SDA     |    SCL     |    SQW     |
@@ -47,10 +54,12 @@ Any Arduino hardware with a TWI interface and ```Wire.h``` support.
 | ESP8266                        | 3V3  | GND  | GPIO4 (D2) | GPIO5 (D1) | GPIO0 (D3) |
 | ESP32                          | 3V3  | GND  |   GPIO21   |   GPIO22   |   GPIO0    |
 
-Tested boards:
+Note: Tested ESP8266 / ESP32 boards:
 
 * **ESP8266 boards**: ESP12E / WeMos D1 & R2 / Node MCU v2 / v3
 * **ESP32 boards:** WeMos LOLIN32 / LOLIN D32
+
+Other unlisted MCU's may work, but are not tested.
 
 ## Examples
 
