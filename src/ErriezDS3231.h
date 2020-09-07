@@ -153,8 +153,8 @@ public:
     bool begin();
 
     // Oscillator functions
-    bool oscillatorEnable(bool enable);
-    bool isOscillatorStopped();
+    bool isRunning();
+    bool clockEnable(bool enable=true);
 
     // Date/time functions
     time_t getEpoch();

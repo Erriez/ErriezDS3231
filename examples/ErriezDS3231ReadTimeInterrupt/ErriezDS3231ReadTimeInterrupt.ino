@@ -135,7 +135,7 @@ void setup()
     }
 
     // Check oscillator status
-    if (ds3231.isOscillatorStopped()) {
+    if (!ds3231.isRunning()) {
         Serial.println(F("Error: DS3231 RTC oscillator stopped. Program new date/time."));
         while (1) {
             ;

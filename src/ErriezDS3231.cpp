@@ -68,7 +68,7 @@ bool ErriezDS3231::begin()
  * \retval false
  *      Oscillator enable failed.
  */
-bool ErriezDS3231::oscillatorEnable(bool enable)
+bool ErriezDS3231::clockEnable(bool enable)
 {
     uint8_t reg;
 
@@ -99,20 +99,20 @@ bool ErriezDS3231::oscillatorEnable(bool enable)
  *      The application is responsible for checking the Oscillator Stop Flag (OSF) before reading
  *      date/time date. This function may be used to judge the validity of the date/time registers.
  * \retval true
+ *      RTC oscillator is running.
+ * \retval false
  *      RTC oscillator was stopped: The date/time data is invalid. The application should
  *      synchronize and program a new date/time.
- * \retval false
- *      RTC oscillator is running.
  */
-bool ErriezDS3231::isOscillatorStopped()
+bool ErriezDS3231::isRunning()
 {
     // Check OSF bit in status register
     if (readRegister(DS3231_REG_STATUS) & (1 << DS3231_STAT_OSF)) {
-        // RTC oscillator was stopped
-        return true;
-    } else {
-        // RTC oscillator is running
+        // RTC clock stopped
         return false;
+    } else {
+        // RTC clock is running
+        return true;
     }
 }
 
@@ -218,7 +218,7 @@ bool ErriezDS3231::write(const struct tm *dt)
     uint8_t buffer[7];
 
     // Enable oscillator
-    if (!oscillatorEnable(true)) {
+    if (!clockEnable(true)) {
         return false;
     }
 

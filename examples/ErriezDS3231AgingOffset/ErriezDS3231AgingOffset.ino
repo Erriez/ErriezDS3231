@@ -87,7 +87,7 @@ void setup()
     printAgingOffset();
 
     // Enable oscillator
-    ds3231.oscillatorEnable(true);
+    ds3231.clockEnable(true);
 }
 
 void loop()

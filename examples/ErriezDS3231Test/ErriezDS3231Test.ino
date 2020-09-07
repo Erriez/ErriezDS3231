@@ -90,10 +90,10 @@ void setup()
     CHK(ds3231.setSquareWave(SquareWave8192Hz) == Success);
 
     // Test oscillator
-    if (ds3231.isOscillatorStopped()) {
-        CHK(ds3231.oscillatorEnable(true));
+    if (!ds3231.isRunning()) {
+        CHK(ds3231.clockEnable(true));
     }
-    CHK(ds3231.isOscillatorStopped() == false);
+    CHK(ds3231.isRunning() == true);
 
     // Test epoch write
     CHK(ds3231.setEpoch(EPOCH_TEST) == Success);

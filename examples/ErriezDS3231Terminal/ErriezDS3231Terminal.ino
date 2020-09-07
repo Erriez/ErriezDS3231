@@ -320,16 +320,16 @@ void cmdSquareWaveOut()
 
 void cmdOscillatorStop()
 {
-    Serial.println(F("Stop oscillator when running on V-BAT"));
+    Serial.println(F("Stop oscillator"));
 
-    ds3231.oscillatorEnable(false);
+    ds3231.clockEnable(false);
 }
 
 void cmdOscillatorStart()
 {
     Serial.println(F("Start oscillator"));
 
-    ds3231.oscillatorEnable(true);
+    ds3231.clockEnable(true);
 }
 
 void cmdStartTemperatureConversion()
@@ -457,11 +457,11 @@ void setup()
     }
 
     // Check oscillator status
-    if (ds3231.isOscillatorStopped()) {
+    if (!ds3231.isRunning()) {
         Serial.println(F("Warning: DS3231 RTC oscillator was stopped."));
 
         // Enable oscillator
-        ds3231.oscillatorEnable(true);
+        ds3231.clockEnable(true);
     }
 
     // Set output clock

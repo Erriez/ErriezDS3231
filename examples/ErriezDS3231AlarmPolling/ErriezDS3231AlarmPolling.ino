@@ -128,7 +128,7 @@ void setup()
     }
 
     // Enable oscillator
-    ds3231.oscillatorEnable(true);
+    ds3231.clockEnable(true);
 
     // Set alarms
     setAlarm1();

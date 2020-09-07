@@ -95,7 +95,7 @@ void setup()
     }
 
     // Enable oscillator
-    ds3231.oscillatorEnable(true);
+    ds3231.clockEnable(true);
 
     // Disable 32kHz clock output pin
     ds3231.outputClockPinEnable(false);
