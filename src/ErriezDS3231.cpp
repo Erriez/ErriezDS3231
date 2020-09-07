@@ -760,7 +760,7 @@ uint8_t ErriezDS3231::decToBcd(uint8_t dec)
  */
 uint8_t ErriezDS3231::readRegister(uint8_t reg)
 {
-    uint8_t value;
+    uint8_t value = 0;
 
     // Read buffer with one 8-bit unsigned value
     readBuffer(reg, &value, 1);
