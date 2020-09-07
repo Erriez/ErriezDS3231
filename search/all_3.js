@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['daymonth',['dayMonth',['../struct_d_s3231___date_time__s.html#a8b56b99decfd2f8d57ad7adba7e699bf',1,'DS3231_DateTime_s']]],
-  ['dayweek',['dayWeek',['../struct_d_s3231___date_time__s.html#a29786860ba13a2fc3ac823752c18ef70',1,'DS3231_DateTime_s']]],
-  ['dectobcd',['decToBcd',['../class_d_s3231.html#a8883c7df954dc7682a40825790631230',1,'DS3231']]],
-  ['ds3231',['DS3231',['../class_d_s3231.html',1,'']]],
+  ['dectobcd',['decToBcd',['../class_erriez_d_s3231.html#a169b93f6712c85c516a629b96ab0e3c8',1,'ErriezDS3231']]],
   ['ds3231_5fa1m1',['DS3231_A1M1',['../_erriez_d_s3231_8h.html#a8c1ec90975663dd3fbf3af437e3746f2',1,'ErriezDS3231.h']]],
   ['ds3231_5fa1m2',['DS3231_A1M2',['../_erriez_d_s3231_8h.html#a26ad907956857109f1e7541534346b35',1,'ErriezDS3231.h']]],
   ['ds3231_5fa1m3',['DS3231_A1M3',['../_erriez_d_s3231_8h.html#a394d188c724a278704fceca92985d01d',1,'ErriezDS3231.h']]],
@@ -20,8 +17,6 @@ var searchData=
   ['ds3231_5fctrl_5fintcn',['DS3231_CTRL_INTCN',['../_erriez_d_s3231_8h.html#a52c8ae1dab4ea9e3228283fbd7067429',1,'ErriezDS3231.h']]],
   ['ds3231_5fctrl_5frs1',['DS3231_CTRL_RS1',['../_erriez_d_s3231_8h.html#a73c83c329cb1cb19a4d3041f5c96efb7',1,'ErriezDS3231.h']]],
   ['ds3231_5fctrl_5frs2',['DS3231_CTRL_RS2',['../_erriez_d_s3231_8h.html#ad6d9343d99d0781547085e4738550a9b',1,'ErriezDS3231.h']]],
-  ['ds3231_5fdatetime',['DS3231_DateTime',['../_erriez_d_s3231_8h.html#a79a5c1f4b249b6f512ca108013374536',1,'ErriezDS3231.h']]],
-  ['ds3231_5fdatetime_5fs',['DS3231_DateTime_s',['../struct_d_s3231___date_time__s.html',1,'']]],
   ['ds3231_5fdydt',['DS3231_DYDT',['../_erriez_d_s3231_8h.html#a038d89a9fa0ed2aa02a023cb67416116',1,'ErriezDS3231.h']]],
   ['ds3231_5fhour_5f12h_5f24h',['DS3231_HOUR_12H_24H',['../_erriez_d_s3231_8h.html#afc86f3d550d154199d3e529597b8a183',1,'ErriezDS3231.h']]],
   ['ds3231_5fhour_5fam_5fpm',['DS3231_HOUR_AM_PM',['../_erriez_d_s3231_8h.html#ac6f6f14cb51361e5f43e23943452dd7c',1,'ErriezDS3231.h']]],
@@ -51,7 +46,5 @@ var searchData=
   ['ds3231_5fstat_5fbsy',['DS3231_STAT_BSY',['../_erriez_d_s3231_8h.html#ad8803f7c4831af86871021f0d19dacd8',1,'ErriezDS3231.h']]],
   ['ds3231_5fstat_5fen32khz',['DS3231_STAT_EN32KHZ',['../_erriez_d_s3231_8h.html#ab9c9d4f03dde9fbd46f9622057374290',1,'ErriezDS3231.h']]],
   ['ds3231_5fstat_5fosf',['DS3231_STAT_OSF',['../_erriez_d_s3231_8h.html#a5c397f0a0fc1b58781ae42769c0e3acb',1,'ErriezDS3231.h']]],
-  ['ds3231debug',['DS3231Debug',['../class_d_s3231_debug.html',1,'']]],
-  ['dumpregisters',['dumpRegisters',['../class_d_s3231_debug.html#a26f0361e7f1462b1424bb2bb189af240',1,'DS3231Debug']]],
   ['ds3231_20high_20precision_20i2c_20rtc_20library_20for_20arduino',['DS3231 high precision I2C RTC library for Arduino',['../index.html',1,'']]]
 ];

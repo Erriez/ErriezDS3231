@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['printdiagnostics',['printDiagnostics',['../class_d_s3231_debug.html#ae9b7944902fc05ea5dcb608c75564f6a',1,'DS3231Debug']]],
-  ['printregister',['printRegister',['../class_d_s3231_debug.html#a1e95a14a76374cf459d5e4ccbdb6286e',1,'DS3231Debug']]],
-  ['printregisterbitfields',['printRegisterBitfields',['../class_d_s3231_debug.html#ac739b6f1980b8254e57b6966ab1dcc97',1,'DS3231Debug']]]
+  ['read',['read',['../class_erriez_d_s3231.html#a0261677270cc639a23daebbabcf0e6fc',1,'ErriezDS3231']]],
+  ['readbuffer',['readBuffer',['../class_erriez_d_s3231.html#a9715869e0186e4f6a30dfd6a372875c1',1,'ErriezDS3231']]],
+  ['readregister',['readRegister',['../class_erriez_d_s3231.html#aab9ee8e4653b2806a82cf12a22c5c1dd',1,'ErriezDS3231']]]
 ];

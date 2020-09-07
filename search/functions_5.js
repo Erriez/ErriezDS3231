@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['isoscillatorstopped',['isOscillatorStopped',['../class_d_s3231.html#a1bc59796227778857b5f9978d096b6fd',1,'DS3231']]]
+  ['isoscillatorstopped',['isOscillatorStopped',['../class_erriez_d_s3231.html#a6051b6421e4a645cce47a41a7d11565a',1,'ErriezDS3231']]]
 ];

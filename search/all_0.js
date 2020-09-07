@@ -16,5 +16,5 @@ var searchData=
   ['alarm2matchminutes',['Alarm2MatchMinutes',['../_erriez_d_s3231_8h.html#a2561c628950a85b8f502b7055c3acd8ba31c3bdaa746d32d314e8039b667443d3',1,'ErriezDS3231.h']]],
   ['alarm2type',['Alarm2Type',['../_erriez_d_s3231_8h.html#a2561c628950a85b8f502b7055c3acd8b',1,'ErriezDS3231.h']]],
   ['alarmid',['AlarmId',['../_erriez_d_s3231_8h.html#abdac868b647b120d540abd60d35e0feb',1,'ErriezDS3231.h']]],
-  ['alarminterruptenable',['alarmInterruptEnable',['../class_d_s3231.html#a0bcf130e164ba5436a71dbb81621fb35',1,'DS3231']]]
+  ['alarminterruptenable',['alarmInterruptEnable',['../class_erriez_d_s3231.html#a63a7a3811ad205d800e07c0ca4466a29',1,'ErriezDS3231']]]
 ];

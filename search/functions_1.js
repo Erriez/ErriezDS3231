@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['bcdtodec',['bcdToDec',['../class_d_s3231.html#aa49b293f3fdcc222e0f86cc2bbdf1476',1,'DS3231']]],
-  ['begin',['begin',['../class_d_s3231.html#ac7274a84831c60fe1df1598c47dfb614',1,'DS3231']]]
+  ['bcdtodec',['bcdToDec',['../class_erriez_d_s3231.html#a471af5f04b95c6021e9d5a551ad46099',1,'ErriezDS3231']]],
+  ['begin',['begin',['../class_erriez_d_s3231.html#a8830174ba45fcf625206207191d7e58b',1,'ErriezDS3231']]]
 ];
