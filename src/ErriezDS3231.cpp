@@ -255,15 +255,13 @@ bool ErriezDS3231::write(const struct tm *dt)
  */
 bool ErriezDS3231::setTime(uint8_t hour, uint8_t min, uint8_t sec)
 {
-    uint8_t buffer[3];
+    struct tm dt;
 
-    // Encode date time from decimal to BCD
-    buffer[0] = decToBcd(sec) & 0x7F;
-    buffer[1] = decToBcd(min) & 0x7F;
-    buffer[2] = decToBcd(hour) & 0x3F;
-
-    // Write BCD encoded buffer to RTC registers
-    return writeBuffer(0x00, buffer, sizeof(buffer));
+    read(&dt);
+    dt.tm_hour = hour;
+    dt.tm_min = min;
+    dt.tm_sec = sec;
+    return write(&dt);
 }
 
 /*!
