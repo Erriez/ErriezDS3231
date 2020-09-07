@@ -42,6 +42,8 @@
 
 /*!
  * \brief Initialize and detect DS3231 RTC.
+ * \details
+ *      Call this function from setup().
  * \retval true
  *      RTC detected.
  * \retval false
@@ -54,6 +56,7 @@ bool ErriezDS3231::begin()
         return false;
     }
 
+    // DS3231 detected
     return true;
 }
 
@@ -320,7 +323,7 @@ bool ErriezDS3231::getTime(uint8_t *hour, uint8_t *min, uint8_t *sec)
  * \param year
  *      Year 2000..2099
  * \param wday
- *      Day of the week 0..6 (0=Sunday, .. 6=Sunday)
+ *      Day of the week 0..6 (0=Sunday, .. 6=Saturday)
  * \retval true
  *      Success.
  * \retval false
@@ -538,7 +541,6 @@ bool ErriezDS3231::clearAlarmFlag(AlarmId alarmId)
     return writeRegister(DS3231_REG_STATUS, statusReg);
 }
 
-// -------------------------------------------------------------------------------------------------
 /*!
  * \brief Configure SQW (Square Wave) output pin.
  * \details
@@ -721,8 +723,6 @@ bool ErriezDS3231::getTemperature(int8_t *temperature, uint8_t *fraction)
     return true;
 }
 
-//--------------------------------------------------------------------------------------------------
-
 /*!
  * \brief BCD to decimal conversion.
  * \param bcd
@@ -746,8 +746,6 @@ uint8_t ErriezDS3231::decToBcd(uint8_t dec)
 {
     return (uint8_t)(((dec / 10) << 4) | (dec % 10));
 }
-
-//--------------------------------------------------------------------------------------------------
 
 /*!
  * \brief Read register.
