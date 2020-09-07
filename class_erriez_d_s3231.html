@@ -79,12 +79,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8830174ba45fcf625206207191d7e58b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_erriez_d_s3231.html#a8830174ba45fcf625206207191d7e58b">begin</a> ()</td></tr>
 <tr class="memdesc:a8830174ba45fcf625206207191d7e58b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize and detect DS3231 RTC.  <a href="#a8830174ba45fcf625206207191d7e58b">More...</a><br /></td></tr>
 <tr class="separator:a8830174ba45fcf625206207191d7e58b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b3e396f345a3a55895cee084d03a3c3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_erriez_d_s3231.html#a5b3e396f345a3a55895cee084d03a3c3">oscillatorEnable</a> (bool enable)</td></tr>
-<tr class="memdesc:a5b3e396f345a3a55895cee084d03a3c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable oscillator when running on V-BAT.  <a href="#a5b3e396f345a3a55895cee084d03a3c3">More...</a><br /></td></tr>
-<tr class="separator:a5b3e396f345a3a55895cee084d03a3c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6051b6421e4a645cce47a41a7d11565a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_erriez_d_s3231.html#a6051b6421e4a645cce47a41a7d11565a">isOscillatorStopped</a> ()</td></tr>
-<tr class="memdesc:a6051b6421e4a645cce47a41a7d11565a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read RTC OSF (Oscillator Stop Flag) from status register.  <a href="#a6051b6421e4a645cce47a41a7d11565a">More...</a><br /></td></tr>
-<tr class="separator:a6051b6421e4a645cce47a41a7d11565a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0afd9f881a55af0623f3cc20402820c5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_erriez_d_s3231.html#a0afd9f881a55af0623f3cc20402820c5">isRunning</a> ()</td></tr>
+<tr class="memdesc:a0afd9f881a55af0623f3cc20402820c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read RTC OSF (Oscillator Stop Flag) from status register.  <a href="#a0afd9f881a55af0623f3cc20402820c5">More...</a><br /></td></tr>
+<tr class="separator:a0afd9f881a55af0623f3cc20402820c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47dd1340fc2ecac52cff00c3cffc7e6d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_erriez_d_s3231.html#a47dd1340fc2ecac52cff00c3cffc7e6d">clockEnable</a> (bool enable=true)</td></tr>
+<tr class="memdesc:a47dd1340fc2ecac52cff00c3cffc7e6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable oscillator when running on V-BAT.  <a href="#a47dd1340fc2ecac52cff00c3cffc7e6d">More...</a><br /></td></tr>
+<tr class="separator:a47dd1340fc2ecac52cff00c3cffc7e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05a1fab6a5d852c6b7e7749754cc7a63"><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_erriez_d_s3231.html#a05a1fab6a5d852c6b7e7749754cc7a63">getEpoch</a> ()</td></tr>
 <tr class="memdesc:a05a1fab6a5d852c6b7e7749754cc7a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read Unix UTC epoch time_t.  <a href="#a05a1fab6a5d852c6b7e7749754cc7a63">More...</a><br /></td></tr>
 <tr class="separator:a05a1fab6a5d852c6b7e7749754cc7a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -206,7 +206,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00465">465</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00484">484</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -235,7 +235,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Decimal value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00733">733</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00749">749</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -255,7 +255,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initialize and detect DS3231 RTC. </p>
-<dl class="retval"><dt>Return values</dt><dd>
+<p>Call this function from setup(). </p><dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">true</td><td>RTC detected. </td></tr>
     <tr><td class="paramname">false</td><td>RTC not detected. </td></tr>
@@ -263,7 +263,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00050">50</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00052">52</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -298,7 +298,43 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00527">527</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00546">546</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a47dd1340fc2ecac52cff00c3cffc7e6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47dd1340fc2ecac52cff00c3cffc7e6d">&#9670;&nbsp;</a></span>clockEnable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ErriezDS3231::clockEnable </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable oscillator when running on V-BAT. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true: Enable RTC clock when running on V-BAT.<br />
+ false: Stop RTC clock when running on V-BAT. Oscillator Stop Flag (OSF) bit will be set in status register which can be read on next power-on. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>Success. </td></tr>
+    <tr><td class="paramname">false</td><td>Oscillator enable failed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00074">74</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -327,7 +363,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>BCD encoded value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00745">745</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00761">761</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -349,7 +385,7 @@ Public Member Functions</h2></td></tr>
 <p>Get aging offset register. </p>
 <p>The aging offset register capacitance value is added or subtracted from the capacitance value that the device calculates for each temperature compensation. </p><dl class="section return"><dt>Returns</dt><dd>val Aging offset value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00646">646</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00664">664</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -385,7 +421,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00504">504</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00523">523</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -407,7 +443,7 @@ Public Member Functions</h2></td></tr>
 <p>Read Unix UTC epoch time_t. </p>
 <dl class="section return"><dt>Returns</dt><dd>Unix epoch time_t seconds since 1970. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00124">124</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00127">127</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -453,7 +489,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00701">701</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00719">719</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -506,18 +542,18 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00281">281</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00300">300</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a6051b6421e4a645cce47a41a7d11565a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6051b6421e4a645cce47a41a7d11565a">&#9670;&nbsp;</a></span>isOscillatorStopped()</h2>
+<a id="a0afd9f881a55af0623f3cc20402820c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0afd9f881a55af0623f3cc20402820c5">&#9670;&nbsp;</a></span>isRunning()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool ErriezDS3231::isOscillatorStopped </td>
+          <td class="memname">bool ErriezDS3231::isRunning </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -528,49 +564,13 @@ Public Member Functions</h2></td></tr>
 <p>Read RTC OSF (Oscillator Stop Flag) from status register. </p>
 <p>The application is responsible for checking the Oscillator Stop Flag (OSF) before reading date/time date. This function may be used to judge the validity of the date/time registers. </p><dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">true</td><td>RTC oscillator was stopped: The date/time data is invalid. The application should synchronize and program a new date/time. </td></tr>
-    <tr><td class="paramname">false</td><td>RTC oscillator is running. </td></tr>
+    <tr><td class="paramname">true</td><td>RTC oscillator is running. </td></tr>
+    <tr><td class="paramname">false</td><td>RTC oscillator was stopped: The date/time data is invalid. The application should synchronize and program a new date/time. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00107">107</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a5b3e396f345a3a55895cee084d03a3c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b3e396f345a3a55895cee084d03a3c3">&#9670;&nbsp;</a></span>oscillatorEnable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ErriezDS3231::oscillatorEnable </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>enable</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable or disable oscillator when running on V-BAT. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">enable</td><td>true: Enable RTC clock when running on V-BAT.<br />
- false: Stop RTC clock when running on V-BAT. Oscillator Stop Flag (OSF) bit will be set in status register which can be read on next power-on. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">true</td><td>Success. </td></tr>
-    <tr><td class="paramname">false</td><td>Oscillator enable failed. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00071">71</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00110">110</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -606,7 +606,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00585">585</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00603">603</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -641,7 +641,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00182">182</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00185">185</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -694,7 +694,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00829">829</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00843">843</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -723,7 +723,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value 8-bit unsigned register value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00761">761</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00775">775</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -759,7 +759,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00616">616</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00634">634</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -833,7 +833,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00375">375</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00394">394</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -899,7 +899,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00426">426</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00445">445</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -968,7 +968,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">mday</td><td>Day of the month 1..31 </td></tr>
     <tr><td class="paramname">mon</td><td>Month 1..12 (1=January) </td></tr>
     <tr><td class="paramname">year</td><td>Year 2000..2099 </td></tr>
-    <tr><td class="paramname">wday</td><td>Day of the week 0..6 (0=Sunday, .. 6=Sunday) </td></tr>
+    <tr><td class="paramname">wday</td><td>Day of the week 0..6 (0=Sunday, .. 6=Saturday) </td></tr>
   </table>
   </dd>
 </dl>
@@ -980,7 +980,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00329">329</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00348">348</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1009,7 +1009,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>See write returns. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00154">154</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00157">157</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1049,7 +1049,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00559">559</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00577">577</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1102,7 +1102,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00253">253</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00274">274</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1130,7 +1130,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00673">673</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00691">691</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1158,7 +1158,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00216">216</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00237">237</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1211,7 +1211,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00801">801</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00815">815</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
@@ -1250,7 +1250,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00780">780</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_erriez_d_s3231_8cpp_source.html#l00794">794</a> of file <a class="el" href="_erriez_d_s3231_8cpp_source.html">ErriezDS3231.cpp</a>.</p>
 
 </div>
 </div>
