@@ -199,10 +199,28 @@ bool ErriezDS3231::read(struct tm *dt)
     dt->tm_sec = bcdToDec(buffer[0] & 0x7F);
     dt->tm_min = bcdToDec(buffer[1] & 0x7F);
     dt->tm_hour = bcdToDec(buffer[2] & 0x3f);
-    dt->tm_wday = bcdToDec(buffer[3] & 0x07) - 1;
+    dt->tm_wday = bcdToDec(buffer[3] & 0x07);
     dt->tm_mday = bcdToDec(buffer[4] & 0x3F);
-    dt->tm_mon = bcdToDec(buffer[5] & 0x1f) - 1;
-    dt->tm_year = bcdToDec(buffer[6]) + 100;
+    dt->tm_mon = bcdToDec(buffer[5] & 0x1f);
+    dt->tm_year = bcdToDec(buffer[6]) + 100; // 2000-1900
+
+    // Month: 0..11
+    if (dt->tm_mon) {
+        dt->tm_mon--;
+    }
+
+    // Day of the week: 0=Sunday
+    if (dt->tm_wday) {
+        dt->tm_wday--;
+    }
+
+    // Check buffer for valid data
+    if ((dt->tm_sec > 59) || (dt->tm_min > 59) || (dt->tm_hour > 23) ||
+        (dt->tm_mday < 1) || (dt->tm_mday > 31) || (dt->tm_mon > 11) || (dt->tm_year > 199) ||
+        (dt->tm_wday > 6))
+    {
+        return false;
+    }
 
     return true;
 }
