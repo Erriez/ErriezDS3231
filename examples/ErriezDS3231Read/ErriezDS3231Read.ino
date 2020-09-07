@@ -23,78 +23,54 @@
  */
 
 /*!
- * \brief DS3231 high accurate RTC read time polled example for Arduino
+ * \brief DS3231 RTC read example for Arduino
  * \details
- *      Source:         https://github.com/Erriez/ErriezDS3231
- *      Documentation:  https://erriez.github.io/ErriezDS3231
+ *    Source:         https://github.com/Erriez/ErriezDS3231
+ *    Documentation:  https://erriez.github.io/ErriezDS3231
  */
 
 #include <Wire.h>
-
 #include <ErriezDS3231.h>
 
-// Create DS3231 RTC object
-static DS3231 rtc;
-
-// Function prototypes
-static void printTime();
+// Create RTC object
+ErriezDS3231 ds3231;
 
 
-void setup()
+void setup() 
 {
     // Initialize serial port
+    delay(500);
     Serial.begin(115200);
     while (!Serial) {
         ;
     }
-    Serial.println(F("DS3213 time polled example"));
+    Serial.println(F("\nErriez DS3231 read example"));
 
-    // Initialize TWI
+    // Initialize I2C
     Wire.begin();
-    Wire.setClock(400000);
-
+    Wire.setClock(100000);
+    
     // Initialize RTC
-    while (rtc.begin()) {
-        Serial.print(F("."));
+    while (!ds3231.begin()) {
+        Serial.println(F("Error: DS3231 not found"));
         delay(3000);
     }
 
-    // Check oscillator status
-    if (rtc.isOscillatorStopped()) {
-        Serial.println(F("OSF"));
-        while (1) {
-            ;
-        }
-    }
+    // Set square wave out pin
+    // SquareWaveDisable, SquareWave1Hz, SquareWave1024Hz, SquareWave4096Hz, SquareWave8192Hz
+    ds3231.setSquareWave(SquareWaveDisable);
 }
 
-void loop()
+void loop() 
 {
-    // Just an example to print the date and time every second. Recommended code is to use the 1Hz
-    // square wave out pin with an interrupt.
-    printTime();
+    struct tm dt;
+
+    // Read date/time from RTC
+    ds3231.read(&dt);
+
+    // Print date/time
+    Serial.println(asctime(&dt));
+
+    // Wait a second
     delay(1000);
-}
-
-static void printTime()
-{
-    uint8_t hour, minute, second;
-
-    // Read RTC date and time from RTC
-    if (rtc.getTime(&hour, &minute, &second)) {
-        return;
-    }
-
-    // Print time
-    Serial.print(hour);
-    Serial.print(F(":"));
-    Serial.print(minute);
-    if (minute < 10) {
-        Serial.print(F("0"));
-    }
-    Serial.print(F(":"));
-    if (second < 10) {
-        Serial.print(F("0"));
-    }
-    Serial.println(second);
 }

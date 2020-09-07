@@ -40,54 +40,57 @@
 
 #include "ErriezDS3231.h"
 
-// -------------------------------------------------------------------------------------------------
 /*!
  * \brief Initialize and detect DS3231 RTC.
- * \details
- *      Call this function from setup().
- * \retval Success
+ * \retval true
  *      RTC detected.
  * \retval false
  *      RTC not detected.
- * \retval true
- *      Invalid status register or RTC not detected.
  */
-bool DS3231::begin()
+bool ErriezDS3231::begin()
 {
     // Check zero bits in status register
-    if (readStatusRegister() & 0x70) {
-        return true;
+    if (readRegister(DS3231_REG_STATUS) & 0x70) {
+        return false;
     }
 
-    return false;
+    return true;
 }
 
-// -------------------------------------------------------------------------------------------------
 /*!
  * \brief Enable or disable oscillator when running on V-BAT.
  * \param enable
  *      true:  Enable RTC clock when running on V-BAT.\n
  *      false: Stop RTC clock when running on V-BAT. Oscillator Stop Flag (OSF) bit will be set in
  *      status register which can be read on next power-on.
+ * \retval true
+ *      Success.
+ * \retval false
+ *      Oscillator enable failed.
  */
-void DS3231::oscillatorEnable(bool enable)
+bool ErriezDS3231::oscillatorEnable(bool enable)
 {
-    uint8_t controlReg;
+    uint8_t reg;
 
     // Read status register
-    controlReg = readControlRegister();
+    reg = readRegister(DS3231_REG_CONTROL);
 
     // Set or clear EOSC bit in control register
     if (enable) {
-        // Clear to enable
-        controlReg &= ~(1 << DS3231_CTRL_EOSC);
+        reg &= ~(1 << DS3231_CTRL_EOSC);
     } else {
-        // Set to disable
-        controlReg |= (1 << DS3231_CTRL_EOSC);
+        reg |= (1 << DS3231_CTRL_EOSC);
     }
 
     // Write control register
-    writeControlRegister(controlReg);
+    if (!writeRegister(DS3231_REG_CONTROL, reg)) {
+        return false;
+    }
+
+    // Clear OSF bit in status register
+    reg = readRegister(DS3231_REG_STATUS);
+    reg &= ~(1 << DS3231_STAT_OSF);
+    return writeRegister(DS3231_REG_STATUS, reg);
 }
 
 /*!
@@ -101,10 +104,10 @@ void DS3231::oscillatorEnable(bool enable)
  * \retval false
  *      RTC oscillator is running.
  */
-bool DS3231::isOscillatorStopped()
+bool ErriezDS3231::isOscillatorStopped()
 {
     // Check OSF bit in status register
-    if (readStatusRegister() & (1 << DS3231_STAT_OSF)) {
+    if (readRegister(DS3231_REG_STATUS) & (1 << DS3231_STAT_OSF)) {
         // RTC oscillator was stopped
         return true;
     } else {
@@ -114,19 +117,91 @@ bool DS3231::isOscillatorStopped()
 }
 
 /*!
- * \brief Clear Oscillator Stop Flag (OSF) in status register
- * \details
- *
+ * \brief Read Unix UTC epoch time_t
+ * \return
+ *      Unix epoch time_t seconds since 1970.
  */
-void DS3231::clearOscillatorStopFlag()
+time_t ErriezDS3231::getEpoch()
 {
-    uint8_t statusReg;
+    struct tm dt;
+    time_t t;
 
-    // Clear OSF bit in status register
-    statusReg = readStatusRegister() & ~(1 << DS3231_STAT_OSF);
+    // Read time structure
+    if (!read(&dt)) {
+        // RTC read failed
+        return 0;
+    }
 
-    // Write status register
-    writeStatusRegister(statusReg);
+    // Convert date/time struct tm to time_t
+    t = mktime(&dt);
+
+    // An offset is needed for AVR target
+#ifdef ARDUINO_ARCH_AVR
+    t += UNIX_OFFSET;
+#endif
+
+    // Return Unix epoch UTC
+    return t;
+}
+
+/*!
+ * \brief Write Unix epoch UTC time to RTC
+ * \param t
+ *      time_t time
+ * \return
+ *      See write returns.
+ */
+bool ErriezDS3231::setEpoch(time_t t)
+{
+    struct tm *dt;
+
+    // Subtract UNIX offset for AVR targets
+#ifdef ARDUINO_ARCH_AVR
+    t -= UNIX_OFFSET;
+#endif
+
+    // Convert time_t to date/time struct tm
+    dt = gmtime(&t);
+
+    // Write date/time to RTC
+    return write(dt);
+}
+
+/*!
+ * \brief Read date and time from RTC.
+ * \details
+ *      Read all RTC registers at once to prevent a time/date register change in the middle of the
+ *      register read operation.
+ * \param dt
+ *      Date and time struct tm.
+ * \retval true
+ *      Success
+ * \retval false
+ *      RTC read failed.
+ */
+bool ErriezDS3231::read(struct tm *dt)
+{
+    uint8_t buffer[7];
+
+    // Read clock date and time registers
+    if (!readBuffer(0x00, buffer, sizeof(buffer))) {
+        memset(dt, 0, sizeof(struct tm));
+        return false;
+    }
+
+    // Clear dt
+    memset(dt, 0, sizeof(struct tm));
+
+    // Convert BCD buffer to Decimal
+    dt->tm_sec = bcdToDec(buffer[0] & 0x7F);
+    dt->tm_min = bcdToDec(buffer[1] & 0x7F);
+    dt->tm_hour = bcdToDec(buffer[2] & 0x3f);
+    dt->tm_wday = bcdToDec(buffer[3] & 0x07) - 1;
+    dt->tm_mday = bcdToDec(buffer[4] & 0x3F);
+    dt->tm_mon = bcdToDec(buffer[5] & 0x1f) - 1;
+    dt->tm_year = bcdToDec(buffer[6]) + 100;
+
+    return true;
 }
 
 /*!
@@ -138,181 +213,138 @@ void DS3231::clearOscillatorStopFlag()
  * \param dateTime
  *      Date time structure. Providing invalid date/time data may result in unpredictable behavior.
  */
-void DS3231::setDateTime(DS3231_DateTime *dateTime)
+bool ErriezDS3231::write(const struct tm *dt)
 {
     uint8_t buffer[7];
 
-    // Encode date time from decimal to BCD
-    buffer[0] = (decToBcd((uint8_t)(dateTime->second & 0x7F)));
-    buffer[1] = (decToBcd((uint8_t)(dateTime->minute & 0x7F)));
-    buffer[2] = (decToBcd((uint8_t)(dateTime->hour & 0x3F)));
-    buffer[3] = (decToBcd((uint8_t)(dateTime->dayWeek & 0x07)));
-    buffer[4] = (decToBcd((uint8_t)(dateTime->dayMonth & 0x3F)));
-    buffer[5] = (decToBcd((uint8_t)(dateTime->month & 0x1F)));
-    buffer[6] = (decToBcd((uint8_t)((dateTime->year - 2000) & 0xFF)));
-
-    // Write BCD encoded buffer to RTC registers
-    writeBuffer(0x00, buffer, sizeof(buffer));
-
     // Enable oscillator
-    oscillatorEnable(true);
-
-    // Clear oscillator halt flag
-    clearOscillatorStopFlag();
-}
-
-/*!
- * \brief Read date and time from RTC.
- * \details
- *      Read all RTC registers at once to prevent a time/date register change in the middle of the
- *      register read operation.
- * \param dateTime
- *      Date and time structure.
- * \retval false
- *      Success
- * \retval true
- *      An invalid date/time format was read from the RTC.
- */
-bool DS3231::getDateTime(DS3231_DateTime *dateTime)
-{
-    uint8_t buf[7];
-
-    // Read clock date and time registers
-    readBuffer(0x00, &buf, sizeof(buf));
-
-    // Convert BCD buffer to Decimal
-    dateTime->second = bcdToDec(buf[0]);
-    dateTime->minute = bcdToDec(buf[1]);
-    dateTime->hour = bcdToDec(buf[2] & 0x3f);
-    dateTime->dayWeek = bcdToDec(buf[3]);
-    dateTime->dayMonth = bcdToDec(buf[4]);
-    dateTime->month = bcdToDec(buf[5] & 0x1f);
-    dateTime->year = 2000 + bcdToDec(buf[6]);
-
-    // Check buffer for valid data
-    if ((dateTime->second > 59) ||
-        (dateTime->minute > 59) ||
-        (dateTime->hour > 23) ||
-        (dateTime->dayMonth < 1) || (dateTime->dayMonth > 31) ||
-        (dateTime->month < 1) || (dateTime->month > 12) ||
-        (dateTime->dayWeek < 1) || (dateTime->dayWeek > 7) ||
-        (dateTime->year > 2099))
-    {
-        // Invalid date/time read from RTC: Clear date time
-        memset(dateTime, 0x00, sizeof(DS3231_DateTime));
-        return true;
+    if (!oscillatorEnable(true)) {
+        return false;
     }
 
-    return false;
+    // Encode date time from decimal to BCD
+    buffer[0] = decToBcd(dt->tm_sec) & 0x7F;
+    buffer[1] = decToBcd(dt->tm_min) & 0x7F;
+    buffer[2] = decToBcd(dt->tm_hour) & 0x3F;
+    buffer[3] = decToBcd(dt->tm_wday + 1) & 0x07;
+    buffer[4] = decToBcd(dt->tm_mday) & 0x3F;
+    buffer[5] = decToBcd(dt->tm_mon + 1) & 0x1F;
+    buffer[6] = decToBcd(dt->tm_year % 100);
+
+    // Write BCD encoded buffer to RTC registers
+    return writeBuffer(0x00, buffer, sizeof(buffer));
 }
 
 /*!
  * \brief Write time to RTC.
  * \details
- *      Read all date/time register from RTC, update time registers and write all date/time
- *      registers to the RTC with one write operation.
- * \param hour Hours 0..23.
- * \param minute Minutes 0..59.
- * \param second Seconds 0..59.
+ *      Write hour, minute and second registers to RTC.
+ * \param hour
+ *      Hours 0..23.
+ * \param min
+ *      Minutes 0..59.
+ * \param sec
+ *      Seconds 0..59.
+ * \retval true
+ *      Success.
+ * \retval false
+ *      Set time failed.
  */
-void DS3231::setTime(uint8_t hour, uint8_t minute, uint8_t second)
+bool ErriezDS3231::setTime(uint8_t hour, uint8_t min, uint8_t sec)
 {
-    DS3231_DateTime dt;
+    uint8_t buffer[3];
 
-    // Read date and time from RTC
-    if (getDateTime(&dt) == false) {
-        // Update time
-        dt.hour = hour;
-        dt.minute = minute;
-        dt.second = second;
+    // Encode date time from decimal to BCD
+    buffer[0] = decToBcd(sec) & 0x7F;
+    buffer[1] = decToBcd(min) & 0x7F;
+    buffer[2] = decToBcd(hour) & 0x3F;
 
-        // Write updated date and time to RTC
-        setDateTime(&dt);
-    }
+    // Write BCD encoded buffer to RTC registers
+    return writeBuffer(0x00, buffer, sizeof(buffer));
 }
 
 /*!
  * \brief Read time from RTC.
  * \details
  *      Read hour, minute and second registers from RTC.
- * \param hour Hours 0..23.
- * \param minute Minutes 0..59.
- * \param second Seconds 0..59.
- * \retval false
- *      Success
+ * \param hour
+ *      Hours 0..23.
+ * \param min
+ *      Minutes 0..59.
+ * \param sec
+ *      Seconds 0..59.
  * \retval true
+ *      Success.
+ * \retval false
  *      Invalid second, minute or hour read from RTC. The time is set to zero.
  */
-bool DS3231::getTime(uint8_t *hour, uint8_t *minute, uint8_t *second)
+bool ErriezDS3231::getTime(uint8_t *hour, uint8_t *min, uint8_t *sec)
 {
-    uint8_t buf[3];
+    uint8_t buffer[3];
 
-    // Read clock time registers
-    readBuffer(0x00, &buf, sizeof(buf));
+    // Read RTC time registers
+    if (!readBuffer(0x00, &buffer, sizeof(buffer))) {
+        return false;
+    }
 
     // Convert BCD buffer to Decimal
-    *second = bcdToDec(buf[0]);
-    *minute = bcdToDec(buf[1]);
-    *hour = bcdToDec(buf[2] & 0x3f);
+    *sec = bcdToDec(buffer[0] & 0x7F);
+    *min = bcdToDec(buffer[1] & 0x7F);
+    *hour = bcdToDec(buffer[2] & 0x3F);
 
     // Check buffer for valid data
-    if ((*second > 59) || (*minute > 59) || (*hour > 23)) {
+    if ((*sec > 59) || (*min > 59) || (*hour > 23)) {
         // Invalid time
-        *second = 0x00;
-        *minute = 0x00;
+        *sec = 0x00;
+        *min = 0x00;
         *hour = 0x00;
 
-        return true;
+        return false;
     }
 
-    return false;
+    return true;
 }
 
 /*!
- * \brief Define number of days in a month once in flash.
+ * \brief Set date time
+ * \param hour
+ *      Hours 0..23
+ * \param min
+ *      Minutes 0..59
+ * \param sec
+ *      Seconds 0..59
+ * \param mday
+ *      Day of the month 1..31
+ * \param mon
+ *      Month 1..12 (1=January)
+ * \param year
+ *      Year 2000..2099
+ * \param wday
+ *      Day of the week 0..6 (0=Sunday, .. 6=Sunday)
+ * \retval true
+ *      Success.
+ * \retval false
+ *      Set time failed.
  */
-const uint8_t daysMonth[12] PROGMEM = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-/*!
- * \brief Get Unix Epoch 32-bit timestamp in current timezone
- * \details
- *      The DS3231 RTC year range is valid between years 2000...2100.
- *      The time is in UTC.
- * \retval epoch
- *      32-bit unsigned Unix Epoch time
- */
-uint32_t DS3231::getEpochTime(DS3231_DateTime *dateTime)
+bool ErriezDS3231::setDateTime(uint8_t hour, uint8_t min, uint8_t sec,
+                               uint8_t mday, uint8_t mon, uint16_t year,
+                               uint8_t wday)
 {
-    uint16_t year;
-    uint16_t days;
-    uint8_t i;
+    struct tm dt;
 
-    // Convert date time to epoch
-    // Subtract year 2000
-    year = dateTime->year - 2000;
+    // Prepare struct tm
+    dt.tm_hour = hour;
+    dt.tm_min = min;
+    dt.tm_sec = sec;
+    dt.tm_mday = mday;
+    dt.tm_mon = mon - 1;
+    dt.tm_year = year - 1900;
+    dt.tm_wday = wday;
 
-    // Calculate total number of days including leap days
-    days = ((365 * year) + (year + 3) / 4);
-
-    // Add number of days each month in current year
-    for (i = 1; i < dateTime->month; i++) {
-        days += pgm_read_byte(daysMonth + i - 1);
-    }
-
-    // Check month and leap year
-    if ((dateTime->month > 2) && ((year % 4) == 0)) {
-        days++;
-    }
-
-    // Add number of days in current month
-    days += (uint16_t)(dateTime->dayMonth - 1);
-
-    // Calculate epoch, starting at offset year 2000
-    return SECONDS_FROM_1970_TO_2000 +
-           (((((days * 24UL) + dateTime->hour) * 60) + dateTime->minute) * 60) + dateTime->second;
+    // Write date/time to RTC
+    return write(&dt);
 }
 
-//--------------------------------------------------------------------------------------------------
 /*!
  * \brief Set Alarm 1.
  * \details
@@ -335,9 +367,13 @@ uint32_t DS3231::getEpochTime(DS3231_DateTime *dateTime)
  *      Alarm match minutes.
  * \param seconds
  *      Alarm match seconds.
+ * \retval true
+ *      Success.
+ * \retval false
+ *      Set alarm 1 failed.
  */
-void DS3231::setAlarm1(Alarm1Type alarmType,
-                       uint8_t dayDate, uint8_t hours, uint8_t minutes, uint8_t seconds)
+bool ErriezDS3231::setAlarm1(Alarm1Type alarmType,
+                             uint8_t dayDate, uint8_t hours, uint8_t minutes, uint8_t seconds)
 {
     uint8_t buffer[4];
 
@@ -355,10 +391,12 @@ void DS3231::setAlarm1(Alarm1Type alarmType,
     if (alarmType & 0x10) { buffer[3] |= (1 << DS3231_DYDT); }
 
     // Write alarm 1 registers
-    writeBuffer(DS3231_REG_ALARM1_SEC, buffer, sizeof(buffer));
+    if (!writeBuffer(DS3231_REG_ALARM1_SEC, buffer, sizeof(buffer))) {
+        return false;
+    }
 
     // Clear alarm 1 flag
-    clearAlarmFlag(Alarm1);
+    return clearAlarmFlag(Alarm1);
 }
 
 /*!
@@ -380,8 +418,12 @@ void DS3231::setAlarm1(Alarm1Type alarmType,
  *      Alarm match hours.
  * \param minutes
  *      Alarm match minutes.
+  * \retval true
+ *      Success.
+ * \retval false
+ *      Set alarm 2 failed.
  */
-void DS3231::setAlarm2(Alarm2Type alarmType, uint8_t dayDate, uint8_t hours, uint8_t minutes)
+bool ErriezDS3231::setAlarm2(Alarm2Type alarmType, uint8_t dayDate, uint8_t hours, uint8_t minutes)
 {
     uint8_t buffer[3];
 
@@ -397,10 +439,12 @@ void DS3231::setAlarm2(Alarm2Type alarmType, uint8_t dayDate, uint8_t hours, uin
     if (alarmType & 0x10) { buffer[2] |= (1 << DS3231_DYDT); }
 
     // Write alarm 2 registers
-    writeBuffer(DS3231_REG_ALARM2_MIN, buffer, sizeof(buffer));
+    if (!writeBuffer(DS3231_REG_ALARM2_MIN, buffer, sizeof(buffer))) {
+        return false;
+    }
 
     // Clear alarm 2 flag
-    clearAlarmFlag(Alarm2);
+    return clearAlarmFlag(Alarm2);
 }
 
 /*!
@@ -413,8 +457,12 @@ void DS3231::setAlarm2(Alarm2Type alarmType, uint8_t dayDate, uint8_t hours, uin
  * \param enable
  *      true: Enable alarm interrupt.\n
  *      false: Disable alarm interrupt.
+  * \retval true
+ *      Success
+ * \retval false
+ *      Alarm interrupt enable failed.
  */
-void DS3231::alarmInterruptEnable(AlarmId alarmId, bool enable)
+bool ErriezDS3231::alarmInterruptEnable(AlarmId alarmId, bool enable)
 {
     uint8_t controlReg;
 
@@ -422,7 +470,7 @@ void DS3231::alarmInterruptEnable(AlarmId alarmId, bool enable)
     clearAlarmFlag(alarmId);
 
     // Read control register
-    controlReg = readControlRegister();
+    controlReg = readRegister(DS3231_REG_CONTROL);
 
     // Disable square wave out and enable INT
     controlReg |= (1 << DS3231_CTRL_INTCN);
@@ -435,7 +483,7 @@ void DS3231::alarmInterruptEnable(AlarmId alarmId, bool enable)
     }
 
     // Write control register
-    writeControlRegister(controlReg);
+    return writeRegister(DS3231_REG_CONTROL, controlReg);
 }
 
 /*!
@@ -453,10 +501,10 @@ void DS3231::alarmInterruptEnable(AlarmId alarmId, bool enable)
  * \retval false
  *      Alarm interrupt flag cleared.
  */
-bool DS3231::getAlarmFlag(AlarmId alarmId)
+bool ErriezDS3231::getAlarmFlag(AlarmId alarmId)
 {
     // Mask alarm flags
-    if (readStatusRegister() & (1 << (alarmId - 1))) {
+    if (readRegister(DS3231_REG_STATUS) & (1 << (alarmId - 1))) {
         return true;
     } else {
         return false;
@@ -471,22 +519,23 @@ bool DS3231::getAlarmFlag(AlarmId alarmId)
  *      interrupts are enabled.
  * \param alarmId
  *      Alarm1 or Alarm2 enum.
- * \retval Success
- * \retval Failure
+ * \retval true
+ *      Success
+ * \retval false
  *      Incorrect alarm ID.
  */
-void DS3231::clearAlarmFlag(AlarmId alarmId)
+bool ErriezDS3231::clearAlarmFlag(AlarmId alarmId)
 {
     uint8_t statusReg;
 
     // Read status register
-    statusReg = readStatusRegister();
+    statusReg = readRegister(DS3231_REG_STATUS);
 
     // Clear alarm interrupt flag
     statusReg &= ~(1 << (alarmId - 1));
 
     // Write status register
-    writeStatusRegister(statusReg);
+    return writeRegister(DS3231_REG_STATUS, statusReg);
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -502,11 +551,12 @@ void DS3231::clearAlarmFlag(AlarmId alarmId)
  *          1024Hz:     SquareWave1024Hz\n
  *          4096Hz:     SquareWave4096Hz\n
  *          8192Hz:     SquareWave8192Hz
- * \retval Success
- * \retval Failure
- *      Incorrect squareWave.
+ * \retval true
+ *      Success
+ * \retval false
+ *      Set squareWave failed.
  */
-void DS3231::setSquareWave(SquareWave squareWave)
+bool ErriezDS3231::setSquareWave(SquareWave squareWave)
 {
     uint8_t controlReg;
 
@@ -519,7 +569,7 @@ void DS3231::setSquareWave(SquareWave squareWave)
     controlReg |= squareWave;
 
     // Write control register
-    writeBuffer(DS3231_REG_CONTROL, &controlReg, sizeof(controlReg));
+    return writeRegister(DS3231_REG_CONTROL, controlReg);
 }
 
 /*!
@@ -527,13 +577,17 @@ void DS3231::setSquareWave(SquareWave squareWave)
  * \param enable
  *      true: Enable 32kHz output clock pin.\n
  *      false: Disable 32kHz output clock pin.
+  * \retval true
+ *      Success
+ * \retval false
+ *      Set output clock pin failed.
  */
-void DS3231::outputClockPinEnable(bool enable)
+bool ErriezDS3231::outputClockPinEnable(bool enable)
 {
     uint8_t statusReg;
 
     // Read status register
-    statusReg = readStatusRegister();
+    statusReg = readRegister(DS3231_REG_STATUS);
 
     // Set or clear EN32kHz flag in status register
     if (enable) {
@@ -543,7 +597,7 @@ void DS3231::outputClockPinEnable(bool enable)
     }
 
     // Write status register
-    writeStatusRegister(statusReg);
+    return writeRegister(DS3231_REG_STATUS, statusReg);
 }
 
 /*!
@@ -554,8 +608,12 @@ void DS3231::outputClockPinEnable(bool enable)
  * \param val
  *      Aging offset value -127..127, 0.1ppm per LSB (Factory default value: 0).\n
  *      Negative values increases the RTC oscillator frequency.
+ * \retval true
+ *      Success
+ * \retval false
+ *      Set aging offset failed.
  */
-void DS3231::setAgingOffset(int8_t val)
+bool ErriezDS3231::setAgingOffset(int8_t val)
 {
     uint8_t regVal;
 
@@ -569,10 +627,12 @@ void DS3231::setAgingOffset(int8_t val)
     }
 
     // Write aging offset register
-    writeRegister(DS3231_REG_AGING_OFFSET, regVal);
+    if (!writeRegister(DS3231_REG_AGING_OFFSET, regVal)) {
+        return false;
+    }
 
     // A temperature conversion is required to apply the aging offset change
-    startTemperatureConversion();
+    return startTemperatureConversion();
 }
 
 /*!
@@ -583,7 +643,7 @@ void DS3231::setAgingOffset(int8_t val)
  * \return val
  *      Aging offset value.
  */
-int8_t DS3231::getAgingOffset()
+int8_t ErriezDS3231::getAgingOffset()
 {
     uint8_t regVal;
 
@@ -605,21 +665,25 @@ int8_t DS3231::getAgingOffset()
  * \details
  *      Starting a conversion is only needed when the application requires temperature reads within
  *      64 seconds, or changing the aging offset register.
+ * \retval true
+ *      Success
+ * \retval false
+ *      Start temperature conversion failed.
  */
-void DS3231::startTemperatureConversion()
+bool ErriezDS3231::startTemperatureConversion()
 {
     uint8_t controlReg;
 
     // Check if temperature busy flag is set
-    if (readStatusRegister() & (1 << DS3231_STAT_BSY)) {
-        return;
+    if (readRegister(DS3231_REG_STATUS) & (1 << DS3231_STAT_BSY)) {
+        return false;
     }
 
     // Start temperature conversion
-    controlReg = readControlRegister() | (1 << DS3231_CTRL_CONV);
+    controlReg = readRegister(DS3231_REG_CONTROL) | (1 << DS3231_CTRL_CONV);
 
     // Write control register
-    writeControlRegister(controlReg);
+    return writeRegister(DS3231_REG_CONTROL, controlReg);
 }
 
 /*!
@@ -629,13 +693,19 @@ void DS3231::startTemperatureConversion()
  * \param fraction
  *      Temperature fraction in steps of 0.25 degree Celsius. The returned value is a decimal value
  *      to prevent floating point usage. The application should divided the fraction by 100.
+ * \retval true
+ *      Success
+ * \retval false
+ *      Set get temperature failed.
  */
-void DS3231::getTemperature(int8_t *temperature, uint8_t *fraction)
+bool ErriezDS3231::getTemperature(int8_t *temperature, uint8_t *fraction)
 {
     uint8_t temp[2];
 
     // Read temperature MSB and LSB registers
-    readBuffer(DS3231_REG_TEMP_MSB, &temp, sizeof(temp));
+    if (!readBuffer(DS3231_REG_TEMP_MSB, &temp, sizeof(temp))) {
+        return false;
+    }
 
     // Set temperature argument
     *temperature = temp[0];
@@ -647,6 +717,8 @@ void DS3231::getTemperature(int8_t *temperature, uint8_t *fraction)
 
     // Shift fraction bits 6 and 7 with 0.25 degree Celsius resolution
     *fraction = (temp[1] >> 6) * 25;
+
+    return true;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -658,7 +730,7 @@ void DS3231::getTemperature(int8_t *temperature, uint8_t *fraction)
  * \return
  *      Decimal value.
  */
-uint8_t DS3231::bcdToDec(uint8_t bcd)
+uint8_t ErriezDS3231::bcdToDec(uint8_t bcd)
 {
     return (uint8_t)(10 * ((bcd & 0xF0) >> 4) + (bcd & 0x0F));
 }
@@ -670,47 +742,12 @@ uint8_t DS3231::bcdToDec(uint8_t bcd)
  * \return
  *      BCD encoded value.
  */
-uint8_t DS3231::decToBcd(uint8_t dec)
+uint8_t ErriezDS3231::decToBcd(uint8_t dec)
 {
     return (uint8_t)(((dec / 10) << 4) | (dec % 10));
 }
 
 //--------------------------------------------------------------------------------------------------
-/*!
- * \brief Read control register
- * \return 8-bit unsigned register value
- */
-uint8_t DS3231::readControlRegister()
-{
-    return readRegister(DS3231_REG_CONTROL);
-}
-
-/*!
- * \brief Write control register
- * \param value 8-bit unsigned register value
- */
-void DS3231::writeControlRegister(uint8_t value)
-{
-    return writeRegister(DS3231_REG_CONTROL, value);
-}
-
-/*!
- * \brief Read status register
- * \return 8-bit unsigned register value
- */
-uint8_t DS3231::readStatusRegister()
-{
-    return readRegister(DS3231_REG_STATUS);
-}
-
-/*!
- * \brief Write status register
- * \param value 8-bit unsigned register value
- */
-void DS3231::writeStatusRegister(uint8_t value)
-{
-    return writeRegister(DS3231_REG_STATUS, value);
-}
 
 /*!
  * \brief Read register.
@@ -721,7 +758,7 @@ void DS3231::writeStatusRegister(uint8_t value)
  * \returns value
  *      8-bit unsigned register value.
  */
-uint8_t DS3231::readRegister(uint8_t reg)
+uint8_t ErriezDS3231::readRegister(uint8_t reg)
 {
     uint8_t value;
 
@@ -740,10 +777,10 @@ uint8_t DS3231::readRegister(uint8_t reg)
  * \param value
  *      8-bit unsigned register value.
  */
-void DS3231::writeRegister(uint8_t reg, uint8_t value)
+bool ErriezDS3231::writeRegister(uint8_t reg, uint8_t value)
 {
     // Write buffer with one 8-bit unsigned value
-    writeBuffer(reg, &value, 1);
+    return writeBuffer(reg, &value, 1);
 }
 
 /*!
@@ -756,8 +793,12 @@ void DS3231::writeRegister(uint8_t reg, uint8_t value)
  *      Buffer.
  * \param len
  *      Buffer length. Writing is only allowed within valid RTC registers.
+ * \retval true
+ *      Success
+ * \retval false
+ *      I2C write failed.
  */
-void DS3231::writeBuffer(uint8_t reg, void *buffer, uint8_t len)
+bool ErriezDS3231::writeBuffer(uint8_t reg, void *buffer, uint8_t len)
 {
     // Start I2C transfer by writing the I2C address, register number and optional buffer
     Wire.beginTransmission(DS3231_ADDR);
@@ -765,7 +806,11 @@ void DS3231::writeBuffer(uint8_t reg, void *buffer, uint8_t len)
     for (uint8_t i = 0; i < len; i++) {
         Wire.write(((uint8_t *)buffer)[i]);
     }
-    Wire.endTransmission(true);
+    if (Wire.endTransmission(true) != 0) {
+        return false;
+    }
+
+    return true;
 }
 
 /*!
@@ -776,16 +821,24 @@ void DS3231::writeBuffer(uint8_t reg, void *buffer, uint8_t len)
  *      Buffer.
  * \param len
  *      Buffer length. Reading is only allowed within valid RTC registers.
+ * \retval true
+ *      Success
+ * \retval false
+ *      I2C read failed.
  */
-void DS3231::readBuffer(uint8_t reg, void *buffer, uint8_t len)
+bool ErriezDS3231::readBuffer(uint8_t reg, void *buffer, uint8_t len)
 {
     // Start I2C transfer by writing the I2C address and register number
     Wire.beginTransmission(DS3231_ADDR);
     Wire.write(reg);
     // Generate a repeated start, followed by a read buffer
-    Wire.endTransmission(false);
+    if (Wire.endTransmission(false) != 0) {
+        return false;
+    }
     Wire.requestFrom((uint8_t)DS3231_ADDR, len);
     for (uint8_t i = 0; i < len; i++) {
         ((uint8_t *)buffer)[i] = (uint8_t)Wire.read();
     }
+
+    return true;
 }

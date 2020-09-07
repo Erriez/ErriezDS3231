@@ -23,7 +23,7 @@
  */
 
 /*!
- * \brief DS3231 high accurate RTC aging offset example for Arduino
+ * \brief DS3231 high accurate RTC temperature example for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDS3231
  *      Documentation:  https://erriez.github.io/ErriezDS3231
@@ -33,93 +33,57 @@
 
 #include <ErriezDS3231.h>
 
-// Set 8-bit signed aging offset value -127...127 for clock speed compensation 0.1ppm per LSB
-#define AGING_OFFSET_VALUE      10
-
 // Create DS3231 RTC object
-static DS3231 rtc;
-
-// Function prototypes
-static void setAgingOffset();
-static void printAgingOffset();
-static void printTime();
+ErriezDS3231 ds3231;
 
 
 void setup()
 {
+    // Startup delay to initialize serial port
+    delay(500);
+
     // Initialize serial port
     Serial.begin(115200);
     while (!Serial) {
         ;
     }
-    Serial.println(F("DS3231 RTC aging offset example\n"));
+    Serial.println(F("\nErriez DS3231 RTC temperature example\n"));
 
     // Initialize TWI
     Wire.begin();
     Wire.setClock(400000);
 
     // Initialize RTC
-    while (rtc.begin()) {
-        Serial.println(F("Error: DS3231 not detected"));
+    while (!ds3231.begin()) {
+        Serial.println(F("Error: Could not detect DS3231 RTC"));
         delay(3000);
     }
-
-    // Set aging offset
-    setAgingOffset();
-
-    // Print aging offset register
-    printAgingOffset();
-
-    // Print current date and time only when clock is running
-    if (rtc.isOscillatorStopped()) {
-        Serial.println(F("Error: DS3231 RTC oscillator stopped. Program new date/time."));
-        while (1) {
-            ;
-        }
-    }
-
-    Serial.println(F("RTC date and time:"));
 }
 
 void loop()
 {
-    printTime();
-    delay(1000);
-}
+    int8_t temperature;
+    uint8_t fraction;
 
-static void setAgingOffset()
-{
-    Serial.print(F("Set aging offset: "));
-    Serial.println(AGING_OFFSET_VALUE, DEC);
-
-    // Set aging offset
-    rtc.setAgingOffset(AGING_OFFSET_VALUE);
-}
-
-static void printAgingOffset()
-{
-    int8_t agingOffset;
-
-    // Get aging offset
-    agingOffset = rtc.getAgingOffset();
-
-    Serial.print(F("Aging offset: "));
-    Serial.println(agingOffset, DEC);
-}
-
-static void printTime()
-{
-    DS3231_DateTime dt;
-
-    // Get date time from RTC
-    if (rtc.getDateTime(&dt)) {
-        Serial.println(F("Error: Read date time failed"));
+    // Force temperature conversion
+    // Without this call, it takes 64 seconds before the temperature is updated.
+    if (!ds3231.startTemperatureConversion()) {
+        Serial.println(F("Start conv failed"));
         return;
     }
 
-    Serial.print(dt.hour);
-    Serial.print(F(":"));
-    Serial.print(dt.minute);
-    Serial.print(F(":"));
-    Serial.println(dt.second);
+    // Read temperature
+    if (!ds3231.getTemperature(&temperature, &fraction)) {
+        Serial.println(F("Temp read failed"));
+        return;
+    }
+
+    // Print temperature
+    Serial.print(temperature);
+    Serial.print(F("."));
+    Serial.print(fraction);
+    Serial.println(F("C"));
+
+    // Wait some time
+    delay(5000);
 }

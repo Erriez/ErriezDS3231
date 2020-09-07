@@ -34,6 +34,7 @@
 #define ERRIEZ_DS3231_H_
 
 #include <stdint.h>
+#include <time.h>
 
 //! DS3231 registers
 #define DS3231_REG_SECONDS      0x00    //!< Seconds register
@@ -98,19 +99,6 @@
 #define SECONDS_FROM_1970_TO_2000 946684800
 
 /*!
- * \brief Date time structure
- */
-typedef struct DS3231_DateTime_s {
-    uint8_t second;             //!< Second 0..59
-    uint8_t minute;             //!< Minute 0..59
-    uint8_t hour;               //!< Hour 0..23
-    uint8_t dayWeek;            //!< Day of the week (1 = Monday)
-    uint8_t dayMonth;           //!< Day of the month 1..31
-    uint8_t month;              //!< Month 1..12
-    uint16_t year;              //!< Year 2000..2099
-} DS3231_DateTime;
-
-/*!
  * \brief Alarm ID
  */
 typedef enum {
@@ -158,61 +146,58 @@ typedef enum {
 /*!
  * \brief DS3231 RTC base class
  */
-class DS3231
+class ErriezDS3231
 {
 public:
     // Initialize
     bool begin();
 
     // Oscillator functions
-    void oscillatorEnable(bool enable);
+    bool oscillatorEnable(bool enable);
     bool isOscillatorStopped();
-    void clearOscillatorStopFlag();
 
     // Date/time functions
-    void setDateTime(DS3231_DateTime *dateTime);
-    bool getDateTime(DS3231_DateTime *dateTime);
-    void setTime(uint8_t hour, uint8_t minute, uint8_t second);
-    bool getTime(uint8_t *hour, uint8_t *minute, uint8_t *second);
-    uint32_t getEpochTime(DS3231_DateTime *dateTime);
+    time_t getEpoch();
+    bool setEpoch(time_t t);
+    bool read(struct tm *dt);
+    bool write(const struct tm *dt);
+    bool setTime(uint8_t hour, uint8_t min, uint8_t sec);
+    bool getTime(uint8_t *hour, uint8_t *min, uint8_t *sec);
+    bool setDateTime(uint8_t hour, uint8_t min, uint8_t sec,
+                     uint8_t mday, uint8_t mon, uint16_t year,
+                     uint8_t wday);
 
     // Alarm functions
-    void setAlarm1(Alarm1Type alarmType,
+    bool setAlarm1(Alarm1Type alarmType,
                           uint8_t dayDate, uint8_t hours, uint8_t minutes, uint8_t seconds);
-    void setAlarm2(Alarm2Type alarmType, uint8_t dayDate, uint8_t hours, uint8_t minutes);
-    void alarmInterruptEnable(AlarmId alarmId, bool enable);
+    bool setAlarm2(Alarm2Type alarmType, uint8_t dayDate, uint8_t hours, uint8_t minutes);
+    bool alarmInterruptEnable(AlarmId alarmId, bool enable);
     bool getAlarmFlag(AlarmId alarmId);
-    void clearAlarmFlag(AlarmId alarmId);
+    bool clearAlarmFlag(AlarmId alarmId);
 
     // Output signal control
-    void setSquareWave(SquareWave squareWave);
-    void outputClockPinEnable(bool enable);
+    bool setSquareWave(SquareWave squareWave);
+    bool outputClockPinEnable(bool enable);
 
     // Aging offset compensation
-    void setAgingOffset(int8_t val);
+    bool setAgingOffset(int8_t val);
     int8_t getAgingOffset();
 
     // Temperature functions
-    void startTemperatureConversion();
-    void getTemperature(int8_t *temperature, uint8_t *fraction);
+    bool startTemperatureConversion();
+    bool getTemperature(int8_t *temperature, uint8_t *fraction);
 
     // BCD conversions
     uint8_t bcdToDec(uint8_t bcd);
     uint8_t decToBcd(uint8_t dec);
 
-    // Read/write status and control registers
-    uint8_t readControlRegister();
-    void writeControlRegister(uint8_t value);
-    uint8_t readStatusRegister();
-    void writeStatusRegister(uint8_t value);
-
     // Read/write register
     uint8_t readRegister(uint8_t reg);
-    void writeRegister(uint8_t reg, uint8_t value);
+    bool writeRegister(uint8_t reg, uint8_t value);
 
     // Read/write buffer
-    void readBuffer(uint8_t reg, void *buffer, uint8_t len);
-    void writeBuffer(uint8_t reg, void *buffer, uint8_t len);
+    bool readBuffer(uint8_t reg, void *buffer, uint8_t len);
+    bool writeBuffer(uint8_t reg, void *buffer, uint8_t len);
 };
 
 #endif // ERRIEZ_DS3231_H_

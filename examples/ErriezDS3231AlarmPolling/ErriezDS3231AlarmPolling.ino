@@ -28,8 +28,6 @@
   *   Source:         https://github.com/Erriez/ErriezDS3231
  *    Documentation:  https://erriez.github.io/ErriezDS3231
  *
- *    Required library: https://github.com/Erriez/ErriezDS3231
- *
  *    The example generates the following alarms without an external nINT/SQW interrupt pin:
  *      Alarm 1 every 30 seconds (by programming alarm 1 once)
  *      Alarm 2 every 2 minutes (by reprogramming alarm 2 on every alarm 2 interrupt)
@@ -40,51 +38,105 @@
 #include <ErriezDS3231.h>
 
 // Create DS3231 RTC object
-static DS3231 rtc;
+ErriezDS3231 ds3231;
 
 // Create date time object (automatically cleared at startup)
-static DS3231_DateTime dt;
+struct tm dt;
 
-// Function prototypes
-static void setAlarm1();
-static void setAlarm2();
-static void printDateTimeShort();
 
+void setAlarm1()
+{
+    Serial.println(F("Set Alarm 1 at every 30 seconds"));
+
+    // Program alarm 1
+    // Alarm1EverySecond, Alarm1MatchSeconds, Alarm1MatchMinutes, Alarm1MatchHours, Alarm1MatchDay,
+    // Alarm1MatchDate
+    ds3231.setAlarm1(Alarm1MatchSeconds, 0, 0, 0, 30);
+
+    // Disable alarm 1 interrupt
+    ds3231.alarmInterruptEnable(Alarm1, false);
+}
+
+void setAlarm2()
+{
+    uint8_t hour;
+    uint8_t minute;
+    uint8_t second;
+
+    // Get time from RTC
+    ds3231.getTime(&hour, &minute, &second);
+
+    // Increment minute interval
+    minute += 2;
+    minute %= 60;
+
+    Serial.println(F("Set Alarm 2 at every hour at 2 minutes"));
+
+    // Program alarm 2
+    // Alarm2EveryMinute, Alarm2MatchMinutes, Alarm2MatchHours, Alarm2MatchDay or Alarm2MatchDate
+    ds3231.setAlarm2(Alarm2MatchMinutes, 0, 0, minute);
+
+    // Disable alarm 2 interrupt
+    ds3231.alarmInterruptEnable(Alarm2, false);
+}
+
+void printDateTimeShort()
+{
+    char buf[10];
+
+    // Get date time from RTC
+    if (!ds3231.read(&dt)) {
+        Serial.println(F("Error: Read date time failed"));
+        return;
+    }
+
+    // Print day of the week
+    Serial.print(dt.tm_wday);
+    Serial.print(F("  "));
+
+    // Print day month, month and year
+    Serial.print(dt.tm_mday);
+    Serial.print(F("-"));
+    Serial.print(dt.tm_mon + 1);
+    Serial.print(F("-"));
+    Serial.print(dt.tm_year + 1900);
+    Serial.print(F("  "));
+
+    // Print time
+    snprintf(buf, sizeof(buf), "%d:%02d:%02d", dt.tm_hour, dt.tm_min, dt.tm_sec);
+    Serial.println(buf);
+}
 
 void setup()
 {
     // Initialize serial port
+    delay(500);
     Serial.begin(115200);
     while (!Serial) {
         ;
     }
-    Serial.println(F("DS3231 RTC alarm polling example\n"));
+    Serial.println(F("\nErriez DS3231 RTC alarm polling example\n"));
 
     // Initialize TWI
     Wire.begin();
     Wire.setClock(400000);
 
     // Initialize RTC
-    while (rtc.begin()) {
+    while (!ds3231.begin()) {
         Serial.println(F("Error: Could not detect DS3231 RTC"));
         delay(3000);
     }
 
-    // Check oscillator status
-    if (rtc.isOscillatorStopped()) {
-        Serial.println(F("Error: DS3231 RTC oscillator stopped. Program new date/time."));
-        while (1) {
-            ;
-        }
-    }
+    // Enable oscillator
+    ds3231.oscillatorEnable(true);
 
     // Set alarms
     setAlarm1();
     setAlarm2();
 
     // Clear alarm interrupt flags
-    rtc.clearAlarmFlag(Alarm1);
-    rtc.clearAlarmFlag(Alarm2);
+    ds3231.clearAlarmFlag(Alarm1);
+    ds3231.clearAlarmFlag(Alarm2);
 
     // Print current date and time
     Serial.print(F("Current date and time: "));
@@ -96,18 +148,18 @@ void setup()
 void loop()
 {
     // Get Alarm 1 flag
-    if (rtc.getAlarmFlag(Alarm1)) {
+    if (ds3231.getAlarmFlag(Alarm1)) {
         Serial.print(F("Alarm 1 interrupt: "));
 
         // Print date time
         printDateTimeShort();
 
         // Clear alarm 1 flag
-        rtc.clearAlarmFlag(Alarm1);
+        ds3231.clearAlarmFlag(Alarm1);
     }
 
     // Get Alarm 2 flag
-    if (rtc.getAlarmFlag(Alarm2)) {
+    if (ds3231.getAlarmFlag(Alarm2)) {
         Serial.print(F("Alarm 2 interrupt: "));
 
         // Print date time
@@ -117,72 +169,9 @@ void loop()
         setAlarm2();
 
         // Clear alarm 2 interrupt
-        rtc.clearAlarmFlag(Alarm2);
+        ds3231.clearAlarmFlag(Alarm2);
     }
 
     // Wait some time
     delay(1000);
-}
-
-static void setAlarm1()
-{
-    Serial.println(F("Set Alarm 1 at every 30 seconds"));
-
-    // Program alarm 1
-    // Alarm1EverySecond, Alarm1MatchSeconds, Alarm1MatchMinutes, Alarm1MatchHours, Alarm1MatchDay,
-    // Alarm1MatchDate
-    rtc.setAlarm1(Alarm1MatchSeconds, 0, 0, 0, 30);
-
-    // Disable alarm 1 interrupt
-    rtc.alarmInterruptEnable(Alarm1, false);
-}
-
-static void setAlarm2()
-{
-    uint8_t hour;
-    uint8_t minute;
-    uint8_t second;
-
-    // Get time from RTC
-    rtc.getTime(&hour, &minute, &second);
-
-    // Increment minute interval
-    minute += 2;
-    minute %= 60;
-
-    Serial.println(F("Set Alarm 2 at every hour at 2 minutes"));
-
-    // Program alarm 2
-    // Alarm2EveryMinute, Alarm2MatchMinutes, Alarm2MatchHours, Alarm2MatchDay or Alarm2MatchDate
-    rtc.setAlarm2(Alarm2MatchMinutes, 0, 0, minute);
-
-    // Disable alarm 2 interrupt
-    rtc.alarmInterruptEnable(Alarm2, false);
-}
-
-static void printDateTimeShort()
-{
-    char buf[10];
-
-    // Get date time from RTC
-    if (rtc.getDateTime(&dt)) {
-        Serial.println(F("Error: Read date time failed"));
-        return;
-    }
-
-    // Print day of the week
-    Serial.print(dt.dayWeek);
-    Serial.print(F(" "));
-
-    // Print day month, month and year
-    Serial.print(dt.dayMonth);
-    Serial.print(F("-"));
-    Serial.print(dt.month);
-    Serial.print(F("-"));
-    Serial.print(dt.year);
-    Serial.print(F("  "));
-
-    // Print time
-    snprintf(buf, sizeof(buf), "%d:%02d:%02d", dt.hour, dt.minute, dt.second);
-    Serial.println(buf);
 }

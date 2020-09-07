@@ -1,8 +1,8 @@
 {
     "name": "ErriezDS3231",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "keywords": "arduino, library, ds3231, i2c, rtc, real-time-clock, high-precision, date, time, epoch, alarms, temperature, sqw-out, serial-terminal, diagnostics, interrupt, documentation, examples",
-    "description": "Optimized DS3231 I2C RTC (Real Time Clock) library for Arduino with extensive examples",
+    "description": "DS3231 I2C RTC (Real Time Clock) library for Arduino with extensive examples",
     "homepage": "https://github.com/Erriez/ErriezDS3231",
     "license": "MIT",
     "authors": {

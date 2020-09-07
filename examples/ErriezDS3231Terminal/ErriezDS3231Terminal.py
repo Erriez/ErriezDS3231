@@ -2,7 +2,7 @@ import datetime
 import serial
 import sys
 
-SERIAL_PORT = 'COM3'
+SERIAL_PORT = '/dev/ttyACM0'
 BAUDRATE = 115200
 
 
@@ -48,7 +48,7 @@ def set_time(ser):
 
 
 def main():
-    print('Arduino DS3213 RTC set date time via terminal example')
+    print('Erriez Arduino DS3213 RTC set date time via terminal example')
 
     ser = serial.Serial()
     ser.baudrate = int(BAUDRATE)
@@ -71,7 +71,7 @@ def main():
             print(line)
 
             # Wait for terminal startup string
-            if line.find('DS3231 RTC terminal example') == 0:
+            if line.find('Erriez DS3231 RTC terminal example') == 0:
                 # Set date
                 set_date(ser)
 

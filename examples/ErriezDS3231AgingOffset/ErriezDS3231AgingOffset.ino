@@ -23,7 +23,7 @@
  */
 
 /*!
- * \brief DS3231 high accurate RTC minimum read time example for Arduino
+ * \brief DS3231 high accurate RTC aging offset example for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezDS3231
  *      Documentation:  https://erriez.github.io/ErriezDS3231
@@ -33,69 +33,87 @@
 
 #include <ErriezDS3231.h>
 
+// Set 8-bit signed aging offset value -127...127 for clock speed compensation 0.1ppm per LSB
+#define AGING_OFFSET_VALUE      10
+
 // Create DS3231 RTC object
-static DS3231 rtc;
+ErriezDS3231 ds3231;
 
-// Function prototypes
-static void setDateTime();
-static void printDateTime();
 
+void setAgingOffset()
+{
+    Serial.print(F("Set aging offset: "));
+    Serial.println(AGING_OFFSET_VALUE, DEC);
+
+    // Set aging offset
+    ds3231.setAgingOffset(AGING_OFFSET_VALUE);
+}
+
+void printAgingOffset()
+{
+    int8_t agingOffset;
+
+    // Get aging offset
+    agingOffset = ds3231.getAgingOffset();
+
+    Serial.print(F("Aging offset: "));
+    Serial.println(agingOffset, DEC);
+}
 
 void setup()
 {
     // Initialize serial port
+    delay(500);
     Serial.begin(115200);
     while (!Serial) {
         ;
     }
+    Serial.println(F("\nErriez DS3231 RTC aging offset example\n"));
 
     // Initialize TWI
     Wire.begin();
     Wire.setClock(400000);
 
     // Initialize RTC
-    while (rtc.begin()) {
+    while (!ds3231.begin()) {
+        Serial.println(F("Error: DS3231 not detected"));
         delay(3000);
     }
 
-    // Check oscillator status
-    if (rtc.isOscillatorStopped()) {
-        Serial.println(F("Error"));
-        while (1) {
-            ;
-        }
-    }
+    // Set aging offset
+    setAgingOffset();
+
+    // Print aging offset register
+    printAgingOffset();
+
+    // Enable oscillator
+    ds3231.oscillatorEnable(true);
 }
 
 void loop()
 {
-    // Just an example to print the date and time every second. Recommended code is to use the 1Hz
-    // square wave out pin with an interrupt.
-    printDateTime();
-    delay(1000);
-}
+    struct tm dt;
 
-static void printDateTime()
-{
-    uint8_t hour;
-    uint8_t minute;
-    uint8_t second;
-
-    // Read time from RTC
-    if (rtc.getTime(&hour, &minute, &second)) {
+    // Get date time from RTC
+    if (!ds3231.read(&dt)) {
+        Serial.println(F("RTC read failed"));
+        delay(3000);
         return;
     }
 
     // Print time
-    Serial.print(hour);
+    Serial.print(dt.tm_hour);
     Serial.print(F(":"));
-    Serial.print(minute);
-    if (minute < 10) {
+    if (dt.tm_min < 10) {
         Serial.print(F("0"));
     }
+    Serial.print(dt.tm_min);
     Serial.print(F(":"));
-    if (second < 10) {
+    if (dt.tm_sec < 10) {
         Serial.print(F("0"));
     }
-    Serial.println(second);
+    Serial.println(dt.tm_sec);
+
+    // Wait
+    delay(1000);
 }
