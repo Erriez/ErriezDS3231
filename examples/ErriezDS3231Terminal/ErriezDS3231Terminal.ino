@@ -125,8 +125,10 @@ void cmdHelp()
     Serial.println(F("  dt                 Print date short and time"));
     Serial.println(F("  date               Print date long"));
     Serial.println(F("  time               Print time"));
+    Serial.println(F("  epoch              Print epoch"));
     Serial.println(F("  set date <w d-m-Y> Set day week and date"));
     Serial.println(F("  set time <H:M:S>   Set time"));
+    Serial.println(F("  set epoch <value>  Set epoch"));
     Serial.println();
     Serial.println(F(" Temperature functions:"));
     Serial.println(F("  tconv              Start temperature conversion"));
@@ -136,7 +138,7 @@ void cmdHelp()
     Serial.println(F("  clkout             Toggle 32kHz output clock enable"));
     Serial.println(F("  sqwout <0|1|1024|4096|8192>"));
     Serial.println(F("                     SQW output pin in Hz"));
-    Serial.println(F("  stop               Stop RTC oscillator on V-BAT"));
+    Serial.println(F("  stop               Stop RTC oscillator"));
     Serial.println(F("  start              Start RTC oscillator"));
     Serial.println();
     Serial.println(F(" Diagnostics:"));
@@ -235,6 +237,7 @@ void cmdSetDateTime()
     int dayMonth;
     int month;
     int year;
+    long unsigned int epoch;
     char *arg;
 
     arg = term.getNext();
@@ -265,8 +268,19 @@ void cmdSetDateTime()
                 Serial.println(F("Incorrect time format"));
             }
         }
+    } else if (strncmp(arg, "epoch", 5) == 0) {
+        arg = term.getRemaining();
+        if (arg != NULL) {
+            if (sscanf(arg, "%lu", &epoch) == 1) {
+                ds3231.setEpoch((time_t)epoch);
+                Serial.print(F("Set epoch: "));
+                Serial.println((uint32_t)epoch);
+            } else {
+                Serial.println(F("Incorrect time format"));
+            }
+        }
     } else {
-        Serial.println(F("Argument date/time missing"));
+        Serial.println(F("Invalid argument"));
     }
 }
 
