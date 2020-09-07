@@ -342,8 +342,8 @@ void cmdStartTemperatureConversion()
 
 void cmdPrintTemperature()
 {
-    int8_t temperature;
-    uint8_t fraction;
+    int8_t temperature = 0;
+    uint8_t fraction = 0;
 
     Serial.print(F("Temperature: "));
 

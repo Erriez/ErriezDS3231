@@ -62,8 +62,8 @@ void setup()
 
 void loop()
 {
-    int8_t temperature;
-    uint8_t fraction;
+    int8_t temperature = 0;
+    uint8_t fraction = 0;
 
     // Force temperature conversion
     // Without this call, it takes 64 seconds before the temperature is updated.
