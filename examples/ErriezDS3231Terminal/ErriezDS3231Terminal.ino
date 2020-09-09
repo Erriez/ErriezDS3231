@@ -38,6 +38,9 @@
 #include <ErriezDS3231.h>
 #include <ErriezSerialTerminal.h>
 
+// Create DS3231 RTC object
+ErriezDS3231 rtc;
+
 // Newline character '\r' or '\n'
 char newlineChar = '\n';
 // Separator character between commands and arguments
@@ -45,9 +48,6 @@ char delimiterChar = ' ';
 
 // Create serial terminal object
 SerialTerminal term(newlineChar, delimiterChar);
-
-// Create DS3231 RTC object
-ErriezDS3231 ds3231;
 
 // Define days of the week in flash
 const char day_0[] PROGMEM = "Sunday";
@@ -164,7 +164,7 @@ void cmdPrintDate()
     Serial.print(F("Date: "));
 
     // Read date/time from RTC
-    if (!ds3231.read(&dt)) {
+    if (!rtc.read(&dt)) {
         Serial.println(F("Error: Read date/time failed"));
         return;
     }
@@ -191,7 +191,7 @@ void cmdPrintTime()
     Serial.print(F("Time: "));
 
     // Read time from RTC
-    if (!ds3231.getTime(&hour, &minute, &second)) {
+    if (!rtc.getTime(&hour, &minute, &second)) {
         Serial.println(F("Error: Read time failed"));
         return;
     }
@@ -207,15 +207,15 @@ void cmdPrintDateTime()
     char buf[11];
 
     // Read date/time from RTC
-    if (!ds3231.read(&dt)) {
+    if (!rtc.read(&dt)) {
         Serial.println(F("Error: Read date/time failed"));
         return;
     }
 
-    Serial.print(F("Date: "));
+    Serial.print(F("Date:  "));
     snprintf(buf, sizeof(buf), "%d-%d-%d", dt.tm_mday, dt.tm_mon + 1, dt.tm_year + 1900);
     Serial.println(buf);
-    Serial.print(F("Time: "));
+    Serial.print(F("Time:  "));
     snprintf(buf, sizeof(buf), "%d:%02d:%02d", dt.tm_hour, dt.tm_min, dt.tm_sec);
     Serial.println(buf);
 }
@@ -224,7 +224,7 @@ void cmdPrintEpoch()
 {
     // Print 32-bit epoch time
     Serial.print(F("Epoch: "));
-    Serial.println((uint32_t)ds3231.getEpoch());
+    Serial.println((uint32_t)rtc.getEpoch());
 }
 
 void cmdSetDateTime()
@@ -245,12 +245,12 @@ void cmdSetDateTime()
         arg = term.getRemaining();
         if (arg != NULL) {
             if (sscanf(arg, "%d %d-%d-%d", &dayWeek, &dayMonth, &month, &year) == 4) {
-                ds3231.read(&dt);
+                rtc.read(&dt);
                 dt.tm_wday = dayWeek;
                 dt.tm_mday = dayMonth;
                 dt.tm_mon = month - 1;
                 dt.tm_year = year - 1900;
-                ds3231.write(&dt);
+                rtc.write(&dt);
                 Serial.print(F("Set date: "));
                 Serial.println(arg);
             } else {
@@ -261,7 +261,7 @@ void cmdSetDateTime()
         arg = term.getRemaining();
         if (arg != NULL) {
             if (sscanf(arg, "%d:%d:%d", &hour, &minute, &second) == 3) {
-                ds3231.setTime(hour, minute, second);
+                rtc.setTime(hour, minute, second);
                 Serial.print(F("Set time: "));
                 Serial.println(arg);
             } else {
@@ -272,7 +272,7 @@ void cmdSetDateTime()
         arg = term.getRemaining();
         if (arg != NULL) {
             if (sscanf(arg, "%lu", &epoch) == 1) {
-                ds3231.setEpoch((time_t)epoch);
+                rtc.setEpoch((time_t)epoch);
                 Serial.print(F("Set epoch: "));
                 Serial.println((uint32_t)epoch);
             } else {
@@ -293,7 +293,7 @@ void cmdToggle32kHzOutputClockPin()
     Serial.println(outputClockEnable ? F("Enable") : F("Disable"));
 
     // Enable or disable 32kHz output clock pin
-    ds3231.outputClockPinEnable(outputClockEnable);
+    rtc.outputClockPinEnable(outputClockEnable);
 }
 
 void cmdSquareWaveOut()
@@ -309,23 +309,23 @@ void cmdSquareWaveOut()
     switch (argValue) {
         case 0:
             Serial.println(F("Disable"));
-            ds3231.setSquareWave(SquareWaveDisable);
+            rtc.setSquareWave(SquareWaveDisable);
             break;
         case 1:
             Serial.println(F("1Hz"));
-            ds3231.setSquareWave(SquareWave1Hz);
+            rtc.setSquareWave(SquareWave1Hz);
             break;
         case 1024:
             Serial.println(F("1024Hz"));
-            ds3231.setSquareWave(SquareWave1024Hz);
+            rtc.setSquareWave(SquareWave1024Hz);
             break;
         case 4096:
             Serial.println(F("4096Hz"));
-            ds3231.setSquareWave(SquareWave4096Hz);
+            rtc.setSquareWave(SquareWave4096Hz);
             break;
         case 8192:
             Serial.println(F("8192Hz"));
-            ds3231.setSquareWave(SquareWave8192Hz);
+            rtc.setSquareWave(SquareWave8192Hz);
             break;
         default:
             Serial.println(F("Incorrect value"));
@@ -336,14 +336,14 @@ void cmdOscillatorStop()
 {
     Serial.println(F("Stop oscillator"));
 
-    ds3231.clockEnable(false);
+    rtc.clockEnable(false);
 }
 
 void cmdOscillatorStart()
 {
     Serial.println(F("Start oscillator"));
 
-    ds3231.clockEnable(true);
+    rtc.clockEnable(true);
 }
 
 void cmdStartTemperatureConversion()
@@ -351,7 +351,7 @@ void cmdStartTemperatureConversion()
     Serial.println(F("Forced temperature conversion"));
 
     // Without this call, it takes 64 seconds before the temperature is updated.
-    ds3231.startTemperatureConversion();
+    rtc.startTemperatureConversion();
 }
 
 void cmdPrintTemperature()
@@ -362,7 +362,7 @@ void cmdPrintTemperature()
     Serial.print(F("Temperature: "));
 
     // Read temperature
-    ds3231.getTemperature(&temperature, &fraction);
+    rtc.getTemperature(&temperature, &fraction);
     Serial.print(temperature);
     Serial.print(F("."));
     Serial.print(fraction);
@@ -385,7 +385,7 @@ void cmdWriteRegister()
         return;
     }
 
-    ds3231.writeRegister(reg, val);
+    rtc.writeRegister(reg, val);
     Serial.print(F("Write reg "));
     snprintf(buf, sizeof(buf), "0x%02x: 0x%02x", reg, val);
     Serial.println(buf);
@@ -402,7 +402,7 @@ void cmdReadRegister()
     }
 
     Serial.print(F("Read reg "));
-    snprintf(buf, sizeof(buf), "0x%02x: 0x%02x", reg, ds3231.readRegister(reg));
+    snprintf(buf, sizeof(buf), "0x%02x: 0x%02x", reg, rtc.readRegister(reg));
     Serial.println(buf);
 }
 
@@ -412,7 +412,7 @@ void printDateTime()
     char buf[32];
 
     // Read date/time from RTC
-    if (!ds3231.read(&dt)) {
+    if (!rtc.read(&dt)) {
         Serial.println(F("Error: Read date/time failed"));
         return;
     }
@@ -465,24 +465,24 @@ void setup()
     Wire.setClock(400000);
 
     // Initialize RTC
-    while (!ds3231.begin()) {
+    while (!rtc.begin()) {
         Serial.println(F("DS3231 RTC not found"));
         delay(3000);
     }
 
     // Check oscillator status
-    if (!ds3231.isRunning()) {
-        Serial.println(F("Warning: DS3231 RTC oscillator was stopped."));
+    if (!rtc.isRunning()) {
+        Serial.println(F("Warning: RTC clock was stopped."));
 
         // Enable oscillator
-        ds3231.clockEnable(true);
+        rtc.clockEnable(true);
     }
 
     // Set output clock
-    ds3231.outputClockPinEnable(outputClockEnable);
+    rtc.outputClockPinEnable(outputClockEnable);
 
     // Set square wave out
-    ds3231.setSquareWave(SquareWaveDisable);
+    rtc.setSquareWave(SquareWaveDisable);
 }
 
 void loop()

@@ -76,7 +76,7 @@ void setup()
 
     // Initialize RTC
     while (!ds3231.begin()) {
-        Serial.println(F("Error: DS3231 not detected"));
+        Serial.println(F("RTC not found"));
         delay(3000);
     }
 

@@ -23,10 +23,10 @@
  */
 
 /*!
- * \brief DS3231 high accurate RTC temperature example for Arduino
+ * \brief DS3231 RTC dump registers example for Arduino
  * \details
- *      Source:         https://github.com/Erriez/ErriezDS3231
- *      Documentation:  https://erriez.github.io/ErriezDS3231
+ *    Source:         https://github.com/Erriez/ErriezDS3231
+ *    Documentation:  https://erriez.github.io/ErriezDS3231
  */
 
 #include <Wire.h>
@@ -34,7 +34,7 @@
 #include <ErriezDS3231.h>
 
 // Create DS3231 RTC object
-ErriezDS3231 ds3231;
+ErriezDS3231 rtc;
 
 
 void setup()
@@ -45,43 +45,45 @@ void setup()
     while (!Serial) {
         ;
     }
-    Serial.println(F("\nErriez DS3231 RTC temperature example\n"));
+    Serial.println(F("\nErriez DS3231 dump register example\n"));
 
     // Initialize TWI
     Wire.begin();
     Wire.setClock(400000);
 
     // Initialize RTC
-    while (!ds3231.begin()) {
+    while (!rtc.begin()) {
         Serial.println(F("RTC not found"));
         delay(3000);
+    }
+
+    // Enable RTC clock
+    if (!rtc.isRunning()) {
+        rtc.clockEnable();
     }
 }
 
 void loop()
 {
-    int8_t temperature = 0;
-    uint8_t fraction = 0;
+    uint8_t buf[DS3231_NUM_REGS];
 
-    // Force temperature conversion
-    // Without this call, it takes 64 seconds before the temperature is updated.
-    if (!ds3231.startTemperatureConversion()) {
-        Serial.println(F("Start conv failed"));
+    // Read all registers
+    if (!rtc.readBuffer(0, buf, sizeof(buf))) {
+        Serial.println(F("Read buffers failed"));
         return;
     }
 
-    // Read temperature
-    if (!ds3231.getTemperature(&temperature, &fraction)) {
-        Serial.println(F("Temp read failed"));
-        return;
+    // Print all registers
+    Serial.println(F("Registers: "));
+    for (uint8_t i = 0; i < sizeof(buf); i++) {
+        Serial.print(F("  "));
+        Serial.print(i);
+        Serial.print(F(": 0x"));
+        if (buf[i] < 0x10) {
+            Serial.print(F("0"));
+        }
+        Serial.println(buf[i], HEX);
     }
 
-    // Print temperature
-    Serial.print(temperature);
-    Serial.print(F("."));
-    Serial.print(fraction);
-    Serial.println(F("C"));
-
-    // Wait some time
-    delay(5000);
+    delay(1000);
 }

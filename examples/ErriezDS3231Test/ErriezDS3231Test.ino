@@ -33,7 +33,7 @@
 #include <ErriezDS3231.h>
 
 // Create RTC object
-ErriezDS3231 ds3231;
+ErriezDS3231 rtc;
 
 #define Success     true
 #define Failure     false
@@ -62,7 +62,13 @@ void setup()
 {
     struct tm dtw;
     struct tm dtr;
-    uint8_t hour, min, sec;
+    uint8_t hour;
+    uint8_t min;
+    uint8_t sec;
+    uint8_t mday;
+    uint8_t mon;
+    uint16_t year;
+    uint8_t wday;
 
     // Initialize serial port
     delay(500);
@@ -77,30 +83,27 @@ void setup()
     Wire.setClock(100000);
 
     // Initialize RTC
-    while (!ds3231.begin()) {
-        Serial.println(F("Error: DS3231 not found"));
-        delay(3000);
+    CHK(rtc.begin() == true);
+
+    // Test setSquareWave()
+    CHK(rtc.setSquareWave(SquareWaveDisable) == Success);
+    CHK(rtc.setSquareWave(SquareWave1Hz) == Success);
+    CHK(rtc.setSquareWave(SquareWave1024Hz) == Success);
+    CHK(rtc.setSquareWave(SquareWave4096Hz) == Success);
+    CHK(rtc.setSquareWave(SquareWave8192Hz) == Success);
+
+    // Test isRunning() / clockEnable()
+    if (!rtc.isRunning()) {
+        CHK(rtc.clockEnable(true));
     }
+    CHK(rtc.isRunning() == true);
 
-    // Square wave pin
-    CHK(ds3231.setSquareWave(SquareWaveDisable) == Success);
-    CHK(ds3231.setSquareWave(SquareWave1Hz) == Success);
-    CHK(ds3231.setSquareWave(SquareWave1024Hz) == Success);
-    CHK(ds3231.setSquareWave(SquareWave4096Hz) == Success);
-    CHK(ds3231.setSquareWave(SquareWave8192Hz) == Success);
-
-    // Test oscillator
-    if (!ds3231.isRunning()) {
-        CHK(ds3231.clockEnable(true));
-    }
-    CHK(ds3231.isRunning() == true);
-
-    // Test epoch write
-    CHK(ds3231.setEpoch(EPOCH_TEST) == Success);
+    // Test setEpoch()
+    CHK(rtc.setEpoch(EPOCH_TEST) == Success);
     delay(1500);
 
     // Verify epoch struct tm
-    CHK(ds3231.read(&dtr) == Success);
+    CHK(rtc.read(&dtr) == Success);
     CHK(dtr.tm_sec == 31);
     CHK(dtr.tm_min == 20);
     CHK(dtr.tm_hour == 18);
@@ -109,10 +112,10 @@ void setup()
     CHK(dtr.tm_year == 120);
     CHK(dtr.tm_wday == 0);
 
-    // Verify epoch time_t
-    CHK(ds3231.getEpoch() == (EPOCH_TEST + 1));
+    // Verify getEpoch()
+    CHK(rtc.getEpoch() == (EPOCH_TEST + 1));
 
-    // Test write
+    // Test write()
     dtw.tm_hour = 12;
     dtw.tm_min = 34;
     dtw.tm_sec = 56;
@@ -120,10 +123,10 @@ void setup()
     dtw.tm_mon = 1; // 0=January
     dtw.tm_year = 2020-1900;
     dtw.tm_wday = 6; // 0=Sunday
-    CHK(ds3231.write(&dtw) == Success);
+    CHK(rtc.write(&dtw) == Success);
 
-    // Test read
-    CHK(ds3231.read(&dtr) == Success);
+    // Test read()
+    CHK(rtc.read(&dtr) == Success);
     CHK(dtw.tm_sec == dtr.tm_sec);
     CHK(dtw.tm_min == dtr.tm_min);
     CHK(dtw.tm_hour == dtr.tm_hour);
@@ -132,17 +135,29 @@ void setup()
     CHK(dtw.tm_year == dtr.tm_year);
     CHK(dtw.tm_wday == dtr.tm_wday);
 
-    // Test set time
-    CHK(ds3231.setTime(12, 34, 56) == Success);
-    CHK(ds3231.getTime(&hour, &min, &sec) == Success);
-    CHK((hour == 12) && (min == 34) && (sec == 56));
+    // Test setTime()
+    CHK(rtc.setTime(12, 34, 56) == Success);
+    delay(1500);
+    CHK(rtc.getTime(&hour, &min, &sec) == Success);
+    CHK((hour == 12) && (min == 34) && (sec == 57));
 
-    // Test set date/time   13:45:09  31 December 2019  Tuesday
-    CHK(ds3231.setDateTime(13, 45, 9,  31, 12, 2019,  2) == Success);
+    // Test setDateTime()   13:45:09  31 December 2019  Tuesday
+    CHK(rtc.setDateTime(13, 45, 9,  31, 12, 2019,  2) == Success);
+    delay(1500);
 
-    // Verify setDateTime
-    CHK(ds3231.read(&dtr) == Success);
-    CHK(dtr.tm_sec == 9);
+    // Test getDateTime()
+    CHK(rtc.getDateTime(&hour, &min, &sec, &mday, &mon, &year, &wday) == Success);
+    CHK(hour == 13);
+    CHK(min == 45);
+    CHK(sec == 10);
+    CHK(mday == 31);
+    CHK(mon == 12);
+    CHK(year == 2019);
+    CHK(wday == 2);
+
+    // Verify setDateTime() with read()
+    CHK(rtc.read(&dtr) == Success);
+    CHK(dtr.tm_sec == 10);
     CHK(dtr.tm_min == 45);
     CHK(dtr.tm_hour == 13);
     CHK(dtr.tm_mday == 31);

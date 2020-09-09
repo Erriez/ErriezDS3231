@@ -14,7 +14,7 @@ echo "Starting auto-build script..."
 function autobuild()
 {
     # Set environment variables
-    BOARDS_AVR="--board uno --board micro --board miniatmega328 --board nanoatmega328new --board pro16MHzatmega328 --board pro8MHzatmega328 --board megaatmega2560 --board leonardo"
+    BOARDS_AVR="--board uno --board megaatmega2560 --board leonardo"
     BOARDS_ARM="--board due"
     BOARDS_ESP="--board d1_mini --board nodemcuv2 --board lolin_d32"
 
@@ -27,10 +27,12 @@ function autobuild()
     platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/ErriezDS3231AlarmPolling/ErriezDS3231AlarmPolling.ino
     platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/ErriezDS3231DateStrings/ErriezDS3231DateStrings.ino
     platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/ErriezDS3231ReadTimeInterrupt/ErriezDS3231ReadTimeInterrupt.ino
-    platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/ErriezDS3231SetDateTime/ErriezDS3231SetDateTime.ino
+    platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/ErriezDS3231GetSetTime/ErriezDS3231GetSetTime.ino
+    platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/ErriezDS3231SQWInterrupt/ErriezDS3231SQWInterrupt.ino
     platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/ErriezDS3231Temperature/ErriezDS3231Temperature.ino
     platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/ErriezDS3231Terminal/ErriezDS3231Terminal.ino
     platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/ErriezDS3231Test/ErriezDS3231Test.ino
+    platformio ci --lib="." ${BOARDS_AVR} ${BOARDS_ARM} ${BOARDS_ESP} examples/ErriezDS3231WriteRead/ErriezDS3231WriteRead.ino
 }
 
 function generate_doxygen()

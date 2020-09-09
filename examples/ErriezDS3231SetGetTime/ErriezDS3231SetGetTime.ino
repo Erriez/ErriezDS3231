@@ -23,18 +23,17 @@
  */
 
 /*!
- * \brief DS3231 high accurate RTC temperature example for Arduino
+ * \brief DS3231 RTC set get time example for Arduino
  * \details
- *      Source:         https://github.com/Erriez/ErriezDS3231
- *      Documentation:  https://erriez.github.io/ErriezDS3231
+ *    Source:         https://github.com/Erriez/ErriezDS3231
+ *    Documentation:  https://erriez.github.io/ErriezDS3231
  */
 
 #include <Wire.h>
-
 #include <ErriezDS3231.h>
 
-// Create DS3231 RTC object
-ErriezDS3231 ds3231;
+// Create RTC object
+ErriezDS3231 rtc;
 
 
 void setup()
@@ -45,43 +44,50 @@ void setup()
     while (!Serial) {
         ;
     }
-    Serial.println(F("\nErriez DS3231 RTC temperature example\n"));
+    Serial.println(F("\nErriez DS3231 set get time example"));
 
-    // Initialize TWI
+    // Initialize I2C
     Wire.begin();
-    Wire.setClock(400000);
+    Wire.setClock(100000);
 
     // Initialize RTC
-    while (!ds3231.begin()) {
+    while (!rtc.begin()) {
         Serial.println(F("RTC not found"));
         delay(3000);
     }
+
+    // Set square wave out pin
+    // SquareWaveDisable, SquareWave1Hz, SquareWave4096Hz, SquareWave8192Hz, SquareWave32768Hz
+    rtc.setSquareWave(SquareWaveDisable);
+
+    // Set new time 12:00:00
+    rtc.setTime(12, 0, 0);
 }
 
 void loop()
 {
-    int8_t temperature = 0;
-    uint8_t fraction = 0;
+    uint8_t hour;
+    uint8_t min;
+    uint8_t sec;
 
-    // Force temperature conversion
-    // Without this call, it takes 64 seconds before the temperature is updated.
-    if (!ds3231.startTemperatureConversion()) {
-        Serial.println(F("Start conv failed"));
-        return;
+    // Get time from RTC
+    if (!rtc.getTime(&hour, &min, &sec)) {
+        Serial.println(F("Get time failed"));
+    } else {
+        // Print time
+        Serial.print(hour);
+        Serial.print(F(":"));
+        if (min < 10) {
+            Serial.print(F("0"));
+        }
+        Serial.print(min);
+        Serial.print(F(":"));
+        if (sec < 10) {
+            Serial.print(F("0"));
+        }
+        Serial.println(sec);
     }
 
-    // Read temperature
-    if (!ds3231.getTemperature(&temperature, &fraction)) {
-        Serial.println(F("Temp read failed"));
-        return;
-    }
-
-    // Print temperature
-    Serial.print(temperature);
-    Serial.print(F("."));
-    Serial.print(fraction);
-    Serial.println(F("C"));
-
-    // Wait some time
-    delay(5000);
+    // Wait a second
+    delay(1000);
 }

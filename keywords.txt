@@ -1,5 +1,5 @@
 #######################################
-# Erriez DS3231 library for Arduino
+# Erriez DS3231 RTC library for Arduino
 #######################################
 
 #######################################
@@ -13,18 +13,24 @@ SquareWave	KEYWORD1
 tm_sec	KEYWORD1
 tm_min	KEYWORD1
 tm_hour	KEYWORD1
+tm_wday	KEYWORD1
 tm_mday	KEYWORD1
 tm_mon	KEYWORD1
 tm_year	KEYWORD1
-tm_wday	KEYWORD1
+sec	KEYWORD1
+min	KEYWORD1
+hour	KEYWORD1
+wday	KEYWORD1
+mday	KEYWORD1
+mon	KEYWORD1
+year	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 begin	KEYWORD2
-oscillatorEnable	KEYWORD2
-isOscillatorStopped	KEYWORD2
-clearOscillatorStopFlag	KEYWORD2
+isRunning	KEYWORD2
+clockEnable	KEYWORD2
 getEpoch	KEYWORD2
 setEpoch	KEYWORD2
 read	KEYWORD2
@@ -32,11 +38,7 @@ write	KEYWORD2
 setTime	KEYWORD2
 getTime	KEYWORD2
 setDateTime	KEYWORD2
-setAlarm1	KEYWORD2
-setAlarm2	KEYWORD2
-alarmInterruptEnable	KEYWORD2
-getAlarmFlag	KEYWORD2
-clearAlarmFlag	KEYWORD2
+getDateTime	KEYWORD2
 setSquareWave	KEYWORD2
 outputClockPinEnable	KEYWORD2
 setAgingOffset	KEYWORD2
@@ -45,8 +47,8 @@ startTemperatureConversion	KEYWORD2
 getTemperature	KEYWORD2
 bcdToDec	KEYWORD2
 decToBcd	KEYWORD2
-readRegister	KEYWORD2
 writeRegister	KEYWORD2
+readRegister	KEYWORD2
 readBuffer	KEYWORD2
 writeBuffer	KEYWORD2
 
@@ -54,6 +56,7 @@ writeBuffer	KEYWORD2
 # Instances (KEYWORD2)
 #######################################
 ds3231	KEYWORD1
+rtc	KEYWORD1
 dt	KEYWORD1
 t	KEYWORD1
 

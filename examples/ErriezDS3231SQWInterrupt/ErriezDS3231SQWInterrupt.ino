@@ -30,7 +30,7 @@
  *
  *    Connect the nINT/SQW pin to an Arduino interrupt pin
  *
- *    The example generates a 1Hz interrupt at every square wave falling edge.
+ *    The LED blinks at the 1Hz Square Wave pin falling edge.
  */
 
 #include <Wire.h>
@@ -49,70 +49,23 @@
 #define INT_PIN     0 // GPIO0 pin for ESP8266 / ESP32 targets
 #endif
 
+// LED pin
+#define LED_PIN     LED_BUILTIN
+
 // Create DS3231 RTC object
-ErriezDS3231 ds3231;
+ErriezDS3231 rtc;
 
-// Clock interrupt flag must be volatile
-volatile bool clockInterrupt = false;
-
-// Time variables
-uint8_t hour = 0;
-uint8_t minute = 0;
-uint8_t second = 0;
+// SQW interrupt flag must be volatile
+volatile bool sqwInterrupt = false;
 
 
 #if defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_ESP32)
 ICACHE_RAM_ATTR
 #endif
-void clockHandler()
+void sqwHandler()
 {
     // Set global interrupt flag
-    clockInterrupt = true;
-}
-
-void incrementTime()
-{
-    if ((hour == 0) && (minute == 0) && (second == 0)) {
-        // Get date time from RTC
-        if (ds3231.getTime(&hour, &minute, &second)) {
-            Serial.println(F("Get time failed"));
-            return;
-        }
-    } else {
-        // Increment time every second
-        if (second >= 59) {
-            second = 0;
-            if (minute >= 59) {
-                minute = 0;
-                if (hour >= 23) {
-                    hour = 0;
-                } else {
-                    hour++;
-                }
-            } else {
-                minute++;
-            }
-        } else {
-            second++;
-        }
-    }
-}
-
-void printTime()
-{
-    // Print time
-    // Print time
-    Serial.print(hour);
-    Serial.print(F(":"));
-    Serial.print(minute);
-    if (minute < 10) {
-        Serial.print(F("0"));
-    }
-    Serial.print(F(":"));
-    if (second < 10) {
-        Serial.print(F("0"));
-    }
-    Serial.println(second);
+    sqwInterrupt = true;
 }
 
 void setup()
@@ -123,50 +76,50 @@ void setup()
     while (!Serial) {
         ;
     }
-    Serial.println(F("\nErriez DS3231 time interrupt example\n"));
+    Serial.println(F("\nErriez DS3231 SQW blink example\n"));
 
     // Initialize TWI
     Wire.begin();
     Wire.setClock(400000);
 
+    // Attach to INT0 interrupt falling edge
+    pinMode(INT_PIN, INPUT_PULLUP);
+    attachInterrupt(digitalPinToInterrupt(INT_PIN), sqwHandler, FALLING);
+
     // Initialize RTC
-    while (!ds3231.begin()) {
+    while (!rtc.begin()) {
         Serial.println(F("RTC not found"));
         delay(3000);
     }
 
     // Enable RTC clock
     if (!rtc.isRunning()) {
-        Serial.println(F("Clock reset"));
         rtc.clockEnable();
     }
 
-    // Attach to INT0 interrupt falling edge
-    pinMode(INT_PIN, INPUT_PULLUP);
-    attachInterrupt(digitalPinToInterrupt(INT_PIN), clockHandler, FALLING);
+    // Set 1Hz square wave out:
+    //      SquareWaveDisable
+    //      SquareWave1Hz
+    //      SquareWave1024Hz
+    //      SquareWave4096Hz
+    //      SquareWave8192Hz
+    rtc.setSquareWave(SquareWave1Hz);
 
-    // Enable 1Hz square wave out is required for this example
-    ds3231.setSquareWave(SquareWave1Hz);
-
-    // Disable 32kHz output pin which is not needed for this example
-    ds3231.outputClockPinEnable(false);
-
-    Serial.println(F("Waiting for 1Hz time interrupt signal..."));
+    // Initialize LED
+    pinMode(LED_PIN, OUTPUT);
 }
 
 void loop()
 {
     // Wait for 1Hz square wave clock interrupt
-    if (clockInterrupt) {
-        // Increment time by software
-        incrementTime();
-
-        // Print time
-        printTime();
+    if (sqwInterrupt) {
+        // Toggle LED
+        Serial.println(F("Toggle LED"));
+        digitalWrite(LED_PIN, !digitalRead(LED_PIN));
 
         // Clear interrupt flag when interrupt has been handled
-        clockInterrupt = false;
+        sqwInterrupt = false;
     }
 
-    // Set CPU in idle
+    // Todo: Set CPU in idle
 }

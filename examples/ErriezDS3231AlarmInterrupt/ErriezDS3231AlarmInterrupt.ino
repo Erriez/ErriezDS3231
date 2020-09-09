@@ -112,7 +112,7 @@ void printDateTimeShort()
 
     // Get date time from RTC
     if (!ds3231.read(&dt)) {
-        Serial.println(F("Error: Read date time failed"));
+        Serial.println(F("RTC not found"));
         return;
     }
 
@@ -149,16 +149,14 @@ void setup()
 
     // Initialize RTC
     while (!ds3231.begin()) {
-        Serial.println(F("Error: Could not detect DS3231 RTC"));
+        Serial.println(F("RTC not found"));
         delay(3000);
     }
 
-    // Check oscillator status
+    // Enable RTC clock
     if (!ds3231.isRunning()) {
-        Serial.println(F("Error: DS3231 RTC oscillator stopped. Program new date/time."));
-        while (1) {
-            ;
-        }
+        Serial.println(F("Clock reset"));
+        ds3231.clockEnable();
     }
 
     // Attach to INT0 interrupt falling edge

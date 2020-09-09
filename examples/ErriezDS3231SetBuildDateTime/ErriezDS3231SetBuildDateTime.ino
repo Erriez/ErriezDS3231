@@ -23,7 +23,7 @@
  */
 
 /*!
- * \brief DS3231 RTC set date/time example for Arduino
+ * \brief DS3231 RTC set build date/time example for Arduino
  * \details
  *    Source:         https://github.com/Erriez/ErriezDS3231
  *    Documentation:  https://erriez.github.io/ErriezDS3231
@@ -33,7 +33,7 @@
 #include <ErriezDS3231.h>
 
 // Create DS3231 RTC object
-ErriezDS3231 ds3231;
+ErriezDS3231 rtc;
 
 // Global date/time object
 struct tm dt;
@@ -42,14 +42,17 @@ struct tm dt;
 void rtcInit()
 {
     // Initialize RTC
-    while (!ds3231.begin()) {
-        Serial.println(F("Error: DS3231 not found"));
+    while (!rtc.begin()) {
+        Serial.println(F("RTC not found"));
         delay(3000);
     }
 
+    // Enable RTC clock
+    rtc.clockEnable(true);
+
     // Set square wave out pin
     // SquareWaveDisable, SquareWave1Hz, SquareWave4096Hz, SquareWave8192Hz, SquareWave32768Hz
-    ds3231.setSquareWave(SquareWaveDisable);
+    rtc.setSquareWave(SquareWaveDisable);
 }
 
 bool getBuildTime(const char *str)
@@ -73,8 +76,8 @@ bool getBuildTime(const char *str)
 bool getBuildDate(const char *str)
 {
     const char *monthName[] = {
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     };
     uint8_t monthIndex;
     char month[12];
@@ -124,7 +127,7 @@ bool rtcSetDateTime()
 
     // Set new date time
     Serial.print(F("Set RTC date time..."));
-    if (!ds3231.write(&dt)) {
+    if (!rtc.write(&dt)) {
         Serial.println(F("FAILED"));
     } else {
         Serial.println(F("OK"));
@@ -135,10 +138,8 @@ bool rtcSetDateTime()
 
 void setup()
 {
-    // Startup delay to initialize serial port
-    delay(500);
-
     // Initialize serial port
+    delay(500);
     Serial.begin(115200);
     while (!Serial) {
         ;
@@ -164,7 +165,7 @@ void setup()
 void loop()
 {
     // Get date/time
-    if (!ds3231.read(&dt)) {
+    if (!rtc.read(&dt)) {
         Serial.println(F("RTC read failed"));
     } else {
         Serial.println(asctime(&dt));

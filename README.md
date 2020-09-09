@@ -62,12 +62,14 @@ Arduino IDE | Examples | Erriez DS3231 RTC:
 * [AlarmInterrupt](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231AlarmInterrupt/ErriezDS3231AlarmInterrupt.ino) Alarm with interrupts.
 * [AlarmPolling](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231AlarmPolling/ErriezDS3231AlarmPolling.ino) Alarm polled.
 * [DateStrings](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231DateStrings/ErriezDS3231DateStrings.ino) Date strings in flash example.
-* [Read](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Read/ErriezDS3231Read.ino) Simple RTC read example.
+* [ReadDateTime](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231ReadDateTime/ErriezDS3231ReadDateTime.ino) Simple RTC read date/time example.
 * [ReadTimeInterrupt](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231ReadTimeInterrupt/ErriezDS3231ReadTimeInterrupt.ino)  Read time with 1Hz SQW interrupt. (Highly recommended)
-* [SetDateTime](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231SetDateTime/ErriezDS3231SetDateTime.ino) Set date time. (Must be started first)
+* [SetGetTime](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231SetGetTime/ErriezDS3231SetGetTime.ino)  Set/Get time.
+* [SQWBlink](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231SQWBlink/ErriezDS3231SQWBlink.ino)  Blink LED on SQW interrupt pin.
 * [Temperature](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Temperature/ErriezDS3231Temperature.ino) Temperature.
 * [Terminal](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Terminal/ErriezDS3231Terminal.ino) Advanced terminal interface with [set date/time Python](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Terminal/ErriezDS3231Terminal.py) script.
 * [Test](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Test/ErriezDS3231Test.ino) Regression test.
+* [WriteDateTime](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231WriteDateTime/ErriezDS3231WriteDateTime.ino) Write date time. (Must be started first)
 
 
 ## Documentation

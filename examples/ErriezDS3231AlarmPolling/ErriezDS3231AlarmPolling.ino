@@ -86,7 +86,7 @@ void printDateTimeShort()
 
     // Get date time from RTC
     if (!ds3231.read(&dt)) {
-        Serial.println(F("Error: Read date time failed"));
+        Serial.println(F("RTC read failed"));
         return;
     }
 
@@ -123,7 +123,7 @@ void setup()
 
     // Initialize RTC
     while (!ds3231.begin()) {
-        Serial.println(F("Error: Could not detect DS3231 RTC"));
+        Serial.println(F("RTC not found"));
         delay(3000);
     }
 
