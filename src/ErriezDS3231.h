@@ -144,7 +144,7 @@ typedef enum {
 
 
 /*!
- * \brief DS3231 RTC base class
+ * \brief DS3231 RTC class
  */
 class ErriezDS3231
 {
@@ -156,7 +156,7 @@ public:
     bool isRunning();
     bool clockEnable(bool enable=true);
 
-    // Date/time functions
+    // Set/get date/time
     time_t getEpoch();
     bool setEpoch(time_t t);
     bool read(struct tm *dt);
@@ -166,6 +166,9 @@ public:
     bool setDateTime(uint8_t hour, uint8_t min, uint8_t sec,
                      uint8_t mday, uint8_t mon, uint16_t year,
                      uint8_t wday);
+    bool getDateTime(uint8_t *hour, uint8_t *min, uint8_t *sec,
+                     uint8_t *mday, uint8_t *mon, uint16_t *year,
+                     uint8_t *wday);
 
     // Alarm functions
     bool setAlarm1(Alarm1Type alarmType,

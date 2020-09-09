@@ -8,16 +8,17 @@ This is a DS3231 high precision I2C RTC library for Arduino.
 
 ## Library features
 
-* Set / get time
-* Set date / time with  `struct tm`
-* Set / get Unix Epoch UTC 32-bit timestamp `time_t`
-* Day of the week calculation
+* libc `<time.h>` compatible
+* Read/write date/time `struct tm`
+* Set/get Unix epoch UTC `time_t`
+* Set/get time (hour, min, sec)
+* Set/get date and time (hour, min, sec, mday, mon, year, wday)
 * Read temperature (0.25 degree resolution)
 * Alarm 1 (second/minute/hour/day/date match) 
 * Alarm 2 (minute/hour/day/date match)
-* Polling and Alarm ```INT/SQW``` interrupt pin
-* Control ```32kHz``` out signal (enable/disable)
-* Control ```SQW``` signal (disable/1/1024/4096/8192Hz)
+* Polling and Alarm `INT/SQW` interrupt pin
+* Control `32kHz` out signal (enable/disable)
+* Control `SQW` signal (disable / 1 / 1024 / 4096 / 8192Hz)
 * Configure aging offset
 * Serial terminal interface
 * Full RTC register access
@@ -25,7 +26,7 @@ This is a DS3231 high precision I2C RTC library for Arduino.
 
 ## Hardware
 
-Any Arduino hardware with a TWI interface and ```Wire.h``` support.
+Any Arduino hardware with a TWI interface and `Wire.h` support.
 
 ![DS3231 - Arduino UNO](https://raw.githubusercontent.com/Erriez/ErriezDS3231/master/extras/DS3231_Arduino_UNO.png)
 
@@ -49,7 +50,7 @@ https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/windows.
 
 Note: Tested ESP8266 / ESP32 boards:
 
-* **ESP8266 boards**: ESP12E / WeMos D1 & R2 / Node MCU v2 / v3
+* **ESP8266 boards**: ESP12F / WeMos D1 & R2 / Node MCU v2 / v3
 * **ESP32 boards:** WeMos LOLIN32 / LOLIN D32
 
 Other unlisted MCU's may work, but are not tested.
@@ -58,24 +59,23 @@ Other unlisted MCU's may work, but are not tested.
 
 Arduino IDE | Examples | Erriez DS3231 RTC:
 
-* [AgingOffset](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231AgingOffset/ErriezDS3231AgingOffset.ino) Aging offset programming.
-* [AlarmInterrupt](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231AlarmInterrupt/ErriezDS3231AlarmInterrupt.ino) Alarm with interrupts.
-* [AlarmPolling](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231AlarmPolling/ErriezDS3231AlarmPolling.ino) Alarm polled.
-* [DateStrings](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231DateStrings/ErriezDS3231DateStrings.ino) Date strings in flash example.
-* [ReadDateTime](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231ReadDateTime/ErriezDS3231ReadDateTime.ino) Simple RTC read date/time example.
-* [ReadTimeInterrupt](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231ReadTimeInterrupt/ErriezDS3231ReadTimeInterrupt.ino)  Read time with 1Hz SQW interrupt. (Highly recommended)
-* [SetGetTime](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231SetGetTime/ErriezDS3231SetGetTime.ino)  Set/Get time.
-* [SQWBlink](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231SQWBlink/ErriezDS3231SQWBlink.ino)  Blink LED on SQW interrupt pin.
-* [Temperature](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Temperature/ErriezDS3231Temperature.ino) Temperature.
-* [Terminal](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Terminal/ErriezDS3231Terminal.ino) Advanced terminal interface with [set date/time Python](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Terminal/ErriezDS3231Terminal.py) script.
-* [Test](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Test/ErriezDS3231Test.ino) Regression test.
-* [WriteDateTime](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231WriteDateTime/ErriezDS3231WriteDateTime.ino) Write date time. (Must be started first)
-
+* [AgingOffset](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231AgingOffset/ErriezDS3231AgingOffset.ino) Aging offset programming
+* [AlarmInterrupt](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231AlarmInterrupt/ErriezDS3231AlarmInterrupt.ino) Alarm with interrupts
+* [AlarmPolling](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231AlarmPolling/ErriezDS3231AlarmPolling.ino) Alarm polled
+* [DumpRegisters](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231DumpRegisters/ErriezDS3231DumpRegisters.ino) Dump registers polled
+* [SetBuildDateTime](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231SetBuildDateTime/ErriezDS3231SetBuildDateTime.ino) Set build date/time
+* [SetGetDateTime](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231SetGetDateTime/ErriezDS3231SetGetDateTime.ino) Simple RTC read date/time example
+* [SetGetTime](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231SetGetTime/ErriezDS3231SetGetTime.ino)  Set/Get time
+* [SQWInterrupt](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231SQWInterrupt/ErriezDS3231SQWInterrupt.ino)  Blink LED on SQW interrupt pin
+* [Temperature](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Temperature/ErriezDS3231Temperature.ino) Temperature
+* [Terminal](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Terminal/ErriezDS3231Terminal.ino) Advanced terminal interface with [set date/time Python](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Terminal/ErriezDS3231Terminal.py) script
+* [Test](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231Test/ErriezDS3231Test.ino) Regression test
+* [WriteRead](https://github.com/Erriez/ErriezDS3231/blob/master/examples/ErriezDS3231WriteRead/ErriezDS3231WriteRead.ino) Write/read `struct tm`
 
 ## Documentation
 
 - [Doxygen online HTML](https://erriez.github.io/ErriezDS3231) 
-- [Doxygen PDF](https://github.com/Erriez/ErriezDS3231/blob/master/extras/ErriezDS3231.pdf)
+- [Doxygen PDF](https://github.com/Erriez/ErriezDS3231/blob/master/ErriezDS3231.pdf)
 - [DS3231 datasheet](https://github.com/Erriez/ErriezDS3231/blob/master/extras/DS3231.pdf)
 
 
@@ -87,7 +87,7 @@ Arduino IDE | Examples | Erriez DS3231 RTC:
 #include <Wire.h>
 #include <ErriezDS3231.h>
 
-// Create DS3231 RTC object
+// Create RTC object
 DS3231 rtc;
 
 void setup()
@@ -97,7 +97,7 @@ void setup()
     Wire.setClock(400000);
     
     // Initialize RTC
-    while (!ds3231.begin()) {
+    while (!rtc.begin()) {
         // Error: Could not detect DS3231 RTC, retry after some time
         delay(3000);
     }
@@ -108,12 +108,12 @@ void setup()
 
 ```c++
 // Check oscillator status
-if (ds3231.isOscillatorStopped()) {
-    // Error: DS3231 RTC oscillator stopped. Date/time cannot be trusted. 
+if (rtc.isOscillatorStopped()) {
+    // Error: RTC oscillator stopped. Date/time cannot be trusted. 
     // Set new date/time before reading date/time.
-    
-    // Start oscillator with date/time "Sun Jan 1 2000 0:00:00"
-    ds3231.oscillatorEnable(true);
+
+    // Enable oscillator
+    rtc.clockEnable(true);
 }
 ```
 
@@ -121,8 +121,8 @@ if (ds3231.isOscillatorStopped()) {
 
 ```c++
 // Write time to RTC
-if (!ds3231.setTime(12, 0, 0)) {
-    // Error: Write time failed
+if (!rtc.setTime(12, 0, 0)) {
+    // Error: Set time failed
 }
 ```
 
@@ -134,47 +134,92 @@ uint8_t minute;
 uint8_t second;
 
 // Read time from RTC
-if (!ds3231.getTime(&hour, &minute, &second)) {
-    // Error: Read time failed
+if (!rtc.getTime(&hour, &minute, &second)) {
+    // Error: RTC read failed
 }
 ```
 
-**Set date time**
+**Set date and time**
 
 ```c++
-// Create and initialize date time object
+// Write RTC date/time: 13:45:09  31 December 2019  0=Sunday, 2=Tuesday
+if (!rtc.setDateTime(13, 45, 9,  31, 12, 2019,  2) {
+    // Error: RTC write failed
+}
+```
+
+**Get date and time**
+
+```c++
+uint8_t hour;
+uint8_t min;
+uint8_t sec;
+uint8_t mday;
+uint8_t mon;
+uint16_t year;
+uint8_t wday;
+
+// Read RTC date/time
+if (!rtc.getDateTime(&hour, &min, &sec, &mday, &mon, &year, &wday) {
+    // Error: RTC read failed
+}
+
+// hour: 0..23
+// min: 0..59
+// sec: 0..59
+// mday: 1..31
+// mon: 1..12
+// year: 2000..2099
+// wday: 0..6 (0=Sunday .. 6=Saturday)
+```
+
+**Write date/time struct tm**
+
+```c++
 struct tm dt;
 
-dt.tm_sec = 0,      // Seconds 0..59
-dt.tm_min = 36,     // Minutes 0..59
-dt.tm_hour = 21,    // Hours 0..23
-dt.tm_wday = 6;     // Day of the week: 0 = Sunday .. 6=Saturday
-dt.tm_mday = 29;    // Day of the month 1..31
-dt.tm_mon = 7;      // Month 0..11
-dt.tm_year = 2020-1900; // Year starting at 1900
+dt.tm_hour = 12;
+dt.tm_min = 34;
+dt.tm_sec = 56;
+dt.tm_mday = 29;
+dt.tm_mon = 1; // 0=January
+dt.tm_year = 2020-1900;
+dt.tm_wday = 6; // 0=Sunday
 
-// Write date/time to RTC
-if (!ds3231.write(&dt)) {
-    // Error: Write date/time failed
+if (!rtc.write(&dt)) {
+    // Error: RTC Read failed
 }
 ```
 
-**Get date time**
+**Read date/time struct tm**
 
 ```c++
 struct tm dt;
 
-// Read date/time from RTC
-if (!ds3231.read(&dt)) {
-    // Error: Read date/time failed
+// Read RTC date/time
+if (!rtc.read(&dt)) {
+    // Error: RTC read failed
 }
 ```
 
-**Get Epoch Unix UTC time**
+**Read Unix Epoch UTC**
 
 ```c++
-// Get Unix epoch UTC time
-time_t t = ds3231.getEpoch();
+time_t t;
+
+// Read Unix epoch UTC from RTC
+if (!rtc.getEpoch(&t)) {
+    // Error: RTC read failed
+}
+```
+
+**Write Unix Epoch UTC**
+
+```c++
+// Write Unix epoch UTC to RTC
+if (!rtc.setEpoch(1599416430UL)) {
+    // Error: Set epoch failed
+}
 ```
 
 **Get temperature**
@@ -185,12 +230,12 @@ uint8_t fraction = 0;
 
 // Force temperature conversion
 // Without this call, it takes 64 seconds before the temperature is updated.
-if (!ds3231.startTemperatureConversion()) {
+if (!rtc.startTemperatureConversion()) {
     // Error: Start temperature conversion failed 
 }
 
 // Read temperature
-if (!ds3231.getTemperature(&temperature, &fraction)) {
+if (!rtc.getTemperature(&temperature, &fraction)) {
     // Error: Get temperature failed
 }
 
@@ -207,13 +252,13 @@ Note: Alarm 1 and Alarm 2 have different behavior. Please refer to the documenta
 
 ```c++
 // Generate alarm 1 every second
-ds3231.setAlarm1(Alarm1EverySecond, 0, 0, 0, 0);
+rtc.setAlarm1(Alarm1EverySecond, 0, 0, 0, 0);
 
 // Generate alarm 1 every minute and second match
-ds3231.setAlarm1(Alarm1EverySecond, 0, 0, 45, 30);
+rtc.setAlarm1(Alarm1EverySecond, 0, 0, 45, 30);
 
 // Generate alarm 1 every day, hour, minute and second match
-ds3231.setAlarm1(Alarm1MatchDay, 
+rtc.setAlarm1(Alarm1MatchDay, 
               1,  // Alarm day match (1 = Monday)
               12, // Alarm hour match
               45, // Alarm minute match
@@ -225,13 +270,13 @@ ds3231.setAlarm1(Alarm1MatchDay,
 
 ```c++
 // Generate alarm 2 every minute
-ds3231.setAlarm2(Alarm2EveryMinute, 0, 0, 0);
+rtc.setAlarm2(Alarm2EveryMinute, 0, 0, 0);
 
 // Generate alarm 2 every hour, minute match
-ds3231.setAlarm2(Alarm2MatchHours, 0, 23, 59);
+rtc.setAlarm2(Alarm2MatchHours, 0, 23, 59);
 
 // Generate alarm 2 every date, hour, minute match
-ds3231.setAlarm2(Alarm2MatchDate, 28, 7, 0);
+rtc.setAlarm2(Alarm2MatchDate, 28, 7, 0);
 ```
 
 **Alarm polling**
@@ -240,19 +285,19 @@ Note: The ```INT``` pin changes to low when an Alarm 1 or Alarm 2 match occurs a
 
 ```c++
 // Poll alarm 1 flag
-if (ds3231.getAlarmFlag(Alarm1)) {
+if (rtc.getAlarmFlag(Alarm1)) {
     // Handle Alarm 1
     
     // Clear alarm 1 flag
-	ds3231.clearAlarmFlag(Alarm1);
+	rtc.clearAlarmFlag(Alarm1);
 }
 
 // Poll alarm 2 flag
-if (ds3231.getAlarmFlag(Alarm2)) {
+if (rtc.getAlarmFlag(Alarm2)) {
     // Handle Alarm 2
     
     // Clear alarm 2 flag
-	ds3231.clearAlarmFlag(Alarm2);
+	rtc.clearAlarmFlag(Alarm2);
 }
 ```
 
@@ -286,26 +331,26 @@ void setup()
     attachInterrupt(digitalPinToInterrupt(INT_PIN), alarmHandler, FALLING);
     
     // Enable Alarm 1 and 2 interrupts
-    ds3231.alarmInterruptEnable(Alarm1, true);
-    ds3231.alarmInterruptEnable(Alarm2, true);
+    rtc.alarmInterruptEnable(Alarm1, true);
+    rtc.alarmInterruptEnable(Alarm2, true);
 }
 
 void loop()
 {
     // Check global alarm interrupt flag
     if (alarmInterrupt) {
-        if (ds3231.getAlarmFlag(Alarm1)) {
+        if (rtc.getAlarmFlag(Alarm1)) {
             // Handle alarm 1
             
             // Clear alarm 1 interrupt
-            ds3231.clearAlarmFlag(Alarm1);
+            rtc.clearAlarmFlag(Alarm1);
         }
         
-        if (ds3231.getAlarmFlag(Alarm2)) {
+        if (rtc.getAlarmFlag(Alarm2)) {
             // Handle alarm 2
             
             // Clear alarm 2 interrupt
-            ds3231.clearAlarmFlag(Alarm2);
+            rtc.clearAlarmFlag(Alarm2);
         }
     }
 }
@@ -316,8 +361,8 @@ void loop()
 Enable or disable ```32kHz``` output pin.
 
 ```c++
-ds3231.outputClockPinEnable(true);  // Enable 
-ds3231.outputClockPinEnable(false);	// Disable
+rtc.outputClockPinEnable(true);  // Enable 
+rtc.outputClockPinEnable(false);	// Disable
 ```
 
 **Square Wave Out (SQW)**
@@ -325,11 +370,11 @@ ds3231.outputClockPinEnable(false);	// Disable
 Note: Enabling ```SQW``` pin will disable the alarm ```INT``` signal.
 
 ```c++
-ds3231.setSquareWave(SquareWaveDisable);	// Disable
-ds3231.setSquareWave(SquareWave1Hz);		// 1Hz
-ds3231.setSquareWave(SquareWave1024Hz);	// 1024Hz
-ds3231.setSquareWave(SquareWave4096Hz);	// 4096Hz
-ds3231.setSquareWave(SquareWave8192Hz);	// 8192Hz
+rtc.setSquareWave(SquareWaveDisable);	// Disable
+rtc.setSquareWave(SquareWave1Hz);		// 1Hz
+rtc.setSquareWave(SquareWave1024Hz);	// 1024Hz
+rtc.setSquareWave(SquareWave4096Hz);	// 4096Hz
+rtc.setSquareWave(SquareWave8192Hz);	// 8192Hz
 ```
 
 
@@ -347,14 +392,15 @@ to calculate with date/time and port the application to different platforms. See
 | `getDateTime()`                  | `bool read(struct tm *dt)`                                   |
 | `getEpochTime()`                 | `time_t getEpoch()`                                          |
 |                                  | `bool setEpoch(time_t t)`                                    |
-|                                  | `bool setDateTime(uint8_t hour, uint8_t min, uint8_t sec,                uint8_t mday, uint8_t mon, uint16_t year, uint8_t wday)` |
-|                                  | `ErriezDS3231Debug` class removed to reduce flash size       |
+|                                  | `void setDateTime(uint8_t hour, uint8_t min, uint8_t sec, uint8_t mday, uint8_t mon, uint16_t year, uint8_t wday)` |
+|                                  | `void getDateTime(uint8_t *hour, uint8_t *min, uint8_t *sec, uint8_t *mday, uint8_t *mon, uint16_t *year, uint8_t *wday)` |
+| `ErriezDS3231Debug`              | class removed to reduce flash size       |
 
 
 ## Library dependencies
 
-* ```Wire.h```
-* ```Terminal.ino``` requires ```ErriezSerialTerminal``` library.
+* `Wire.h`
+* `Terminal.ino` requires `ErriezSerialTerminal` library.
 
 
 ## Library installation

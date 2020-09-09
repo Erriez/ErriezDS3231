@@ -50,7 +50,7 @@
 #endif
 
 // Create DS3231 RTC object
-ErriezDS3231 ds3231;
+ErriezDS3231 rtc;
 
 // Clock interrupt flag must be volatile
 volatile bool clockInterrupt = false;
@@ -74,7 +74,7 @@ void incrementTime()
 {
     if ((hour == 0) && (minute == 0) && (second == 0)) {
         // Get date time from RTC
-        if (ds3231.getTime(&hour, &minute, &second)) {
+        if (rtc.getTime(&hour, &minute, &second)) {
             Serial.println(F("Get time failed"));
             return;
         }
@@ -130,7 +130,7 @@ void setup()
     Wire.setClock(400000);
 
     // Initialize RTC
-    while (!ds3231.begin()) {
+    while (!rtc.begin()) {
         Serial.println(F("RTC not found"));
         delay(3000);
     }
@@ -146,10 +146,10 @@ void setup()
     attachInterrupt(digitalPinToInterrupt(INT_PIN), clockHandler, FALLING);
 
     // Enable 1Hz square wave out is required for this example
-    ds3231.setSquareWave(SquareWave1Hz);
+    rtc.setSquareWave(SquareWave1Hz);
 
     // Disable 32kHz output pin which is not needed for this example
-    ds3231.outputClockPinEnable(false);
+    rtc.outputClockPinEnable(false);
 
     Serial.println(F("Waiting for 1Hz time interrupt signal..."));
 }

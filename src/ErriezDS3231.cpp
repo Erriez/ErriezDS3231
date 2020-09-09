@@ -102,7 +102,7 @@ bool ErriezDS3231::clockEnable(bool enable)
  *      The application is responsible for checking the Oscillator Stop Flag (OSF) before reading
  *      date/time date. This function may be used to judge the validity of the date/time registers.
  * \retval true
- *      RTC oscillator is running.
+ *      RTC clock is running.
  * \retval false
  *      RTC oscillator was stopped: The date/time data is invalid. The application should
  *      synchronize and program a new date/time.
@@ -151,8 +151,10 @@ time_t ErriezDS3231::getEpoch()
  * \brief Write Unix epoch UTC time to RTC
  * \param t
  *      time_t time
- * \return
- *      See write returns.
+ * \retval true
+ *      Success.
+ * \retval false
+ *      Set epoch failed.
  */
 bool ErriezDS3231::setEpoch(time_t t)
 {
@@ -180,7 +182,7 @@ bool ErriezDS3231::setEpoch(time_t t)
  * \retval true
  *      Success
  * \retval false
- *      RTC read failed.
+ *      Read failed.
  */
 bool ErriezDS3231::read(struct tm *dt)
 {
@@ -198,10 +200,10 @@ bool ErriezDS3231::read(struct tm *dt)
     // Convert BCD buffer to Decimal
     dt->tm_sec = bcdToDec(buffer[0] & 0x7F);
     dt->tm_min = bcdToDec(buffer[1] & 0x7F);
-    dt->tm_hour = bcdToDec(buffer[2] & 0x3f);
+    dt->tm_hour = bcdToDec(buffer[2] & 0x3F);
     dt->tm_wday = bcdToDec(buffer[3] & 0x07);
     dt->tm_mday = bcdToDec(buffer[4] & 0x3F);
-    dt->tm_mon = bcdToDec(buffer[5] & 0x1f);
+    dt->tm_mon = bcdToDec(buffer[5] & 0x1F);
     dt->tm_year = bcdToDec(buffer[6]) + 100; // 2000-1900
 
     // Month: 0..11
@@ -231,8 +233,12 @@ bool ErriezDS3231::read(struct tm *dt)
  *      Write all RTC registers at once to prevent a time/date register change in the middle of the
  *      register write operation. This function enables the oscillator and clear the Oscillator Stop
  *      Flag (OSF) in the status register.
- * \param dateTime
- *      Date time structure. Providing invalid date/time data may result in unpredictable behavior.
+ * \param dt
+ *      Date/time struct tm. Providing invalid date/time data may result in unpredictable behavior.
+ * \retval true
+ *      Success.
+ * \retval false
+ *      Write failed.
  */
 bool ErriezDS3231::write(const struct tm *dt)
 {
@@ -302,7 +308,7 @@ bool ErriezDS3231::getTime(uint8_t *hour, uint8_t *min, uint8_t *sec)
     uint8_t buffer[3];
 
     // Read RTC time registers
-    if (!readBuffer(0x00, &buffer, sizeof(buffer))) {
+    if (!readBuffer(0x00, buffer, sizeof(buffer))) {
         return false;
     }
 
@@ -343,7 +349,7 @@ bool ErriezDS3231::getTime(uint8_t *hour, uint8_t *min, uint8_t *sec)
  * \retval true
  *      Success.
  * \retval false
- *      Set time failed.
+ *      Set date/time failed.
  */
 bool ErriezDS3231::setDateTime(uint8_t hour, uint8_t min, uint8_t sec,
                                uint8_t mday, uint8_t mon, uint16_t year,
@@ -362,6 +368,50 @@ bool ErriezDS3231::setDateTime(uint8_t hour, uint8_t min, uint8_t sec,
 
     // Write date/time to RTC
     return write(&dt);
+}
+
+/*!
+ * \brief Get date time
+ * \param hour
+ *      Hours 0..23
+ * \param min
+ *      Minutes 0..59
+ * \param sec
+ *      Seconds 0..59
+ * \param mday
+ *      Day of the month 1..31
+ * \param mon
+ *      Month 1..12 (1=January)
+ * \param year
+ *      Year 2000..2099
+ * \param wday
+ *      Day of the week 0..6 (0=Sunday, .. 6=Saturday)
+ * \retval true
+ *      Success.
+ * \retval false
+ *      Get date/time failed.
+ */
+bool ErriezDS3231::getDateTime(uint8_t *hour, uint8_t *min, uint8_t *sec,
+                               uint8_t *mday, uint8_t *mon, uint16_t *year,
+                               uint8_t *wday)
+{
+    struct tm dt;
+
+    // Read date/time from RTC
+    if (!read(&dt)) {
+        return false;
+    }
+
+    // Set return values
+    *hour = dt.tm_hour;
+    *min = dt.tm_min;
+    *sec = dt.tm_sec;
+    *mday = dt.tm_mday;
+    *mon = dt.tm_mon + 1;
+    *year = dt.tm_year + 1900;
+    *wday = dt.tm_wday;
+
+    return true;
 }
 
 /*!
@@ -783,13 +833,17 @@ uint8_t ErriezDS3231::readRegister(uint8_t reg)
 }
 
 /*!
- * \brief Write to RTC register.
+ * \brief Write register.
  * \details
  *      Please refer to the RTC datasheet.
  * \param reg
  *      RTC register number 0x00..0x12.
  * \param value
  *      8-bit unsigned register value.
+ * \retval true
+ *      Success
+ * \retval false
+ *      Write register failed
  */
 bool ErriezDS3231::writeRegister(uint8_t reg, uint8_t value)
 {
@@ -805,19 +859,19 @@ bool ErriezDS3231::writeRegister(uint8_t reg, uint8_t value)
  *      RTC register number 0x00..0x12.
  * \param buffer
  *      Buffer.
- * \param len
+ * \param writeLen
  *      Buffer length. Writing is only allowed within valid RTC registers.
  * \retval true
  *      Success
  * \retval false
  *      I2C write failed.
  */
-bool ErriezDS3231::writeBuffer(uint8_t reg, void *buffer, uint8_t len)
+bool ErriezDS3231::writeBuffer(uint8_t reg, void *buffer, uint8_t writeLen)
 {
     // Start I2C transfer by writing the I2C address, register number and optional buffer
     Wire.beginTransmission(DS3231_ADDR);
     Wire.write(reg);
-    for (uint8_t i = 0; i < len; i++) {
+    for (uint8_t i = 0; i < writeLen; i++) {
         Wire.write(((uint8_t *)buffer)[i]);
     }
     if (Wire.endTransmission(true) != 0) {
@@ -833,14 +887,14 @@ bool ErriezDS3231::writeBuffer(uint8_t reg, void *buffer, uint8_t len)
  *      RTC register number 0x00..0x12.
  * \param buffer
  *      Buffer.
- * \param len
+ * \param readLen
  *      Buffer length. Reading is only allowed within valid RTC registers.
  * \retval true
  *      Success
  * \retval false
  *      I2C read failed.
  */
-bool ErriezDS3231::readBuffer(uint8_t reg, void *buffer, uint8_t len)
+bool ErriezDS3231::readBuffer(uint8_t reg, void *buffer, uint8_t readLen)
 {
     // Start I2C transfer by writing the I2C address and register number
     Wire.beginTransmission(DS3231_ADDR);
@@ -849,8 +903,8 @@ bool ErriezDS3231::readBuffer(uint8_t reg, void *buffer, uint8_t len)
     if (Wire.endTransmission(false) != 0) {
         return false;
     }
-    Wire.requestFrom((uint8_t)DS3231_ADDR, len);
-    for (uint8_t i = 0; i < len; i++) {
+    Wire.requestFrom((uint8_t)DS3231_ADDR, readLen);
+    for (uint8_t i = 0; i < readLen; i++) {
         ((uint8_t *)buffer)[i] = (uint8_t)Wire.read();
     }
 
