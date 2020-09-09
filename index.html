@@ -143,7 +143,7 @@ $(function() {
 </ul>
 <h2>Usage</h2>
 <p><b>Initialization</b></p>
-<div class="fragment"><div class="line">{c++}</div><div class="line">#include &lt;Wire.h&gt;</div><div class="line">#include &lt;ErriezDS3231.h&gt;</div><div class="line"></div><div class="line">// Create RTC object</div><div class="line">DS3231 rtc;</div><div class="line"></div><div class="line">void setup()</div><div class="line">{</div><div class="line">    // Initialize TWI with a 100kHz (default) or 400kHz clock</div><div class="line">    Wire.begin();</div><div class="line">    Wire.setClock(400000);</div><div class="line"></div><div class="line">    // Initialize RTC</div><div class="line">    while (!rtc.begin()) {</div><div class="line">        // Error: Could not detect DS3231 RTC, retry after some time</div><div class="line">        delay(3000);</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --><p><b>Check oscillator status at startup</b></p>
+<div class="fragment"><div class="line">{c++}</div><div class="line">#include &lt;Wire.h&gt;</div><div class="line">#include &lt;ErriezDS3231.h&gt;</div><div class="line"></div><div class="line">// Create RTC object</div><div class="line">ErriezDS3231 rtc;</div><div class="line"></div><div class="line">void setup()</div><div class="line">{</div><div class="line">    // Initialize TWI with a 100kHz (default) or 400kHz clock</div><div class="line">    Wire.begin();</div><div class="line">    Wire.setClock(400000);</div><div class="line"></div><div class="line">    // Initialize RTC</div><div class="line">    while (!rtc.begin()) {</div><div class="line">        // Error: Could not detect DS3231 RTC, retry after some time</div><div class="line">        delay(3000);</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --><p><b>Check oscillator status at startup</b></p>
 <div class="fragment"><div class="line">{c++}</div><div class="line">// Check oscillator status</div><div class="line">if (rtc.isOscillatorStopped()) {</div><div class="line">    // Error: RTC oscillator stopped. Date/time cannot be trusted. </div><div class="line">    // Set new date/time before reading date/time.</div><div class="line"></div><div class="line">    // Enable oscillator</div><div class="line">    rtc.clockEnable(true);</div><div class="line">}</div></div><!-- fragment --><p><b>Set time</b></p>
 <div class="fragment"><div class="line">{c++}</div><div class="line">// Write time to RTC</div><div class="line">if (!rtc.setTime(12, 0, 0)) {</div><div class="line">    // Error: Set time failed</div><div class="line">}</div></div><!-- fragment --><p><b>Get time</b></p>
 <div class="fragment"><div class="line">{c++}</div><div class="line">uint8_t hour;</div><div class="line">uint8_t minute;</div><div class="line">uint8_t second;</div><div class="line"></div><div class="line">// Read time from RTC</div><div class="line">if (!rtc.getTime(&amp;hour, &amp;minute, &amp;second)) {</div><div class="line">    // Error: RTC read failed</div><div class="line">}</div></div><!-- fragment --><p><b>Set date and time</b></p>
@@ -196,10 +196,10 @@ $(function() {
 <li><code>Terminal.ino</code> requires <code>ErriezSerialTerminal</code> library.</li>
 </ul>
 <h2>Library installation</h2>
-<p>Please refer to the <a href="https://github.com/Erriez/ErriezArduinoLibrariesAndSketches/wiki">Wiki</a> page.</p>
-<h2>Other Arduino Libraries and Sketches from Erriez</h2>
+<p>Please refer to the <a href="https://github.com/Erriez/ErriezArduinoLibraries/wiki">Wiki</a> page.</p>
+<h2>More Arduino Libraries from Erriez</h2>
 <ul>
-<li><a href="https://github.com/Erriez/ErriezArduinoLibrariesAndSketches">Erriez Libraries and Sketches</a> </li>
+<li><a href="https://github.com/Erriez/ErriezArduinoLibraries">Erriez Libraries</a> </li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
