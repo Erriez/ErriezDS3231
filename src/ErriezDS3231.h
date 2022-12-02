@@ -35,6 +35,7 @@
 
 #include <stdint.h>
 #include <time.h>
+#include <wire.h>
 
 //! DS3231 registers
 #define DS3231_REG_SECONDS      0x00    //!< Seconds register
@@ -150,6 +151,7 @@ class ErriezDS3231
 {
 public:
     // Initialize
+    bool begin(TwoWire *theWire);
     bool begin();
 
     // Oscillator functions
@@ -201,6 +203,10 @@ public:
     // Read/write buffer
     bool readBuffer(uint8_t reg, void *buffer, uint8_t len);
     bool writeBuffer(uint8_t reg, void *buffer, uint8_t len);
+
+private:
+    TwoWire *_wire;                     /**< Wire object */
+
 };
 
 #endif // ERRIEZ_DS3231_H_

@@ -30,11 +30,24 @@
  *      Documentation:  https://erriez.github.io/ErriezDS3231
  */
 
-#if (defined(__AVR__) || defined(ARDUINO_ARCH_SAM))
+
+#if defined(__AVR__) || defined(ARDUINO_ARCH_SAM)
 #include <avr/pgmspace.h>
+#elif defined(ESP8266) || defined(ESP32) || defined(ARDUINO_ARCH_RP2040)
+#include "pgmspace.h"
 #else
-#include <pgmspace.h>
+#define pgm_read_byte(addr)                                                    \
+  (*(const unsigned char *)(addr)) ///< PROGMEM workaround for non-AVR
 #endif
+
+#if !defined(__ARM_ARCH) && !defined(ENERGIA) && !defined(ESP8266) &&          \
+    !defined(ESP32) && !defined(__arc__)
+#include <util/delay.h>
+#endif
+
+
+
+
 
 #include <Wire.h>
 
@@ -42,7 +55,31 @@
 
 /*!
  * \brief Initialize and detect DS3231 RTC.
+ * @param theWire interface Pointer.
  * \details
+ *      Call this function from setup().
+ * \retval true
+ *      RTC detected.
+ * \retval false
+ *      RTC not detected.
+ */
+bool ErriezDS3231::begin(TwoWire *theWire)
+{
+    _wire = theWire;
+    // Check zero bits in status register
+    if (readRegister(DS3231_REG_STATUS) & 0x70) {
+        return false;
+    }
+
+    // DS3231 detected
+    return true;
+}
+
+/*!
+ * \brief Initialize and detect DS3231 RTC.
+ *
+ * \details
+ *      Uses default TwoWire interface.
  *      Call this function from setup().
  * \retval true
  *      RTC detected.
@@ -51,6 +88,7 @@
  */
 bool ErriezDS3231::begin()
 {
+    _wire = &Wire;
     // Check zero bits in status register
     if (readRegister(DS3231_REG_STATUS) & 0x70) {
         return false;
@@ -869,12 +907,12 @@ bool ErriezDS3231::writeRegister(uint8_t reg, uint8_t value)
 bool ErriezDS3231::writeBuffer(uint8_t reg, void *buffer, uint8_t writeLen)
 {
     // Start I2C transfer by writing the I2C address, register number and optional buffer
-    Wire.beginTransmission(DS3231_ADDR);
-    Wire.write(reg);
+    _wire->beginTransmission(DS3231_ADDR);
+    _wire->write(reg);
     for (uint8_t i = 0; i < writeLen; i++) {
-        Wire.write(((uint8_t *)buffer)[i]);
+        _wire->write(((uint8_t *)buffer)[i]);
     }
-    if (Wire.endTransmission(true) != 0) {
+    if (_wire->endTransmission(true) != 0) {
         return false;
     }
 
@@ -897,15 +935,15 @@ bool ErriezDS3231::writeBuffer(uint8_t reg, void *buffer, uint8_t writeLen)
 bool ErriezDS3231::readBuffer(uint8_t reg, void *buffer, uint8_t readLen)
 {
     // Start I2C transfer by writing the I2C address and register number
-    Wire.beginTransmission(DS3231_ADDR);
-    Wire.write(reg);
+    _wire->beginTransmission(DS3231_ADDR);
+    _wire->write(reg);
     // Generate a repeated start, followed by a read buffer
-    if (Wire.endTransmission(false) != 0) {
+    if (_wire->endTransmission(false) != 0) {
         return false;
     }
-    Wire.requestFrom((uint8_t)DS3231_ADDR, readLen);
+    _wire->requestFrom((uint8_t)DS3231_ADDR, readLen);
     for (uint8_t i = 0; i < readLen; i++) {
-        ((uint8_t *)buffer)[i] = (uint8_t)Wire.read();
+        ((uint8_t *)buffer)[i] = (uint8_t)_wire->read();
     }
 
     return true;
