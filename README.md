@@ -51,7 +51,7 @@ https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/windows.
 Note: Tested ESP8266 / ESP32 boards:
 
 * **ESP8266 boards**: ESP12F / WeMos D1 & R2 / Node MCU v2 / v3
-* **ESP32 boards:** WeMos LOLIN32 / LOLIN D32
+* **ESP32 boards:** WeMos LOLIN32 / LOLIN D32 / ESP32-CAM
 
 Other unlisted MCU's may work, but are not tested.
 
@@ -81,7 +81,7 @@ Arduino IDE | Examples | Erriez DS3231 RTC:
 
 ## Usage
 
-**Initialization**
+**Initialization with default I2C interface**
 
 ```c++
 #include <Wire.h>
@@ -103,6 +103,33 @@ void setup()
     }
 }
 ```
+
+**Initialization with custom I2C interface**
+
+```c++
+#include <Wire.h>
+#include <ErriezDS3231.h>
+
+#define I2C_SDA 14	//custom I2C pins
+#define I2C_SCL 15
+
+// Create RTC object
+ErriezDS3231 rtc;
+
+void setup()
+{
+    // Initialize non default TWI with a 400kHz clock
+    Wire1.begin(I2C_SDA, I2C_SCL);
+    Wire1.setClock(400000);
+    
+    // Initialize RTC with specified Wire interface
+    while (!rtc.begin(&Wire1)) {
+        // Error: Could not detect DS3231 RTC, retry after some time
+        delay(3000);
+    }
+}
+```
+
 
 **Check oscillator status at startup**
 
